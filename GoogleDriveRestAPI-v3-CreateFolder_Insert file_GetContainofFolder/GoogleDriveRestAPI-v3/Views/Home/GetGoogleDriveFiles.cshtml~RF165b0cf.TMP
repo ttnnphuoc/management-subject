@@ -1,0 +1,240 @@
+﻿@model IEnumerable<ElearningSubject_v3.Models.GoogleDriveFiles>
+
+@{
+    ViewBag.Title = "Google Drive API v3 - ASP.NET MVC 5 [Everyday Be Coding]";
+}
+
+<h2 class="imagetable">Google Drive API v3 - ASP.NET MVC 5 </h2>
+<script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+
+<style type="text/css">
+    table.imagetable {
+        font-family: verdana,arial,sans-serif;
+        font-size: 11px;
+        color: #333333;
+        border-width: 1px;
+        border-color: #999999;
+        border-collapse: collapse;
+    }
+
+        table.imagetable th {
+            background: #b5cfd2 url('cell-blue.jpg');
+            border-width: 1px;
+            padding: 8px;
+            border-style: solid;
+            border-color: #999999;
+        }
+
+        table.imagetable td {
+            /*background: #dcddc0 url('cell-grey.jpg');*/
+            border-width: 1px;
+            padding: 8px;
+            border-style: solid;
+            border-color: #999999;
+        }
+</style>
+
+<center>
+    <div style="width:100%; text-align:left;">
+        <table class="imagetable">
+            <tr>
+                <td>
+                    @using (Html.BeginForm("CreateFolder", "Home", FormMethod.Post))
+                {
+                        <p>
+                            Folder Name :<input type="text" name="FolderName" id="txtFolderName" style="align-content:center" />
+                            <input type="submit" class="CreateFolder" value="Create Folder" style="align-content:center" />
+                        </p>
+                }
+                </td>
+                <td>
+                    @using (Html.BeginForm("UploadFile", "Home", FormMethod.Post, new { enctype = "multipart/form-data" }))
+                    {
+                        <label>File Upload in Root :</label>
+                        <input type="file" name="file" id="file" style="width:176px;" />
+                        <input type="submit" value="Upload" />
+                    }
+                </td>
+            </tr>
+        </table>
+    </div>
+
+    <br />
+
+    <table class="imagetable">
+        <tr id="header">
+            <th>
+                @Html.DisplayNameFor(model => model.Name)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Size)
+            </th>
+            <th>
+                Type
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Version)
+            </th>
+            <th>
+                Created Time
+            </th>
+            <th>
+                Upload
+            </th>
+            <th>
+                View
+            </th>
+            <th>
+                Download
+            </th>
+            <th>
+                Delete
+            </th>
+            <th>
+                Move To
+            </th>
+            <th>
+                Copy To
+            </th>
+        </tr>
+
+        @if (Model.Count() > 0)
+        {
+            foreach (var item in Model)
+            {
+                if (item.Parents[0] == "0ANNR3nwrf6gUUk9PVA")
+                {
+                    <tr>
+                        @{
+                        string FileSize = string.Empty;
+                        string Type = string.Empty;
+                        if (@item.Size != null)
+                        {
+                            long? KiloByte = @item.Size / 1024;
+                            FileSize = KiloByte + " KB";
+                        }
+                        else
+                        {
+                            FileSize = "0 KB";
+                        }
+                        }
+                        <td>
+
+                            @if (FileSize == "0 KB") {
+
+                                @*@Url.ActionLink(item.Name, "GetFilesInFolder", FormMethod.Get, new { folderId = item.Id })*@
+                                @Url.Action("GetFilesInFolder", "Home", new { folderId = item.Id })
+                             }
+                             else { @item.Name }
+                            @*@Html.DisplayFor(modelItem => item.Name)*@
+                        </td>
+                        <td>
+                            @FileSize
+                        </td>
+                        <td>
+                            @{
+                        if (FileSize == "0 KB") { Type = "Folder"; }
+                        else { Type = "File"; }
+                            }
+                            @Type
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Version)
+                        </td>
+                        <td>
+                            @string.Format("{0: MM/dd/yyyy}", Convert.ToDateTime(Html.DisplayFor(modelItem => item.CreatedTime).ToString()))
+                        </td>
+
+                        <td>
+                            @if (FileSize == "0 KB")
+                         {
+                             using (Html.BeginForm("FileUploadInFolder", "Home", FormMethod.Post, new { enctype = "multipart/form-data" }))
+                            {
+                                <input type="hidden" name=Id value="@item.Id">
+                                <input type="file" name="file" id="file" style="width:176px;" />
+                                <input type="submit" value="Upload" />
+                            }
+                         }
+                        </td>
+
+                        <td>
+                            @*@if (FileSize == "0 KB") { Html.RenderAction("GetFilesInFolder", "Home", new { folderId = item.Id }); }*@
+                        </td>
+
+                        <td>
+                            @if (FileSize != "0 KB") { <input type="button" class="DownloadFile" value="Download" data-key=@item.Id style="align-content:center" />}
+                        </td>
+                        <td>
+                            @using (Html.BeginForm("DeleteFile", "Home", FormMethod.Post))
+                            {
+                                <input type="hidden" name=Id value="@item.Id">
+                                <input type="submit" class="DeleteFile" value="Delete" style="align-content:center" />
+                            }
+                        </td>
+                        <td>
+                            @if (FileSize != "0 KB")
+                            {
+                                @Html.DropDownList("drpGetDriveFoldersForMove", (IEnumerable<SelectListItem>)ViewBag.GetDriveFolders, "Select Folder")
+                            }
+                        </td>
+                        <td>
+                            @if (FileSize != "0 KB")
+                            {
+                                @Html.DropDownList("drpGetDriveFoldersForCopy", (IEnumerable<SelectListItem>)ViewBag.GetDriveFolders, "Select Folder")
+                            }
+                        </td>
+                    </tr>
+                }
+            }
+        }
+        else
+        {
+            <tr> <td colspan="6">No files found</td> </tr>
+        }
+    </table>
+
+</center>
+
+<script>
+    $(document).on('click', '.DownloadFile', function () {
+        debugger;
+        var fileId = $(this).attr("data-key");
+        window.location.href = '/Home/DownloadFile/' + fileId;
+    });
+
+    //KPI Dropdown Select Index Change event
+    $(document).on('change', '#drpKPI', function () {
+        var siteId = $("#txtAdvertiserCategorySite").val().trim();
+        $("#DvProductList").html("");
+        if ($('#drpKPI').val() == '') {
+            FillProductsWithAdvertiserCategory(siteId);
+        }
+        else {
+            FillProductsWithAdvertiserCategory_KPI(siteId);
+        }
+    });
+
+    //Fill Products With Advertiser Category and KPIID
+    function FillProductsWithAdvertiserCategory_KPI(siteId) {
+        debugger;
+        $.ajax({
+            url: '/Admin/Home/FillProductsWithAdvertiserCategory_KPI',
+            type: "GET",
+            dataType: "JSON",
+            async: false,
+            data: { siteId: siteId, AdvertCategoryId: $("#hdAdvertiserCategoryId").val(), KPIID: $('#drpKPI').val() },
+            success: function (BaseProduct) {
+                $("#DvProductList").html("");
+                var NewCategory = "";
+                $.each(BaseProduct, function (i, Product) {
+                    if (Product.ProductCode != NewCategory) {
+                        NewCategory = Product.ProductCode;
+                        $("#DvProductList").append('&nbsp;<p><strong>' + Product.ProductCode + '</strong></p>&nbsp;')
+                    }
+                    $("#DvProductList").append('&nbsp<p><input type="checkbox" style="vertical-align: top;" name="ProList" value=' + Product.Id + ' ' + Product.DDLSelect + '> ' + Product.ProductName + '&nbsp;|&nbsp;<input type="text" id=' + Product.Id + ' class="allownumericWithdecimal" style="width:10%" placeholder="Budget" maxlength="6" disabled="disabled" value = ' + Product.PostfixNo + '>%</p>');
+                    if (Product.PostfixNo != "") { $('#' + Product.Id).removeAttr('disabled'); }
+                });
+            }
+        });
+    }
+</script>

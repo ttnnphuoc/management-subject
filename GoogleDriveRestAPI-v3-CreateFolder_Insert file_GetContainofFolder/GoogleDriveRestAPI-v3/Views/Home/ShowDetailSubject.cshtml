@@ -1,0 +1,66 @@
+﻿
+@{
+    ViewBag.Title = "Chi Tiết Bài Giảng";
+}
+<div class="content-wrapper" style="min-height: 1200.88px;">
+    <!-- Content Header (Page header) -->
+    <section class="content-header">
+        <div class="container-fluid">
+            <div class="row mb-2">
+                <div class="col-sm-6">
+                    <h1>Lập trình ngôn ngữ C#</h1>
+                </div>
+                <div class="col-sm-6">
+                    <ol class="breadcrumb float-sm-right">
+                        @*<li class="breadcrumb-item"><a href="#">Home</a></li>
+                        <li class="breadcrumb-item active">DataTables</li>*@
+                    </ol>
+                </div>
+            </div>
+        </div><!-- /.container-fluid -->
+    </section>
+
+    <!-- Main content -->
+    <section class="content">
+        <div class="row">
+            <div class="col-12">
+                <div class="card">
+                    <div class="card-header">
+                        <h3 class="card-title">Bài @Model.Index : @Model.Name</h3>
+                    </div>
+                    <!-- /.card-header -->
+                    <div class="card-body">
+                        <iframe width="620" height="415" src="https://www.youtube.com/embed/9kohr6pMwag"></iframe>
+                        <h4>Tài liệu tham khảo</h4>
+                        <table id="document-info" class="table table-bordered table-striped">
+                            <thead>
+                                <tr>
+                                    <th>#</th>
+                                    <th>Tài Liệu</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>@Model.Index</td>
+                                    <td><a href="#" title="Tải Về">@Model.Name</a></td>
+                                    @*<td>@Model.Time</td>*@
+                                </tr>
+                            </tbody>
+                            <tfoot>
+                                <tr>
+                                    <th>#</th>
+                                    <th>Tài Liệu</th>
+                                </tr>
+                            </tfoot>
+                        </table>
+                    </div>
+                    <!-- /.card-body -->
+                </div>
+                <!-- /.card -->
+            </div>
+            <!-- /.col -->
+        </div>
+        <!-- /.row -->
+    </section>
+    <!-- /.content -->
+</div>
