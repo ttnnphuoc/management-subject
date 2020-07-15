@@ -7,9 +7,9 @@
     <div class="card-body login-card-body">
         <p class="login-box-msg">Đăng nhập để bắt đầu phiên làm việc của bạn</p>
 
-        <form action="" method="post">
+        <form action="/Accounts/Login" method="post">
             <div class="input-group mb-3">
-                <input type="email" class="form-control" placeholder="Tài khoản">
+                <input type="email" class="form-control" name="email" id="name" placeholder="Tài khoản">
                 <div class="input-group-append">
                     <div class="input-group-text">
                         <span class="fas fa-envelope"></span>
@@ -17,7 +17,7 @@
                 </div>
             </div>
             <div class="input-group mb-3">
-                <input type="password" class="form-control" placeholder="Mật khẩu">
+                <input type="password" class="form-control" name="password" id="password" placeholder="Mật khẩu">
                 <div class="input-group-append">
                     <div class="input-group-text">
                         <span class="fas fa-lock"></span>
@@ -41,7 +41,7 @@
             <a href="/Accounts/ForgotPassword">Quên mật khẩu</a>
         </p>
         <p class="mb-0">
-            <a href="/Accounts/ForgotPassword" class="text-center">Đăng ký</a>
+            <a href="/Accounts/Register" class="text-center">Đăng ký</a>
         </p>
     </div>
     <!-- /.login-card-body -->

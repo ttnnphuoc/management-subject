@@ -20,6 +20,12 @@ namespace ElearningSubject.Controllers
             return View();
         }
 
+        [HttpPost]
+        public ActionResult Login(string username, string password)
+        {
+            return RedirectToAction("Index","Home");
+        }
+
         [HttpGet]
         public ActionResult ForgotPassword()
         {
