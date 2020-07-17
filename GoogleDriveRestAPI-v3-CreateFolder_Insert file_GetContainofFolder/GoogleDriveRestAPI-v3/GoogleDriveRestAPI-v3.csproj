@@ -521,6 +521,8 @@
     <Content Include="Views\Accounts\Register.cshtml" />
     <Content Include="Views\Subjects\Add.cshtml" />
     <Content Include="Views\Subjects\ModifyItemSubjectDetail.cshtml" />
+    <Content Include="Views\Subjects\AddLesson.cshtml" />
+    <None Include="Properties\PublishProfiles\elearning.pubxml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -531,6 +533,9 @@
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="GoogleDriveFiles\" />
+  </ItemGroup>
+  <ItemGroup>
+    <WCFMetadata Include="Service References\" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

@@ -21,6 +21,22 @@ namespace ElearningSubject.Views.Accounts
         {
             return View();
         }
+        [HttpPost]
+        public ActionResult Add(string nameSubject)
+        {
+            return RedirectToAction("Index", "Home");
+        }
+
+        [HttpGet]
+        public ActionResult AddLesson()
+        {
+            return View();
+        }
+        [HttpPost]
+        public ActionResult AddLesson(string nameSubject)
+        {
+            return RedirectToAction("GetSubjectDetailDataList", "Home");
+        }
 
         [HttpGet]
         public ActionResult ModifyItemSubjectDetail(string id)
