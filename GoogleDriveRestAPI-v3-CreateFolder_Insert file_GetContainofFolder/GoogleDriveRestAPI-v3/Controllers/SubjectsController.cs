@@ -1,4 +1,5 @@
-﻿using System;
+﻿using ElearningSubject.Models;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -8,8 +9,8 @@ namespace ElearningSubject.Views.Accounts
 {
     public class SubjectsController : Controller
     {
+        JsTreeModel jsTreeModel = new JsTreeModel();
         ContentSubject content = new ContentSubject();
-
         // GET: Subjects
         public ActionResult Index()
         {
@@ -50,6 +51,33 @@ namespace ElearningSubject.Views.Accounts
         {
             return RedirectToAction("GetSubjectDetailDataList","Home");
         }
+        public JsonResult GetRoot()
+        {
+            List<JsTreeModel> items = GetTree();
 
+            return new JsonResult { Data = items, JsonRequestBehavior = JsonRequestBehavior.AllowGet };
+        }
+
+        public JsonResult GetChildren(string id)
+        {
+            List<JsTreeModel> items = GetTree(id);
+            return new JsonResult { Data = items, JsonRequestBehavior = JsonRequestBehavior.AllowGet };
+        }
+
+        private List<JsTreeModel> GetTree()
+        {
+            var items = new List<JsTreeModel>();
+            items.Add(new JsTreeModel("1", "#", "Lập trình ngôn ngữ C#", true));
+            items.Add(new JsTreeModel("2", "#", "Học lập trình C/C++", true));
+            // set items in here
+
+            return items;
+        }
+
+        private List<JsTreeModel> GetTree(string id)
+        {
+            List<JsTreeModel> items = jsTreeModel.GetDataList().Where(x=>x.parent == id).ToList();
+            return items;
+        }
     }
 }

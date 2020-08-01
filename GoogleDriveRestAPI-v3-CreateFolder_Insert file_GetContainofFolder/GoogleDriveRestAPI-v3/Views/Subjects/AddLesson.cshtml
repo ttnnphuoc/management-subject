@@ -1,6 +1,6 @@
 ﻿
 @{
-    ViewBag.Title = "AddLesson";
+    ViewBag.Title = "Thêm Bài Học Mới";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
@@ -50,7 +50,33 @@
                                 </div>
 
                                 <div class="form-group">
-                                    <label for="document">Tài liệu</label>
+                                    <label for="document">Tài liệu (Giáo Án)</label>
+                                    @*<input type="text" class="form-control" id="document" value="@Model.Name .pdf" readonly placeholder="Tài liệu">*@
+                                </div>
+                                <div class="form-group">
+                                    @*<label for="fileDocument">Tài liệu</label>*@
+                                    <div class="input-group">
+                                        <div class="custom-file">
+                                            <input type="file" class="custom-file-input" id="fileDocument">
+                                            <label class="custom-file-label" for="fileDocument">Choose file</label>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label for="document">Tài liệu (slide bài giảng)</label>
+                                    @*<input type="text" class="form-control" id="document" value="@Model.Name .pdf" readonly placeholder="Tài liệu">*@
+                                </div>
+                                <div class="form-group">
+                                    @*<label for="fileDocument">Tài liệu</label>*@
+                                    <div class="input-group">
+                                        <div class="custom-file">
+                                            <input type="file" class="custom-file-input" id="fileDocument">
+                                            <label class="custom-file-label" for="fileDocument">Choose file</label>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label for="document">Tài liệu (Word Nội dung )</label>
                                     @*<input type="text" class="form-control" id="document" value="@Model.Name .pdf" readonly placeholder="Tài liệu">*@
                                 </div>
                                 <div class="form-group">
