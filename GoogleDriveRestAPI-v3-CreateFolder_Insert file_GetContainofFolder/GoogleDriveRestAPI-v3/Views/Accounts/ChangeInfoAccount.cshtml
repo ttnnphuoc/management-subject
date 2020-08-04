@@ -1,6 +1,6 @@
 ﻿
 @{
-    ViewBag.Title = "Chỉnh Sửa Thông Tin Khoa";
+    ViewBag.Title = "Thay Đổi Thông Tin";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 <div class="content-wrapper">
@@ -27,22 +27,35 @@
                     <!-- general form elements -->
                     <div class="card card-primary">
                         <div class="card-header">
-                            <h3 class="card-title">Thông Tin Khoa</h3>
+                            <h3 class="card-title">Thông Tin Tài Khoản</h3>
                         </div>
                         <!-- /.card-header -->
                         <!-- form start -->
-                        <form role="form" action="\Departments\Edit" method="post">
+                        <form role="form" action="\Accounts\ChangeInfoAccount" method="post">
                             <div class="card-body">
                                 <div class="form-group">
-                                    <input type="hidden" class="form-control" name="ID" id="ID" value="@Model.ID" placeholder="Tên quyền">
+                                    <input type="hidden" class="form-control" name="ID" id="ID" value="@Model.ID">
                                 </div>
                                 <div class="form-group">
                                     <label for="Name">Tên: </label>
-                                    <input type="text" class="form-control" name="Name" id="Name" value="@Model.Name" placeholder="Tên quyền">
+                                    <input type="text" class="form-control" name="Fullname" id="Fullname" value="@Model.Fullname" />
                                 </div>
                                 <div class="form-group">
-                                    <label for="Description">Mô tả: </label>
-                                    <textarea rows="4" class="form-control" cols="50" name="Description" id="Description" placeholder="Mô tả">@Model.Description</textarea>
+                                    <label for="Name">Email: </label>
+                                    <input type="text" class="form-control" name="Email" id="Email" value="@Model.Email" readonly />
+                                </div>
+                                <div class="form-group">
+                                    <label for="Name">Ngày Tạo: </label>
+                                    <input type="text" class="form-control" name="DateCreated" id="DateCreated" value="@string.Format("{0:dd/MM/yyyy}", Model.DateCreated)" readonly />
+                                </div>
+                                <div class="form-group">
+                                    <label for="Name">Chức Vụ</label>
+                                    <input type="text" class="form-control" name="Fullname" id="Fullname" value="@Model.Roles" readonly placeholder="Tên đầy đủ"/>
+                                </div>
+                                <div class="form-group">
+                                    <label for="Name">Khoa</label>
+                                    <input type="hidden" class="form-control" name="IDDepartment" id="IDDepartment" value="@Model.IDDepartment" readonly />
+                                    <input type="text" class="form-control" value="@Model.Department" readonly />
                                 </div>
                                 <div class="form-group">
 
@@ -54,14 +67,14 @@
                                     else
                                     {
                                         <label for="Status">Tình trạng (Đã xóa): </label>
-                                        <input id="responsable" name="Status"  type="checkbox" />
+                                        <input id="responsable" name="Status" type="checkbox" />
                                     }
 
                                 </div>
                             </div>
                             <!-- /.card-body -->
                             <div class="card-footer">
-                                <button type="submit" class="btn btn-primary">Submit</button>
+                                <button type="submit" class="btn btn-primary">Lưu</button>
                             </div>
                         </form>
                     </div>
