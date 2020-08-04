@@ -1,6 +1,6 @@
 ﻿
 @{
-    ViewBag.Title = "Chỉnh sửa thông tin quyền";
+    ViewBag.Title = "Chỉnh Sửa Thông Tin Khoa";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 <div class="content-wrapper">
@@ -27,11 +27,11 @@
                     <!-- general form elements -->
                     <div class="card card-primary">
                         <div class="card-header">
-                            <h3 class="card-title">Thông Tin Quyền</h3>
+                            <h3 class="card-title">Thông Tin Khoa</h3>
                         </div>
                         <!-- /.card-header -->
                         <!-- form start -->
-                        <form role="form" action="\Roles\Edit" method="post">
+                        <form role="form" action="\Departments\Edit" method="post">
                             <div class="card-body">
                                 <div class="form-group">
                                     <input type="hidden" class="form-control" name="ID" id="ID" value="@Model.ID" placeholder="Tên quyền">
@@ -42,19 +42,19 @@
                                 </div>
                                 <div class="form-group">
                                     <label for="Description">Mô tả: </label>
-                                    <textarea rows="4"  class="form-control" cols="50" name="Description" id="Description" placeholder="Mô tả">@Model.Description</textarea>
+                                    <textarea rows="4" class="form-control" cols="50" name="Description" id="Description" placeholder="Mô tả">@Model.Description</textarea>
                                 </div>
                                 <div class="form-group">
-                                    
+
                                     @if (Model.Status)
                                     {
                                         <label for="Status">Tình trạng (Đang sử dụng): </label>
-                                        <input id="responsable" name="Status" value="true" type="checkbox" checked/>
+                                        <input id="responsable" name="Status" value="true" type="checkbox" checked />
                                     }
                                     else
                                     {
                                         <label for="Status">Tình trạng (Đã xóa): </label>
-                                        <input id="responsable" name="Status" value="true" type="checkbox"/>
+                                        <input id="responsable" name="Status" value="true" type="checkbox" />
 
                                     }
 

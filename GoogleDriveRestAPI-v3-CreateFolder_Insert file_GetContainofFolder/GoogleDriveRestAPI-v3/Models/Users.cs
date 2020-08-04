@@ -14,5 +14,7 @@ namespace ElearningSubject.Models
         public string[] Role { set; get; }
         public DateTime DateCreated { set; get; }
         public string IDDepartment { set; get; }
+        public bool Status { set; get; }
+        public string StatusName { set; get; }
     }
 }

@@ -1,6 +1,6 @@
 ﻿
 @{
-    ViewBag.Title = "Chỉnh sửa thông tin quyền";
+    ViewBag.Title = "Thêm Khoa Mới";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 <div class="content-wrapper">
@@ -10,7 +10,7 @@
             <div class="row mb-2">
                 <div class="col-sm-3"></div>
                 <div class="col-sm-6">
-                    <h1>Chỉnh sửa thông tin</h1>
+                    <h1>Thêm mới</h1>
                 </div>
                 <div class="col-sm-3"></div>
             </div>
@@ -27,37 +27,19 @@
                     <!-- general form elements -->
                     <div class="card card-primary">
                         <div class="card-header">
-                            <h3 class="card-title">Thông Tin Quyền</h3>
+                            <h3 class="card-title">Thông Tin Khoa</h3>
                         </div>
                         <!-- /.card-header -->
                         <!-- form start -->
-                        <form role="form" action="\Roles\Edit" method="post">
+                        <form role="form" action="\Departments\Create" method="post">
                             <div class="card-body">
                                 <div class="form-group">
-                                    <input type="hidden" class="form-control" name="ID" id="ID" value="@Model.ID" placeholder="Tên quyền">
+                                    <label for="Name">Tên</label>
+                                    <input type="text" class="form-control" name="Name" placeholder="Tên khoa">
                                 </div>
                                 <div class="form-group">
-                                    <label for="Name">Tên: </label>
-                                    <input type="text" class="form-control" name="Name" id="Name" value="@Model.Name" placeholder="Tên quyền">
-                                </div>
-                                <div class="form-group">
-                                    <label for="Description">Mô tả: </label>
-                                    <textarea rows="4"  class="form-control" cols="50" name="Description" id="Description" placeholder="Mô tả">@Model.Description</textarea>
-                                </div>
-                                <div class="form-group">
-                                    
-                                    @if (Model.Status)
-                                    {
-                                        <label for="Status">Tình trạng (Đang sử dụng): </label>
-                                        <input id="responsable" name="Status" value="true" type="checkbox" checked/>
-                                    }
-                                    else
-                                    {
-                                        <label for="Status">Tình trạng (Đã xóa): </label>
-                                        <input id="responsable" name="Status" value="true" type="checkbox"/>
-
-                                    }
-
+                                    <label for="Description">Mô tả</label>
+                                    <textarea rows="4" class="form-control" cols="50" name="Description" placeholder="Mô tả"></textarea>
                                 </div>
                             </div>
                             <!-- /.card-body -->
@@ -76,3 +58,4 @@
     </section>
     <!-- /.content -->
 </div>
+
