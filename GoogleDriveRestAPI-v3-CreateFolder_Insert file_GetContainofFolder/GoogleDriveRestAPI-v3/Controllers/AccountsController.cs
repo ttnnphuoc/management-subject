@@ -46,6 +46,12 @@ namespace ElearningSubject.Controllers
         {
             return View();
         }
+        [HttpPost]
+        public ActionResult ForgotPassword(string email)
+        {
+            user.SendMail(email);
+            return RedirectToAction("Login");
+        }
 
         [HttpGet]
         public ActionResult ChangePassword()

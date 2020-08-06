@@ -77,7 +77,7 @@ namespace ElearningSubject.Models
             return BitConverter.ToString(hashedBytes).Replace("-", "").ToLower();
         }
 
-        public bool SendMail(string email, string username)
+        public bool SendMail(string email)
         {
             try
             {
@@ -88,14 +88,14 @@ namespace ElearningSubject.Models
                 mail.To.Add(email);
                 mail.Subject = "[Reset Password]";
                 string password = RandomPassword();
-                mail.Body = string.Format("Mật khẩu mới cả tài khoản {0} là: <b>{1}</b>", username, password);
+                mail.Body = string.Format("Mật khẩu mới cả tài khoản {0} là: <b>{1}</b>", email, password);
 
                 SmtpServer.Port = 587;
                 SmtpServer.Credentials = new System.Net.NetworkCredential("username", "password");
                 SmtpServer.EnableSsl = true;
 
                 SmtpServer.Send(mail);
-                ChangePassword(username, password);
+                ChangePassword(email, password);
                 return true;
             }
             catch (Exception ex)
