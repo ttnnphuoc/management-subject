@@ -18,13 +18,14 @@ GO
 -- Create date: <08/06/2020>
 -- Description:	<Update Information User>
 -- =============================================
-CREATE PROCEDURE sp_updateUsers 
+alter PROCEDURE sp_updateUsers 
 	@id int,
 	@fullname nvarchar(200),
 	@department int,
 	@status int
 AS
 BEGIN
-	UPDATE USERS SET Fullname = @fullname, IDDepartment = @department, [Status] = @status WHERE [id] = @id
+	UPDATE USERS SET Fullname = @fullname, IDDepartment = @department WHERE [id] = @id
+	Update Users SET [Status] = @status WHERE [id] = @id AND @status != '-1'
 END
 GO

@@ -537,6 +537,8 @@
     <Content Include="Views\Departments\Edit.cshtml" />
     <Content Include="Views\Departments\Index.cshtml" />
     <Content Include="Views\Accounts\ChangeInfoAccount.cshtml" />
+    <Content Include="Views\Accounts\Index.cshtml" />
+    <Content Include="Views\Accounts\EditPermistion.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

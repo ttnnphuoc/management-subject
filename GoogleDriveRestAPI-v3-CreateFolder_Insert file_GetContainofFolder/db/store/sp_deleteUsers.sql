@@ -15,17 +15,13 @@ SET QUOTED_IDENTIFIER ON
 GO
 -- =============================================
 -- Author:		<TRAN NGOC PHUOC>
--- Create date: <08/04/2020>
--- Description:	<Get all user>
+-- Create date: <08/06/2020>
+-- Description:	<Delete User>
 -- =============================================
-Alter PROCEDURE [dbo].[sp_getAllUsers]
-	@id int,
-	@status nchar(5)
+CREATE PROCEDURE sp_deleteUsers
+	@id int
 AS
 BEGIN
-	SELECT Users.*,StatusCommon.Name as NameStatus,dp.Name as Department, r.Name as RolesName FROM Users 
-	inner join StatusCommon on Users.Status = StatusCommon.ID 
-	inner join Department dp on dp.ID = Users.IDDepartment
-	inner join Roles r on r.ID = Users.Roles
-	where (@id = 0 OR @id = Users.ID) and (@status = '' or @status = Users.Status)
+	UPDATE USERs SET [STATUS] = 0 WHERE [ID] = @id
 END
+GO

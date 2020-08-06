@@ -15,12 +15,8 @@ Alter PROCEDURE sp_addUsers
 	@department nchar(5)
 AS
 BEGIN
-	DECLARE @MyTableVar TABLE (id INT);
 	
     INSERT INTO Users(FULLNAME,EMAIL,[PASSWORD],DATECREATED,[ROLES],IDDEPARTMENT, [STATUS]) 
-	OUTPUT INSERTED.ID INTO @MyTableVar
 	VALUES(@name,@email,@password,@date,1,@department,1)
-
-	Insert into UsersRoles Values((Select id from @MyTableVar),1)
 END
 GO

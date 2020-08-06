@@ -19,7 +19,7 @@ namespace ElearningSubject.Models
         public DateTime DateCreated { set; get; }
         public string IDDepartment { set; get; }
         public bool Status { set; get; }
-        public string StatusName { set; get; }
+        public string NameStatus { set; get; }
         public string Department { set; get; }
 
         public Users()
@@ -36,7 +36,7 @@ namespace ElearningSubject.Models
 
         public bool Update(Users user)
         {
-            int result = DataProvider.Instance.ExecuteNonQuery("sp_updateUsers",user.ID, user.Fullname, user.IDDepartment,user.Status);
+            int result = DataProvider.Instance.ExecuteNonQuery("sp_updateUsers",user.ID, user.Fullname, user.IDDepartment,-1);
             return result > 0;
         }
 
@@ -65,6 +65,12 @@ namespace ElearningSubject.Models
         {
             List<Users> data = CBO.FillCollection<Users>(DataProvider.Instance.ExecuteReader("sp_getAllUsers", id, status));
             return data;
+        }
+
+        public bool UpdatePermission(Users user)
+        {
+            int result = DataProvider.Instance.ExecuteNonQuery("sp_updatePermission", user.ID, user.IDDepartment, user.Roles, user.Status);
+            return result > 0;
         }
         public static string EncodingPassword(string password)
         {
