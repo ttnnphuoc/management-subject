@@ -138,6 +138,8 @@ namespace ElearningSubject.Controllers
         }
         public ActionResult Delete(int id)
         {
+             if (IsNotLogin())
+                return RedirectToAction("Login");
             user.Delete(id);
             return RedirectToAction("Index");
         }
