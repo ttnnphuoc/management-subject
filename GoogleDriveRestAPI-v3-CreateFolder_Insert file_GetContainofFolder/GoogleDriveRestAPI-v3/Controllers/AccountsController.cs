@@ -1,6 +1,7 @@
 ﻿using ElearningSubject.Models;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
@@ -39,7 +40,8 @@ namespace ElearningSubject.Controllers
                     return RedirectToAction("Index", "Home");
                 }
             }
-            return RedirectToAction("Login");
+            ViewBag.Error = "Tải khoản hoặc mật khẩu không đúng. Hoặc tài khoản đã bị khóa";
+            return View();
         }
 
         [HttpGet]
@@ -50,6 +52,11 @@ namespace ElearningSubject.Controllers
         [HttpPost]
         public ActionResult ForgotPassword(string email)
         {
+            if(email == "" || !(new EmailAddressAttribute().IsValid(email)))
+            {
+                ViewBag.Error = "Email không đúng định dạng.";
+                return View();
+            }
             user.SendMail(email);
             return RedirectToAction("Login");
         }
@@ -69,7 +76,7 @@ namespace ElearningSubject.Controllers
                 return RedirectToAction("Login");
             if ((password0 == "" && password1 == "") || password0 != password1)
             {
-                ViewBag.Error = "Mật khẩu không khớp";
+                ViewBag.Error = "Mật khẩu không khớp hoặc đang để trống";
                 return View();
             }
             user.ChangePassword(Session["UserLogin"] + "", password1);
@@ -89,7 +96,13 @@ namespace ElearningSubject.Controllers
         [HttpPost]
         public ActionResult ChangeInfoAccount(Users user)
         {
-            user.Update(user);
+            if (user.Fullname +""== "")
+            {
+                TempData["Error"] = "Tên không được bỏ trống";
+            } else
+            {
+                user.Update(user);
+            }
             return RedirectToAction("ChangeInfoAccount", "Accounts", new { id = user.ID });
         }
 
@@ -103,6 +116,12 @@ namespace ElearningSubject.Controllers
         [HttpPost]
         public ActionResult Register(Users user)
         {
+            if (user.Fullname+"" == "" || user.Email+"" == "" || user.Password+"" == "")
+            {
+                ViewBag.Error = "Tên, Email, Password không được để trống";
+                ViewBag.ListDepartment = department.GetAll(0, "1");
+                return View();
+            }
             user.DateCreated = DateTime.Now;
             user.Add(user);
             return RedirectToAction("Login");

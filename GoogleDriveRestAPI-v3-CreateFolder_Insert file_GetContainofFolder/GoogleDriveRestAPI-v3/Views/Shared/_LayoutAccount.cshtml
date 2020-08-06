@@ -17,6 +17,11 @@
     <link rel="stylesheet" href="~/Content/Admin/dist/css/adminlte.min.css">
     <!-- Google Font: Source Sans Pro -->
     <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700" rel="stylesheet">
+    <style>
+        .swal-footer {
+            text-align:center!important;
+        }
+    </style>
 </head>
 <body class="hold-transition login-page">
     <div class="login-box">
@@ -33,6 +38,17 @@
     <script src="~/Content/Admin/plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
     <!-- AdminLTE App -->
     <script src="~/Content/Admin/dist/js/adminlte.min.js"></script>
-
+    <script src="~/Content/Admin/sweetalert/sweetalert.min.js"></script>
+    <script>
+        var content=@Html.Raw(Json.Encode(ViewBag.Error));
+        if(content) {
+            swal({
+                title: "Thông Báo!",
+                text: content,
+                icon: "error",
+                button: "OK",
+            });
+        }
+    </script>
 </body>
 </html>

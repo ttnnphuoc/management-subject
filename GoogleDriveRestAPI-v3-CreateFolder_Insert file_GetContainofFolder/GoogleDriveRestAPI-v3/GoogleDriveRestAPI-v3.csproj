@@ -448,6 +448,7 @@
     <Content Include="Content\Admin\plugins\summernote\summernote.css" />
     <Content Include="Content\Admin\plugins\summernote\summernote.js" />
     <Content Include="Content\Admin\plugins\summernote\summernote.min.js" />
+    <Content Include="Content\Admin\sweetalert\sweetalert.min.js" />
     <Content Include="Global.asax" />
     <Content Include="Web.config">
       <SubType>Designer</SubType>
