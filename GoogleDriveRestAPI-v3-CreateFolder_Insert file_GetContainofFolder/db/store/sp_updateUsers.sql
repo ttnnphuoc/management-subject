@@ -15,18 +15,16 @@ SET QUOTED_IDENTIFIER ON
 GO
 -- =============================================
 -- Author:		<TRAN NGOC PHUOC>
--- Create date: <08/04/2020>
--- Description:	<Get all user>
+-- Create date: <08/06/2020>
+-- Description:	<Update Information User>
 -- =============================================
-Alter PROCEDURE [dbo].[sp_getAllUsers]
+CREATE PROCEDURE sp_updateUsers 
 	@id int,
-	@status nchar(5)
+	@fullname nvarchar(200),
+	@department int,
+	@status int
 AS
 BEGIN
-	SELECT Users.*,StatusCommon.Name as NameStatus,dp.Name as Department, r.Name as RolesName FROM Users 
-	inner join StatusCommon on Users.Status = StatusCommon.ID 
-	inner join Department dp on dp.ID = Users.IDDepartment
-	inner join UsersRoles ur on ur.Users = Users.ID
-	inner join Roles r on r.ID = ur.Roles
-	where (@id = 0 OR @id = Users.ID) and (@status = '' or @status = Users.Status)
+	UPDATE USERS SET Fullname = @fullname, IDDepartment = @department, [Status] = @status WHERE [id] = @id
 END
+GO

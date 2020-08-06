@@ -8,7 +8,6 @@ GO
 -- Description:	<Add new user>
 -- =============================================
 Alter PROCEDURE sp_addUsers
-	@id int,
 	@name nvarchar(200),
 	@email varchar(100),
 	@password varchar(100),
@@ -17,9 +16,11 @@ Alter PROCEDURE sp_addUsers
 AS
 BEGIN
 	DECLARE @MyTableVar TABLE (id INT);
-
+	
     INSERT INTO Users(FULLNAME,EMAIL,[PASSWORD],DATECREATED,[ROLES],IDDEPARTMENT, [STATUS]) 
+	OUTPUT INSERTED.ID INTO @MyTableVar
 	VALUES(@name,@email,@password,@date,1,@department,1)
-	set @id = SELECT SCOPE_IDENTITY()
+
+	Insert into UsersRoles Values((Select id from @MyTableVar),1)
 END
 GO

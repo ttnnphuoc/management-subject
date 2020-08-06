@@ -45,6 +45,8 @@ namespace ElearningSubject_v3.Controllers
         [HttpGet]
         public ActionResult Index()
         {
+            if (IsNotLogin())
+                return RedirectToAction("Login");
             return View();
         }
 
@@ -57,6 +59,12 @@ namespace ElearningSubject_v3.Controllers
         {
             ContentSubject item = content.PrepareData().Find(x => x.Index + "" == id);
             return View(item);
+        }
+        private bool IsNotLogin()
+        {
+            if (string.IsNullOrEmpty(Session["UserLogin"] + ""))
+                return true;
+            return false;
         }
     }
 }

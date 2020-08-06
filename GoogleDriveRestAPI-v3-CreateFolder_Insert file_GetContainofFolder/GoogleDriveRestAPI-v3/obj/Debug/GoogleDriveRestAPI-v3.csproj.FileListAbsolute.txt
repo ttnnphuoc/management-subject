@@ -300,4 +300,3 @@ C:\Users\ngocp\Desktop\management-subject\GoogleDriveRestAPI-v3-CreateFolder_Ins
 C:\Users\ngocp\Desktop\management-subject\GoogleDriveRestAPI-v3-CreateFolder_Insert file_GetContainofFolder\GoogleDriveRestAPI-v3\bin\ElearningSubject.pdb
 C:\Users\ngocp\Desktop\management-subject\GoogleDriveRestAPI-v3-CreateFolder_Insert file_GetContainofFolder\GoogleDriveRestAPI-v3\obj\Debug\ElearningSubject.dll
 C:\Users\ngocp\Desktop\management-subject\GoogleDriveRestAPI-v3-CreateFolder_Insert file_GetContainofFolder\GoogleDriveRestAPI-v3\obj\Debug\ElearningSubject.pdb
-C:\Users\ngocp\Desktop\management-subject\GoogleDriveRestAPI-v3-CreateFolder_Insert file_GetContainofFolder\GoogleDriveRestAPI-v3\obj\Debug\GoogleDriveRestAPI-v3.csprojResolveAssemblyReference.cache

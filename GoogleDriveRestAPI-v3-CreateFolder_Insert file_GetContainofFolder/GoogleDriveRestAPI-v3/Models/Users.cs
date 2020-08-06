@@ -15,6 +15,7 @@ namespace ElearningSubject.Models
         public string Email { set; get; }
         public string Password { set; get; }
         public string Roles { set; get; }
+        public string RolesName { set; get; }
         public DateTime DateCreated { set; get; }
         public string IDDepartment { set; get; }
         public bool Status { set; get; }
@@ -29,14 +30,13 @@ namespace ElearningSubject.Models
         public bool Add(Users user)
         {
             user.Password = EncodingPassword(user.Password);
-            //int result = DataProvider.Instance.ExecuteNonQuery("sp_addUsers", user.Fullname, user.Email, user.Password, user.DateCreated, user.IDDepartment);
-            object obj = DataProvider.Instance.ExecuteNonQueryWithOutput("@id","sp_addUsers",user.Fullname, user.Email, user.Password, user.DateCreated, user.IDDepartment,0);
-            return -1 > 0;
+            int result = DataProvider.Instance.ExecuteNonQuery("sp_addUsers", user.Fullname, user.Email, user.Password, user.DateCreated, user.IDDepartment);
+            return result > 0;
         }
 
         public bool Update(Users user)
         {
-            int result = DataProvider.Instance.ExecuteNonQuery("sp_updateUsers", user.Fullname, user.Roles, user.IDDepartment);
+            int result = DataProvider.Instance.ExecuteNonQuery("sp_updateUsers",user.ID, user.Fullname, user.IDDepartment,user.Status);
             return result > 0;
         }
 
@@ -77,7 +77,7 @@ namespace ElearningSubject.Models
             return BitConverter.ToString(hashedBytes).Replace("-", "").ToLower();
         }
 
-        public static bool SendMail(string email, string username)
+        public bool SendMail(string email, string username)
         {
             try
             {
@@ -87,13 +87,15 @@ namespace ElearningSubject.Models
                 mail.From = new MailAddress("your_email_address@gmail.com");
                 mail.To.Add(email);
                 mail.Subject = "[Reset Password]";
-                mail.Body = string.Format("Mật khẩu mới cả tài khoản {0} là: <b>{1}</b>", username, RandomPassword());
+                string password = RandomPassword();
+                mail.Body = string.Format("Mật khẩu mới cả tài khoản {0} là: <b>{1}</b>", username, password);
 
                 SmtpServer.Port = 587;
                 SmtpServer.Credentials = new System.Net.NetworkCredential("username", "password");
                 SmtpServer.EnableSsl = true;
 
                 SmtpServer.Send(mail);
+                ChangePassword(username, password);
                 return true;
             }
             catch (Exception ex)

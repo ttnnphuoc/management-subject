@@ -49,13 +49,12 @@
                                     @if (Model.Status)
                                     {
                                         <label for="Status">Tình trạng (Đang sử dụng): </label>
-                                        <input id="responsable" name="Status" type="checkbox" checked/>
                                     }
                                     else
                                     {
                                         <label for="Status">Tình trạng (Đã xóa): </label>
-                                        <input id="responsable" name="Status" type="checkbox"/>
                                     }
+                                    <input id="Status" name="Status" type="checkbox" value="true" @(Model.Status ? "checked=\"checked\"" : "") />
 
                                 </div>
                             </div>

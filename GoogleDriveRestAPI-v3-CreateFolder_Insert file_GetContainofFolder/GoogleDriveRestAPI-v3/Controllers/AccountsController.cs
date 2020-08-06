@@ -70,18 +70,20 @@ namespace ElearningSubject.Controllers
         }
 
         [HttpGet]
-        public ActionResult ChangeInfoAccount()
+        public ActionResult ChangeInfoAccount(int ?id)
         {
             if (IsNotLogin())
                 return RedirectToAction("Login");
-            int id = int.Parse(Session["IDLogin"]+"");
-            return View(user.GetAll(id).FirstOrDefault());
+            int idx = int.Parse(Session["IDLogin"]+"");
+            ViewBag.ListDepartment = department.GetAll(0, "1");
+            return View(user.GetAll(idx).FirstOrDefault());
         }
 
         [HttpPost]
         public ActionResult ChangeInfoAccount(Users user)
         {
-            return View();
+            user.Update(user);
+            return RedirectToAction("ChangeInfoAccount", "Accounts", new { id = user.ID});
         }
 
         [HttpGet]
@@ -98,6 +100,14 @@ namespace ElearningSubject.Controllers
             user.Add(user);
             return RedirectToAction("Login");
         }
+        
+        public ActionResult LogOut()
+        {
+            Session["UserLogin"] = null;
+            Session["IDLogin"] = null;
+            return RedirectToAction("Login");
+        }
+
         private bool IsNotLogin()
         {
             if (string.IsNullOrEmpty(Session["UserLogin"] + ""))

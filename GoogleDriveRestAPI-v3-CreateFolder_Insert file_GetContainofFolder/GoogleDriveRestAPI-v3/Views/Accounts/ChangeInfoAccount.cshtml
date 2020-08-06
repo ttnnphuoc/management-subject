@@ -50,25 +50,31 @@
                                 </div>
                                 <div class="form-group">
                                     <label for="Name">Chức Vụ</label>
-                                    <input type="text" class="form-control" name="Fullname" id="Fullname" value="@Model.Roles" readonly placeholder="Tên đầy đủ"/>
+                                    <input type="text" class="form-control" name="RolesName" id="RolesName" value="@Model.RolesName" readonly placeholder="Tên đầy đủ"/>
                                 </div>
                                 <div class="form-group">
                                     <label for="Name">Khoa</label>
-                                    <input type="hidden" class="form-control" name="IDDepartment" id="IDDepartment" value="@Model.IDDepartment" readonly />
                                     <input type="text" class="form-control" value="@Model.Department" readonly />
+                                </div>
+                                <div class="form-group">
+                                    <select name="IDDepartment" id="IDDepartment" class="form-control">
+                                        @foreach (var item in ViewBag.ListDepartment)
+                                        {
+                                            <option value="@item.ID">@item.Name</option>
+                                        }
+                                    </select>
                                 </div>
                                 <div class="form-group">
 
                                     @if (Model.Status)
                                     {
                                         <label for="Status">Tình trạng (Đang sử dụng): </label>
-                                        <input id="responsable" name="Status" type="checkbox" checked />
                                     }
                                     else
                                     {
                                         <label for="Status">Tình trạng (Đã xóa): </label>
-                                        <input id="responsable" name="Status" type="checkbox" />
                                     }
+                                    <input id="Status" name="Status" type="checkbox" value="true" @(Model.Status ? "checked=\"checked\"" : "") />
 
                                 </div>
                             </div>
