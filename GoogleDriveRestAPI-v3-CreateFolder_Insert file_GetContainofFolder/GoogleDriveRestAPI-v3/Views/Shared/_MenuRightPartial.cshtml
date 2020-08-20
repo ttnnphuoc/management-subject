@@ -1,0 +1,37 @@
+﻿<ul class="navbar-nav ml-auto">
+    <!-- Notifications Dropdown Menu -->
+    <li class="nav-item dropdown">
+        <a class="nav-link" data-toggle="dropdown" href="#">
+            <i class="fas fa-user"></i>
+        </a>
+        <div class="dropdown-menu dropdown-menu-lg dropdown-menu-right">
+            <span class="dropdown-item dropdown-header" style="pointer-events:none;">Thiết lập thông tin</span>
+            <div class="dropdown-divider"></div>
+            <a href="/Accounts/ChangeInfoAccount" class="dropdown-item">
+                <i class="fas fa-info-circle"></i> Thông tin
+            </a>
+            <div class="dropdown-divider"></div>
+            <a href="/Accounts/ChangePassword" class="dropdown-item">
+                <i class="fas fa-exchange-alt"></i> Đổi mật khẩu
+            </a>
+            @if (true)
+            {
+                <div class="dropdown-divider"></div>
+                <a href="/Accounts/Index" class="dropdown-item">
+                    <i class="fas fa-tasks"></i> Quản lý giáo viên
+                </a>
+
+                <div class="dropdown-divider"></div>
+                <a href="/Departments/Index" class="dropdown-item">
+                    <i class="fas fa-tasks"></i> Quản lý Khoa
+                </a>
+            }
+
+            <div class="dropdown-divider"></div>
+            <a href="/Accounts/LogOut" class="dropdown-item">
+                <i class="fas fa-sign-out-alt"></i> Đăng xuất
+            </a>
+            <div class="dropdown-divider"></div>
+        </div>
+    </li>
+</ul>

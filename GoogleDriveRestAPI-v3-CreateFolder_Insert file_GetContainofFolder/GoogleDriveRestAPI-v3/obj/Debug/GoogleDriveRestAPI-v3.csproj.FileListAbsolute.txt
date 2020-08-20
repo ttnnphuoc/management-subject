@@ -277,6 +277,7 @@ C:\Users\ngocp\Desktop\management-subject\GoogleDriveRestAPI-v3-CreateFolder_Ins
 C:\Users\ngocp\Desktop\management-subject\GoogleDriveRestAPI-v3-CreateFolder_Insert file_GetContainofFolder\GoogleDriveRestAPI-v3\bin\Google.Apis.Drive.v2.dll
 C:\Users\ngocp\Desktop\management-subject\GoogleDriveRestAPI-v3-CreateFolder_Insert file_GetContainofFolder\GoogleDriveRestAPI-v3\bin\Google.Apis.Drive.v3.dll
 C:\Users\ngocp\Desktop\management-subject\GoogleDriveRestAPI-v3-CreateFolder_Insert file_GetContainofFolder\GoogleDriveRestAPI-v3\bin\Google.Apis.PlatformServices.dll
+C:\Users\ngocp\Desktop\management-subject\GoogleDriveRestAPI-v3-CreateFolder_Insert file_GetContainofFolder\GoogleDriveRestAPI-v3\bin\Microsoft.Web.Infrastructure.dll
 C:\Users\ngocp\Desktop\management-subject\GoogleDriveRestAPI-v3-CreateFolder_Insert file_GetContainofFolder\GoogleDriveRestAPI-v3\bin\Newtonsoft.Json.dll
 C:\Users\ngocp\Desktop\management-subject\GoogleDriveRestAPI-v3-CreateFolder_Insert file_GetContainofFolder\GoogleDriveRestAPI-v3\bin\System.Web.Helpers.dll
 C:\Users\ngocp\Desktop\management-subject\GoogleDriveRestAPI-v3-CreateFolder_Insert file_GetContainofFolder\GoogleDriveRestAPI-v3\bin\System.Web.Mvc.dll
@@ -284,7 +285,6 @@ C:\Users\ngocp\Desktop\management-subject\GoogleDriveRestAPI-v3-CreateFolder_Ins
 C:\Users\ngocp\Desktop\management-subject\GoogleDriveRestAPI-v3-CreateFolder_Insert file_GetContainofFolder\GoogleDriveRestAPI-v3\bin\System.Web.Webpages.Deployment.dll
 C:\Users\ngocp\Desktop\management-subject\GoogleDriveRestAPI-v3-CreateFolder_Insert file_GetContainofFolder\GoogleDriveRestAPI-v3\bin\System.Web.Webpages.dll
 C:\Users\ngocp\Desktop\management-subject\GoogleDriveRestAPI-v3-CreateFolder_Insert file_GetContainofFolder\GoogleDriveRestAPI-v3\bin\System.Web.Webpages.Razor.dll
-C:\Users\ngocp\Desktop\management-subject\GoogleDriveRestAPI-v3-CreateFolder_Insert file_GetContainofFolder\GoogleDriveRestAPI-v3\bin\Microsoft.Web.Infrastructure.dll
 C:\Users\ngocp\Desktop\management-subject\GoogleDriveRestAPI-v3-CreateFolder_Insert file_GetContainofFolder\GoogleDriveRestAPI-v3\bin\Google.Apis.xml
 C:\Users\ngocp\Desktop\management-subject\GoogleDriveRestAPI-v3-CreateFolder_Insert file_GetContainofFolder\GoogleDriveRestAPI-v3\bin\Google.Apis.Auth.xml
 C:\Users\ngocp\Desktop\management-subject\GoogleDriveRestAPI-v3-CreateFolder_Insert file_GetContainofFolder\GoogleDriveRestAPI-v3\bin\Google.Apis.Core.xml
@@ -297,7 +297,5 @@ C:\Users\ngocp\Desktop\management-subject\GoogleDriveRestAPI-v3-CreateFolder_Ins
 C:\Users\ngocp\Desktop\management-subject\GoogleDriveRestAPI-v3-CreateFolder_Insert file_GetContainofFolder\GoogleDriveRestAPI-v3\bin\System.Web.Webpages.Razor.xml
 C:\Users\ngocp\Desktop\management-subject\GoogleDriveRestAPI-v3-CreateFolder_Insert file_GetContainofFolder\GoogleDriveRestAPI-v3\bin\System.Web.Helpers.xml
 C:\Users\ngocp\Desktop\management-subject\GoogleDriveRestAPI-v3-CreateFolder_Insert file_GetContainofFolder\GoogleDriveRestAPI-v3\bin\System.Web.Mvc.xml
-C:\Users\ngocp\Desktop\management-subject\GoogleDriveRestAPI-v3-CreateFolder_Insert file_GetContainofFolder\GoogleDriveRestAPI-v3\bin\Microsoft.Web.Infrastructure.xml
-C:\Users\ngocp\Desktop\management-subject\GoogleDriveRestAPI-v3-CreateFolder_Insert file_GetContainofFolder\GoogleDriveRestAPI-v3\obj\Debug\GoogleDriveRestAPI-v3.csprojResolveAssemblyReference.cache
 C:\Users\ngocp\Desktop\management-subject\GoogleDriveRestAPI-v3-CreateFolder_Insert file_GetContainofFolder\GoogleDriveRestAPI-v3\obj\Debug\ElearningSubject.dll
 C:\Users\ngocp\Desktop\management-subject\GoogleDriveRestAPI-v3-CreateFolder_Insert file_GetContainofFolder\GoogleDriveRestAPI-v3\obj\Debug\ElearningSubject.pdb

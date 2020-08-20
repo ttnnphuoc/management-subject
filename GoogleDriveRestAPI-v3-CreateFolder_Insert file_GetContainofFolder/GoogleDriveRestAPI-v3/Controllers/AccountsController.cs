@@ -18,7 +18,19 @@ namespace ElearningSubject.Controllers
         {
             if (IsNotLogin())
                 return RedirectToAction("Login");
-            return View(user.GetAll());
+
+            List<Users> data = new List<Users>();
+            Users u = user.GetAll(int.Parse(Session["IDLogin"] + "")).FirstOrDefault();
+            switch (u.Roles)
+            {
+                case "2":
+                    data = user.GetAll(0,"",u.IDDepartment).Where(x=>x.Roles != "3").ToList();
+                    break;
+                case "3":
+                    data = user.GetAll().Where(x => x.Roles != "3").ToList();
+                    break;
+            }
+            return View(data);
         }
 
         [HttpGet]
@@ -86,6 +98,7 @@ namespace ElearningSubject.Controllers
         [HttpGet]
         public ActionResult ChangeInfoAccount(int? id)
         {
+            TempData["Error"] = "";
             if (IsNotLogin())
                 return RedirectToAction("Login");
             int idx = int.Parse(Session["IDLogin"] + "");

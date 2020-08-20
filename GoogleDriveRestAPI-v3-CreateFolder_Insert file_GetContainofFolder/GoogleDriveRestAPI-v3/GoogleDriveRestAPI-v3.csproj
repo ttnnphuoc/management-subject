@@ -72,6 +72,10 @@
       <Private>True</Private>
     </Reference>
     <Reference Include="Microsoft.CSharp" />
+    <Reference Include="Microsoft.Web.Infrastructure, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Web.Infrastructure.1.0.0.0\lib\net40\Microsoft.Web.Infrastructure.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="Newtonsoft.Json, Version=10.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
       <HintPath>..\packages\Newtonsoft.Json.10.0.2\lib\net45\Newtonsoft.Json.dll</HintPath>
       <Private>True</Private>
@@ -176,6 +180,22 @@
     <Content Include="Content\Admin\plugins\bootstrap\js\bootstrap.bundle.min.js" />
     <Content Include="Content\Admin\plugins\bootstrap\js\bootstrap.js" />
     <Content Include="Content\Admin\plugins\bootstrap\js\bootstrap.min.js" />
+    <Content Include="Content\Admin\plugins\daterangepicker\daterangepicker.css" />
+    <Content Include="Content\Admin\plugins\daterangepicker\daterangepicker.js" />
+    <Content Include="Content\Admin\plugins\daterangepicker\drp.png" />
+    <Content Include="Content\Admin\plugins\daterangepicker\example\amd\index.html" />
+    <Content Include="Content\Admin\plugins\daterangepicker\example\amd\main.js" />
+    <Content Include="Content\Admin\plugins\daterangepicker\example\amd\require.js" />
+    <Content Include="Content\Admin\plugins\daterangepicker\example\browserify\bundle.js" />
+    <Content Include="Content\Admin\plugins\daterangepicker\example\browserify\index.html" />
+    <Content Include="Content\Admin\plugins\daterangepicker\example\browserify\main.js" />
+    <Content Include="Content\Admin\plugins\daterangepicker\moment.min.js" />
+    <Content Include="Content\Admin\plugins\daterangepicker\package.js" />
+    <Content Include="Content\Admin\plugins\daterangepicker\website.css" />
+    <Content Include="Content\Admin\plugins\daterangepicker\website.js" />
+    <Content Include="Content\Admin\plugins\daterangepicker\website\index.html" />
+    <Content Include="Content\Admin\plugins\daterangepicker\website\website.css" />
+    <Content Include="Content\Admin\plugins\daterangepicker\website\website.js" />
     <Content Include="Content\Admin\plugins\fontawesome-free\css\all.css" />
     <Content Include="Content\Admin\plugins\fontawesome-free\css\all.min.css" />
     <Content Include="Content\Admin\plugins\fontawesome-free\css\brands.css" />
@@ -448,7 +468,12 @@
     <Content Include="Content\Admin\plugins\summernote\summernote.css" />
     <Content Include="Content\Admin\plugins\summernote\summernote.js" />
     <Content Include="Content\Admin\plugins\summernote\summernote.min.js" />
+    <Content Include="Content\Admin\plugins\tempusdominus-bootstrap-4\css\tempusdominus-bootstrap-4.css" />
+    <Content Include="Content\Admin\plugins\tempusdominus-bootstrap-4\css\tempusdominus-bootstrap-4.min.css" />
+    <Content Include="Content\Admin\plugins\tempusdominus-bootstrap-4\js\tempusdominus-bootstrap-4.js" />
+    <Content Include="Content\Admin\plugins\tempusdominus-bootstrap-4\js\tempusdominus-bootstrap-4.min.js" />
     <Content Include="Content\Admin\sweetalert\sweetalert.min.js" />
+    <Content Include="favicon.ico" />
     <Content Include="Global.asax" />
     <Content Include="Web.config">
       <SubType>Designer</SubType>
@@ -530,6 +555,8 @@
     <Content Include="Views\Subjects\Add.cshtml" />
     <Content Include="Views\Subjects\ModifyItemSubjectDetail.cshtml" />
     <Content Include="Views\Subjects\AddLesson.cshtml" />
+    <Content Include="Content\Admin\plugins\daterangepicker\bower.json" />
+    <Content Include="Content\Admin\plugins\daterangepicker\example\browserify\README.md" />
     <None Include="Properties\PublishProfiles\elearning.pubxml" />
     <Content Include="Views\Roles\AddRoles.cshtml" />
     <Content Include="Views\Roles\Index.cshtml" />
@@ -540,6 +567,8 @@
     <Content Include="Views\Accounts\ChangeInfoAccount.cshtml" />
     <Content Include="Views\Accounts\Index.cshtml" />
     <Content Include="Views\Accounts\EditPermistion.cshtml" />
+    <Content Include="Views\Shared\_MenuRightPartial.cshtml" />
+    <Content Include="Views\Shared\_MenuFolderPartial.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

@@ -43,38 +43,9 @@
                     <a class="nav-link" data-widget="pushmenu" href="#"><i class="fas fa-bars"></i></a>
                 </li>
             </ul>
-
+            @Html.Partial("_MenuRightPartial")
             <!-- Right navbar links -->
-            <ul class="navbar-nav ml-auto">
-                <!-- Notifications Dropdown Menu -->
-                <li class="nav-item dropdown">
-                    <a class="nav-link" data-toggle="dropdown" href="#">
-                        <i class="fas fa-user"></i>
-                    </a>
-                    <div class="dropdown-menu dropdown-menu-lg dropdown-menu-right">
-                        <span class="dropdown-item dropdown-header" style="pointer-events:none;">Thiết lập thông tin</span>
-                        <div class="dropdown-divider"></div>
-                        <a href="/Accounts/ChangeInfoAccount" class="dropdown-item">
-                            <i class="fas fa-info-circle"></i> Thông tin
-                        </a>
-                        <div class="dropdown-divider"></div>
-                        <a href="/Accounts/ChangePassword" class="dropdown-item">
-                            <i class="fas fa-exchange-alt"></i> Đổi mật khẩu
-                        </a>
-
-                        <div class="dropdown-divider"></div>
-                        <a href="/Accounts/Index" class="dropdown-item">
-                            <i class="fas fa-sign-out-alt"></i> Quản lý giáo viên
-                        </a>
-
-                        <div class="dropdown-divider"></div>
-                        <a href="/Accounts/LogOut" class="dropdown-item">
-                            <i class="fas fa-sign-out-alt"></i> Đăng xuất
-                        </a>
-                        <div class="dropdown-divider"></div>
-                    </div>
-                </li>
-            </ul>
+            
         </nav>
         <!-- /.navbar -->
         <!-- Main Sidebar Container -->
@@ -94,17 +65,14 @@
                         <img src="~/Content/Admin/dist/img/user2-160x160.jpg" class="img-circle elevation-2" alt="User Image">
                     </div>
                     <div class="info">
-                        <a href="#" class="d-block">GV 1</a>
+                        <a href="#" class="d-block">@Session["UserLogin"]</a>
                     </div>
                 </div>
 
                 <!-- Sidebar Menu -->
-                <nav class="mt-2">
-                    <div id="jstree">
-                       
-                    </div>
-                </nav>
+                @Html.Partial("_MenuFolderPartial")
                 <!-- /.sidebar-menu -->
+
             </div>
             <!-- /.sidebar -->
         </aside>
