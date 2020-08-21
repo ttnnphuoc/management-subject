@@ -1,4 +1,5 @@
 ﻿using ElearningSubject.Models;
+using ElearningSubject_v3.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -10,6 +11,8 @@ namespace ElearningSubject.Views.Accounts
     public class SubjectsController : Controller
     {
         JsTreeModel jsTreeModel = new JsTreeModel();
+        Subjects subject = new Subjects();
+
         // GET: Subjects
         public ActionResult Index()
         {
@@ -19,11 +22,16 @@ namespace ElearningSubject.Views.Accounts
         [HttpGet]
         public ActionResult Add()
         {
+            if (IsNotLogin())
+                return RedirectToAction("Login", "Accounts");
             return View();
         }
+        
         [HttpPost]
-        public ActionResult Add(string nameSubject)
+        public ActionResult Add(string nameSubject, string description)
         {
+            string idFolder = GoogleDriveFilesRepository.CreateFolder(nameSubject);
+            subject.Add(idFolder,nameSubject, description);
             return RedirectToAction("Index", "Home");
         }
 
@@ -64,11 +72,7 @@ namespace ElearningSubject.Views.Accounts
 
         private List<JsTreeModel> GetTree()
         {
-            var items = new List<JsTreeModel>();
-            items.Add(new JsTreeModel("1", "#", "Lập trình ngôn ngữ C#", true));
-            items.Add(new JsTreeModel("2", "#", "Học lập trình C/C++", true));
-            // set items in here
-
+            List<JsTreeModel> items = subject.GetAll();
             return items;
         }
 
@@ -76,6 +80,13 @@ namespace ElearningSubject.Views.Accounts
         {
             List<JsTreeModel> items = jsTreeModel.GetDataList().Where(x=>x.parent == id).ToList();
             return items;
+        }
+
+        private bool IsNotLogin()
+        {
+            if (string.IsNullOrEmpty(Session["UserLogin"] + ""))
+                return true;
+            return false;
         }
     }
 }

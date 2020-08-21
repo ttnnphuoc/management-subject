@@ -15,20 +15,21 @@ namespace ElearningSubject_v3.Models
     public class GoogleDriveFilesRepository
     {
         public static string[] Scopes = { Google.Apis.Drive.v3.DriveService.Scope.Drive };
+
+        static string pathSecret = System.Web.HttpContext.Current.Server.MapPath("~/App_Start/client_secret.json");
+        static string FolderPath = System.Web.HttpContext.Current.Server.MapPath("~/App_Start/other_token.json");
+
         public static Google.Apis.Drive.v3.DriveService GetService_v3()
         {
             UserCredential credential;
-            using (var stream = new FileStream(@"D:\client_secret.json", FileMode.Open, FileAccess.Read))
+            using (var stream = new FileStream(pathSecret, FileMode.Open, FileAccess.Read))
             {
-                String FolderPath = @"D:\";
-                String FilePath = Path.Combine(FolderPath, "DriveServiceCredentials.json");
-
                 credential = GoogleWebAuthorizationBroker.AuthorizeAsync(
                     GoogleClientSecrets.Load(stream).Secrets,
                     Scopes,
                     "user",
                     CancellationToken.None,
-                    new FileDataStore(FilePath, true)).Result;
+                    new FileDataStore(FolderPath, true)).Result;
             }
 
             //Create Drive API service.
@@ -43,9 +44,9 @@ namespace ElearningSubject_v3.Models
         public static Google.Apis.Drive.v2.DriveService GetService_v2()
         {
             UserCredential credential;
-            using (var stream = new FileStream(@"D:\client_secret.json", FileMode.Open, FileAccess.Read))
+            
+            using (var stream = new FileStream(pathSecret, FileMode.Open, FileAccess.Read))
             {
-                String FolderPath = @"D:\";
                 String FilePath = Path.Combine(FolderPath, "DriveServiceCredentials.json");
 
                 credential = GoogleWebAuthorizationBroker.AuthorizeAsync(
@@ -95,7 +96,7 @@ namespace ElearningSubject_v3.Models
             }
             return Filter_FileList;
         }
-        public static void CreateFolder(string FolderName)
+        public static string CreateFolder(string FolderName)
         {
             Google.Apis.Drive.v3.DriveService service = GetService_v3();
 
@@ -108,7 +109,8 @@ namespace ElearningSubject_v3.Models
             request = service.Files.Create(FileMetaData);
             request.Fields = "id";
             var file = request.Execute();
-            //Console.WriteLine("Folder ID: " + file.Id);
+            return file.Id;
+
         }
         public static void FileUploadInFolder(string folderId, HttpPostedFileBase file)
         {

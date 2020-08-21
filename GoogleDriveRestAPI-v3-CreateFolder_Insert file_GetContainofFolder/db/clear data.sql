@@ -1,1 +1,2 @@
 delete Users
+delete Subjects

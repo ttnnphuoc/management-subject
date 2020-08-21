@@ -11,14 +11,14 @@
         </a>
         <div class="dropdown-menu dropdown-menu-lg dropdown-menu-right">
             <span class="dropdown-item dropdown-header" style="pointer-events:none;">Thiết lập thông tin</span>
-            <div class="dropdown-divider"></div>
-            <a href="/Accounts/ChangeInfoAccount" class="dropdown-item">
-                <i class="fas fa-info-circle"></i> Thông tin
-            </a>
-            <div class="dropdown-divider"></div>
-            <a href="/Accounts/ChangePassword" class="dropdown-item">
-                <i class="fas fa-exchange-alt"></i> Đổi mật khẩu
-            </a>
+
+            @if (u.Roles.Equals("1") || u.Roles.Equals("3"))
+            {
+                <div class="dropdown-divider"></div>
+                <a href="/Subjects/Add" class="dropdown-item">
+                    <i class="fas fa-plus-circle"></i> Thêm môn học
+                </a>
+            }
 
             @if (u.Roles.Equals("2") || u.Roles.Equals("3"))
             {
@@ -36,6 +36,16 @@
                     <i class="fas fa-tasks"></i> Quản lý Khoa
                 </a>
             }
+
+            <div class="dropdown-divider"></div>
+            <a href="/Accounts/ChangeInfoAccount" class="dropdown-item">
+                <i class="fas fa-info-circle"></i> Thông tin
+            </a>
+
+            <div class="dropdown-divider"></div>
+            <a href="/Accounts/ChangePassword" class="dropdown-item">
+                <i class="fas fa-exchange-alt"></i> Đổi mật khẩu
+            </a>
 
             <div class="dropdown-divider"></div>
             <a href="/Accounts/LogOut" class="dropdown-item">

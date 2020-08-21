@@ -36,6 +36,8 @@ namespace ElearningSubject.Controllers
         [HttpGet]
         public ActionResult Login()
         {
+            if (!IsNotLogin())
+                return RedirectToAction("Index", new { controller = "Home", area = string.Empty });
             return View();
         }
 

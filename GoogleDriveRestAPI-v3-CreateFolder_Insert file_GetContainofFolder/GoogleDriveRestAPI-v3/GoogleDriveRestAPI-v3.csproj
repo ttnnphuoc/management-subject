@@ -119,6 +119,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="App_Start\client_secret.json" />
     <Content Include="Content\Admin\dist\css\adminlte.css" />
     <Content Include="Content\Admin\dist\css\adminlte.min.css" />
     <Content Include="Content\Admin\dist\css\alt\adminlte.components.css" />
@@ -494,6 +495,7 @@
     <Compile Include="Models\GoogleDriveFilesRepository.cs" />
     <Compile Include="Models\GoogleDriveFiles.cs" />
     <Compile Include="Models\JsTreeModel.cs" />
+    <Compile Include="Models\Subjects.cs" />
     <Compile Include="Models\Roles.cs" />
     <Compile Include="Models\Users.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -598,7 +600,7 @@
           <AutoAssignPort>True</AutoAssignPort>
           <DevelopmentServerPort>7927</DevelopmentServerPort>
           <DevelopmentServerVPath>/</DevelopmentServerVPath>
-          <IISUrl>http://localhost:7927/</IISUrl>
+          <IISUrl>http://localhost:53901/</IISUrl>
           <NTLMAuthentication>False</NTLMAuthentication>
           <UseCustomServer>False</UseCustomServer>
           <CustomServerUrl>

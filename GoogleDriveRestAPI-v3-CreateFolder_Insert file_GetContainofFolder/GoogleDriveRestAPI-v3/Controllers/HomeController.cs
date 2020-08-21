@@ -24,7 +24,6 @@ namespace ElearningSubject_v3.Controllers
         [HttpPost]
         public ActionResult CreateFolder(String FolderName)
         {
-            GoogleDriveFilesRepository.CreateFolder(FolderName);
             return RedirectToAction("GetGoogleDriveFiles");
         }
 
@@ -44,8 +43,8 @@ namespace ElearningSubject_v3.Controllers
         [HttpGet]
         public ActionResult Index()
         {
-            //if (IsNotLogin())
-            //    return RedirectToAction("Login","Accounts");
+            if (IsNotLogin())
+                return RedirectToAction("Login", "Accounts");
             return View();
         }
 
