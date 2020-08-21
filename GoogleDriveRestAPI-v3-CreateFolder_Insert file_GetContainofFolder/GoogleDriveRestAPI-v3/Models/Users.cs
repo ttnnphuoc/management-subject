@@ -61,7 +61,7 @@ namespace ElearningSubject.Models
             return result > 0;
         }
 
-        public List<Users> GetAll(int id = 0, string status = "",string department = "")
+        public List<Users> GetAll(string id = "0", string status = "",string department = "")
         {
             List<Users> data = CBO.FillCollection<Users>(DataProvider.Instance.ExecuteReader("sp_getAllUsers", id, status,department));
             return data;

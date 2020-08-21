@@ -1,4 +1,9 @@
-﻿<ul class="navbar-nav ml-auto">
+﻿@using ElearningSubject.Models
+@{
+    Users user = new Users();
+    Users u = user.GetAll(Session["IDLogin"] +"").FirstOrDefault();
+}
+<ul class="navbar-nav ml-auto">
     <!-- Notifications Dropdown Menu -->
     <li class="nav-item dropdown">
         <a class="nav-link" data-toggle="dropdown" href="#">
@@ -14,13 +19,18 @@
             <a href="/Accounts/ChangePassword" class="dropdown-item">
                 <i class="fas fa-exchange-alt"></i> Đổi mật khẩu
             </a>
-            @if (true)
+
+            @if (u.Roles.Equals("2") || u.Roles.Equals("3"))
             {
+                
                 <div class="dropdown-divider"></div>
                 <a href="/Accounts/Index" class="dropdown-item">
                     <i class="fas fa-tasks"></i> Quản lý giáo viên
                 </a>
+            }
 
+            @if (u.Roles.Equals("3"))
+            {
                 <div class="dropdown-divider"></div>
                 <a href="/Departments/Index" class="dropdown-item">
                     <i class="fas fa-tasks"></i> Quản lý Khoa

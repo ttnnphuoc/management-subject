@@ -10,7 +10,6 @@ namespace ElearningSubject.Views.Accounts
     public class SubjectsController : Controller
     {
         JsTreeModel jsTreeModel = new JsTreeModel();
-        ContentSubject content = new ContentSubject();
         // GET: Subjects
         public ActionResult Index()
         {
@@ -42,8 +41,7 @@ namespace ElearningSubject.Views.Accounts
         [HttpGet]
         public ActionResult ModifyItemSubjectDetail(string id)
         {
-            ContentSubject item = content.PrepareData().Find(x => x.Index + "" == id);
-            return View(item);
+            return View();
         }
 
         [HttpPost]
