@@ -12,11 +12,15 @@ namespace ElearningSubject.Views.Accounts
     {
         JsTreeModel jsTreeModel = new JsTreeModel();
         Subjects subject = new Subjects();
+        UserSubject subjecUser = new UserSubject();
 
+        Lessons lessons = new Lessons();
         // GET: Subjects
         public ActionResult Index()
         {
-            return View();
+            if (IsNotLogin())
+                return RedirectToAction("Login", "Accounts");
+            return View(subject.GetListSubjectByUser(Session["IDLogin"] + ""));
         }
 
         [HttpGet]
@@ -32,7 +36,8 @@ namespace ElearningSubject.Views.Accounts
         {
             string idFolder = GoogleDriveFilesRepository.CreateFolder(nameSubject);
             subject.Add(idFolder,nameSubject, description);
-            return RedirectToAction("Index", "Home");
+            subjecUser.Add(idFolder, Session["IDLogin"] + "");
+            return RedirectToAction("Index");
         }
 
         [HttpGet]
@@ -40,14 +45,20 @@ namespace ElearningSubject.Views.Accounts
         {
             return View();
         }
+
         [HttpPost]
-        public ActionResult AddLesson(string nameSubject)
+        public ActionResult AddLesson(Lessons lesson)
         {
+            lesson.Add(lesson);
             return RedirectToAction("GetSubjectDetailDataList", "Home");
         }
 
         [HttpGet]
         public ActionResult ModifyItemSubjectDetail(string id)
+        {
+            return View();
+        }
+        public ActionResult GetSubjectDetailDataList(string id)
         {
             return View();
         }
@@ -57,6 +68,42 @@ namespace ElearningSubject.Views.Accounts
         {
             return RedirectToAction("GetSubjectDetailDataList","Home");
         }
+
+        #region Google Drive
+        [HttpGet]
+        public ActionResult GetGoogleDriveFiles()
+        {
+            return View(GoogleDriveFilesRepository.GetDriveFiles());
+        }
+
+        [HttpGet]
+        public ActionResult GetContainsInFolder(string folderId)
+        {
+            return View(GoogleDriveFilesRepository.GetContainsInFolder(folderId));
+        }
+
+        [HttpPost]
+        public ActionResult CreateFolder(String FolderName)
+        {
+            return RedirectToAction("GetGoogleDriveFiles");
+        }
+
+        [HttpPost]
+        public ActionResult UploadFile(HttpPostedFileBase file)
+        {
+            GoogleDriveFilesRepository.FileUpload(file);
+            return RedirectToAction("GetGoogleDriveFiles");
+        }
+
+        [HttpPost]
+        public ActionResult FileUploadInFolder(GoogleDriveFiles FolderId, HttpPostedFileBase file)
+        {
+            GoogleDriveFilesRepository.FileUploadInFolder(FolderId.Id, file);
+            return RedirectToAction("GetGoogleDriveFiles");
+        }
+        #endregion
+
+        #region Get Folder Subject
         public JsonResult GetRoot()
         {
             List<JsTreeModel> items = GetTree();
@@ -81,6 +128,7 @@ namespace ElearningSubject.Views.Accounts
             List<JsTreeModel> items = jsTreeModel.GetDataList().Where(x=>x.parent == id).ToList();
             return items;
         }
+        #endregion
 
         private bool IsNotLogin()
         {
