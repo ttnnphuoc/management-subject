@@ -16,7 +16,7 @@ namespace ElearningSubject.Controllers
         // GET: Accounts
         public ActionResult Index()
         {
-            if (IsNotLogin())
+            if (CommonFunc.IsNotLogin(Session["UserLogin"] + ""))
                 return RedirectToAction("Login");
 
             List<Users> data = new List<Users>();
@@ -36,7 +36,7 @@ namespace ElearningSubject.Controllers
         [HttpGet]
         public ActionResult Login()
         {
-            if (!IsNotLogin())
+            if (!CommonFunc.IsNotLogin(Session["UserLogin"] + ""))
                 return RedirectToAction("Index", new { controller = "Home", area = string.Empty });
             return View();
         }
@@ -79,7 +79,7 @@ namespace ElearningSubject.Controllers
         [HttpGet]
         public ActionResult ChangePassword()
         {
-            if (IsNotLogin())
+            if (CommonFunc.IsNotLogin(Session["UserLogin"] + ""))
                 return RedirectToAction("Login");
             return View();
         }
@@ -87,7 +87,7 @@ namespace ElearningSubject.Controllers
         [HttpPost]
         public ActionResult ChangePassword(string password0, string password1)
         {
-            if (IsNotLogin())
+            if (CommonFunc.IsNotLogin(Session["UserLogin"] + ""))
                 return RedirectToAction("Login");
             if ((password0 == "" && password1 == "") || password0 != password1)
             {
@@ -102,7 +102,7 @@ namespace ElearningSubject.Controllers
         public ActionResult ChangeInfoAccount(int? id)
         {
             TempData["Error"] = "";
-            if (IsNotLogin())
+            if (CommonFunc.IsNotLogin(Session["UserLogin"] + ""))
                 return RedirectToAction("Login");
             ViewBag.ListDepartment = department.GetAll(0, "1");
             return View(user.GetAll(Session["IDLogin"] + "").FirstOrDefault());
@@ -162,7 +162,7 @@ namespace ElearningSubject.Controllers
         [HttpGet]
         public ActionResult EditPermistion(int id)
         {
-            if (IsNotLogin())
+            if (CommonFunc.IsNotLogin(Session["UserLogin"] + ""))
                 return RedirectToAction("Login");
             ViewBag.ListRoles = roles.GetAll();
             ViewBag.ListDepartment = department.GetAll();
@@ -182,17 +182,11 @@ namespace ElearningSubject.Controllers
         }
         public ActionResult Delete(int id)
         {
-             if (IsNotLogin())
+             if (CommonFunc.IsNotLogin(Session["UserLogin"] + ""))
                 return RedirectToAction("Login");
             user.Delete(id);
             return RedirectToAction("Index");
         }
-
-        private bool IsNotLogin()
-        {
-            if (string.IsNullOrEmpty(Session["UserLogin"] + ""))
-                return true;
-            return false;
-        }
+        
     }
 }

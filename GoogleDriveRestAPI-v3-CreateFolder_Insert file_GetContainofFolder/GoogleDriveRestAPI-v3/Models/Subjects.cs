@@ -36,10 +36,15 @@ namespace ElearningSubject.Models
         }
         
 
-        public List<JsTreeModel> GetAll(string id = "",string status = "")
+        public List<JsTreeModel> GetAllTreeFolder(string id = "",string status = "")
         {
             List<JsTreeModel> data = CBO.FillCollection<JsTreeModel>(DataProvider.Instance.ExecuteReader("sp_getAllSubjects", id, status));
             return data;
+        }
+        public Subjects GetSubjectById(string id = "", string status = "")
+        {
+            Subjects sub = CBO.FillObject<Subjects>(DataProvider.Instance.ExecuteReader("sp_getSubjectById", id,status));
+            return sub;
         }
         public List<Subjects> GetListSubjectByUser(string user)
         {

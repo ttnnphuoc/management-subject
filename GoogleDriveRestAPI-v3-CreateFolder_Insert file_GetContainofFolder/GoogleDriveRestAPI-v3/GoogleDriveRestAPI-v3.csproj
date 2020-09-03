@@ -487,10 +487,12 @@
     <Compile Include="Controllers\AccountsController.cs" />
     <Compile Include="Controllers\DepartmentsController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\LessonsController.cs" />
     <Compile Include="Controllers\RolesController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Models\CommonFunc.cs" />
     <Compile Include="Models\Departments.cs" />
     <Compile Include="Models\GoogleDriveFilesRepository.cs" />
     <Compile Include="Models\GoogleDriveFiles.cs" />
@@ -557,7 +559,7 @@
     <Content Include="Views\Accounts\Register.cshtml" />
     <Content Include="Views\Subjects\Add.cshtml" />
     <Content Include="Views\Subjects\ModifyItemSubjectDetail.cshtml" />
-    <Content Include="Views\Subjects\AddLesson.cshtml" />
+    <Content Include="Views\Lessons\AddLesson.cshtml" />
     <Content Include="Content\Admin\plugins\daterangepicker\bower.json" />
     <Content Include="Content\Admin\plugins\daterangepicker\example\browserify\README.md" />
     <None Include="Properties\PublishProfiles\elearning.pubxml" />
@@ -573,7 +575,8 @@
     <Content Include="Views\Shared\_MenuRightPartial.cshtml" />
     <Content Include="Views\Shared\_MenuFolderPartial.cshtml" />
     <Content Include="Views\Subjects\Index.cshtml" />
-    <Content Include="Views\Subjects\GetSubjectDetailDataList.cshtml" />
+    <Content Include="Views\Lessons\GetSubjectDetailDataList.cshtml" />
+    <Content Include="Views\Subjects\Edit.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

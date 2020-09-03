@@ -14,11 +14,10 @@ namespace ElearningSubject.Views.Accounts
         Subjects subject = new Subjects();
         UserSubject subjecUser = new UserSubject();
 
-        Lessons lessons = new Lessons();
         // GET: Subjects
         public ActionResult Index()
         {
-            if (IsNotLogin())
+            if (CommonFunc.IsNotLogin(Session["UserLogin"] + ""))
                 return RedirectToAction("Login", "Accounts");
             return View(subject.GetListSubjectByUser(Session["IDLogin"] + ""));
         }
@@ -26,7 +25,7 @@ namespace ElearningSubject.Views.Accounts
         [HttpGet]
         public ActionResult Add()
         {
-            if (IsNotLogin())
+            if (CommonFunc.IsNotLogin(Session["UserLogin"] + ""))
                 return RedirectToAction("Login", "Accounts");
             return View();
         }
@@ -39,34 +38,28 @@ namespace ElearningSubject.Views.Accounts
             subjecUser.Add(idFolder, Session["IDLogin"] + "");
             return RedirectToAction("Index");
         }
-
-        [HttpGet]
-        public ActionResult AddLesson()
-        {
-            return View();
-        }
-
-        [HttpPost]
-        public ActionResult AddLesson(Lessons lesson)
-        {
-            lesson.Add(lesson);
-            return RedirectToAction("GetSubjectDetailDataList", "Home");
-        }
-
-        [HttpGet]
-        public ActionResult ModifyItemSubjectDetail(string id)
-        {
-            return View();
-        }
-        public ActionResult GetSubjectDetailDataList(string id)
-        {
-            return View();
-        }
-
+        
         [HttpPost]
         public ActionResult DeleteItemSubjectDetail(string id)
         {
+            if (CommonFunc.IsNotLogin(Session["UserLogin"] + ""))
+                return RedirectToAction("Login", "Accounts");
             return RedirectToAction("GetSubjectDetailDataList","Home");
+        }
+
+        [HttpGet]
+        public ActionResult Edit(string id)
+        {
+            if (CommonFunc.IsNotLogin(Session["UserLogin"] + ""))
+                return RedirectToAction("Login", "Accounts");
+            Subjects sub = subject.GetSubjectById(id);
+            return View(sub);
+        }
+
+        [HttpPost]
+        public ActionResult Edit(Subjects sub)
+        {
+            return View();
         }
 
         #region Google Drive
@@ -119,7 +112,7 @@ namespace ElearningSubject.Views.Accounts
 
         private List<JsTreeModel> GetTree()
         {
-            List<JsTreeModel> items = subject.GetAll();
+            List<JsTreeModel> items = subject.GetAllTreeFolder();
             return items;
         }
 
@@ -129,12 +122,5 @@ namespace ElearningSubject.Views.Accounts
             return items;
         }
         #endregion
-
-        private bool IsNotLogin()
-        {
-            if (string.IsNullOrEmpty(Session["UserLogin"] + ""))
-                return true;
-            return false;
-        }
     }
 }

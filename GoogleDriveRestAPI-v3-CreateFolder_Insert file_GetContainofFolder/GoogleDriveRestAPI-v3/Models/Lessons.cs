@@ -43,7 +43,7 @@ namespace ElearningSubject.Models
             return result > 0;
         }
 
-        public List<Lessons> GetAll(string id = "0", string status = "",string subject = "")
+        public List<Lessons> GetAll(string id = "", string status = "",string subject = "")
         {
             List<Lessons> data = CBO.FillCollection<Lessons>(DataProvider.Instance.ExecuteReader("sp_getAllLessons", id, status, subject));
             return data;

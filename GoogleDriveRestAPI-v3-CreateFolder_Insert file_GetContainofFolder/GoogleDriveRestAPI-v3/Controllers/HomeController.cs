@@ -1,4 +1,5 @@
-﻿using ElearningSubject_v3.Models;
+﻿using ElearningSubject.Models;
+using ElearningSubject_v3.Models;
 using System;
 using System.Collections.Generic;
 using System.Web;
@@ -12,16 +13,10 @@ namespace ElearningSubject_v3.Controllers
         [HttpGet]
         public ActionResult Index()
         {
-            if (IsNotLogin())
+            if (CommonFunc.IsNotLogin(Session["UserLogin"] + ""))
                 return RedirectToAction("Login", "Accounts");
             return View();
         }
         
-        private bool IsNotLogin()
-        {
-            if (string.IsNullOrEmpty(Session["UserLogin"] + ""))
-                return true;
-            return false;
-        }
     }
 }

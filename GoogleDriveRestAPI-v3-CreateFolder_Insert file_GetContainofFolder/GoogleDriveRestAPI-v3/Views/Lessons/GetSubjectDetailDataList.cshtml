@@ -1,16 +1,15 @@
 ﻿
 @{
-    ViewBag.Title = "Danh Sách Môn Học";
+    ViewBag.Title = ViewBag.Subject.Name;
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
-
 <div class="content-wrapper" style="min-height: 1200.88px;">
     <!-- Content Header (Page header) -->
     <section class="content-header">
         <div class="container-fluid">
             <div class="row mb-2">
                 <div class="col-sm-6">
-                    <h1>Quản lý môn học</h1>
+                    <h1>Quản lý môn @ViewBag.Subject.Name</h1>
                 </div>
                 <div class="col-sm-6">
                     <ol class="breadcrumb float-sm-right">
@@ -28,14 +27,15 @@
             <div class="col-12">
                 <div class="card">
                     <div class="card-header">
-                        <h3 class="card-title">Danh sách</h3>
-                        <a href="/Subjects/Add"><i class="fas fa-plus-circle" style="padding-left:10px"></i></a>
+                        <h3 class="card-title">Danh sách bài học</h3>
+                        <a href="/Lessons/AddLesson/@ViewBag.Subject.ID"><i class="fas fa-plus-circle" style="padding-left:10px"></i></a>
                     </div>
                     <!-- /.card-header -->
                     <div class="card-body">
                         <table id="example1" class="table table-bordered table-striped">
                             <thead>
                                 <tr>
+                                    <th>#</th>
                                     <th>Tên</th>
                                     <th>Mô tả</th>
                                     <th>Tình trạng</th>
@@ -45,24 +45,12 @@
                             <tbody>
                                 @foreach (var item in Model)
                                 {
-                                    <tr>
-                                        <td><a href="@Url.Action("GetSubjectDetailDataList","lessons",new { id = @item.ID })">@item.Name</a> </td>
-                                        <td>@item.Description</td>
-                                        <td>@item.NameStatus</td>
-                                        <td>
-                                            <a href="@Url.Action("Edit","Subjects",new { id = @item.ID })" title="Sửa">
-                                                <i class="fas fa-pencil-alt"></i>
-                                            </a>|
-                                            <a style="color:red !important;" href="@Url.Action("Delete", "Subjects",new { id = @item.ID})" title="Xóa">
-                                                <i class="fas fa-trash-alt"></i>
-                                            </a>
-
-                                        </td>
-                                    </tr>
+                                    
                                 }
                             </tbody>
                             <tfoot>
                                 <tr>
+                                    <th>#</th>
                                     <th>Tên</th>
                                     <th>Mô tả</th>
                                     <th>Tình trạng</th>
@@ -81,4 +69,3 @@
     </section>
     <!-- /.content -->
 </div>
-
