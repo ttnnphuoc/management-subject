@@ -28,7 +28,7 @@ namespace ElearningSubject.Controllers
         }
 
         [HttpPost]
-        public ActionResult AddLesson(string nameLesson, HttpPostedFileBase fileDocumentPDF, HttpPostedFileBase videoFile,HttpPostedFileBase fileDocumentWord,HttpPostedFileBase fileDocumentPPT, string idSubject)
+        public ActionResult AddLesson(string nameLesson, HttpPostedFileBase fileDocumentPDF, HttpPostedFileBase videoFile, string idSubject)
         {
             //lessons.Add(new Lessons());
             return RedirectToAction("Index", "Subjects");

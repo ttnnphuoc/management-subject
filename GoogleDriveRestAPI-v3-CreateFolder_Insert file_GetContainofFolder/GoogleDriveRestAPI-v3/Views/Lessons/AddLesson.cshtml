@@ -33,7 +33,7 @@
                         </div>
                         <!-- /.card-header -->
                         <!-- form start -->
-                        <form role="form" action="\Lessons\AddLesson" method="post">
+                        <form role="form" action="\Lessons\AddLesson" method="post" enctype="multipart/form-data">
                             <div class="card-body">
                                 <input type="hidden" value="@Model.ID" name="idSubject" id="idSubject"/>
                                 <div class="form-group">
@@ -52,7 +52,6 @@
 
                                 <div class="form-group">
                                     <label for="document">Tài liệu (Giáo Án)</label>
-                                    @*<input type="text" class="form-control" id="document" value="@Model.Name .pdf" readonly placeholder="Tài liệu">*@
                                 </div>
                                 <div class="form-group">
                                     <div class="input-group">
@@ -64,10 +63,8 @@
                                 </div>
                                 <div class="form-group">
                                     <label for="document">Tài liệu (slide bài giảng)</label>
-                                    @*<input type="text" class="form-control" id="document" value="@Model.Name .pdf" readonly placeholder="Tài liệu">*@
                                 </div>
                                 <div class="form-group">
-                                    @*<label for="fileDocument">Tài liệu</label>*@
                                     <div class="input-group">
                                         <div class="custom-file">
                                             <input type="file" class="custom-file-input" name="fileDocumentPPT" id="fileDocumentPPT">
@@ -77,10 +74,8 @@
                                 </div>
                                 <div class="form-group">
                                     <label for="document">Tài liệu (Word Nội dung )</label>
-                                    @*<input type="text" class="form-control" id="document" value="@Model.Name .pdf" readonly placeholder="Tài liệu">*@
                                 </div>
                                 <div class="form-group">
-                                    @*<label for="fileDocument">Tài liệu</label>*@
                                     <div class="input-group">
                                         <div class="custom-file">
                                             <input type="file" class="custom-file-input" name="fileDocumentWord" id="fileDocumentWord">
