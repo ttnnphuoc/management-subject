@@ -1,4 +1,5 @@
 ﻿using ElearningSubject.Models;
+using ElearningSubject_v3.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -28,9 +29,32 @@ namespace ElearningSubject.Controllers
         }
 
         [HttpPost]
-        public ActionResult AddLesson(string nameLesson, HttpPostedFileBase fileDocumentPDF, HttpPostedFileBase videoFile, string idSubject)
+        public ActionResult AddLesson(string nameLesson,HttpPostedFileBase fileDocumentWord, HttpPostedFileBase fileDocumentPPT, HttpPostedFileBase fileDocumentPDF, HttpPostedFileBase videoFile, string idSubject)
         {
-            //lessons.Add(new Lessons());
+            List<string> parentId = new List<string>();
+            parentId.Add(idSubject);
+            string idFolder = GoogleDriveFilesRepository.CreateFolder(nameLesson,parentId);
+            string word =  GoogleDriveFilesRepository.FileUploadInFolder(idFolder, fileDocumentWord);
+            string ppt = GoogleDriveFilesRepository.FileUploadInFolder(idFolder, fileDocumentPPT);
+            string pdf = GoogleDriveFilesRepository.FileUploadInFolder(idFolder, fileDocumentPDF);
+            string video = GoogleDriveFilesRepository.FileUploadInFolder(idFolder, videoFile);
+
+            #region Add Lesson
+            Lessons item = new Lessons();
+            item.ID = idFolder;
+            item.Name = nameLesson;
+            item.PPTFile = ppt;
+            item.WordFile = word;
+            item.PdfFile = pdf;
+            item.Video = video;
+            item.DateCreated = DateTime.Now;
+            item.IDSubject = idSubject;
+            lessons.Add(item);
+            #endregion
+
+            #region Update Subject
+            subject.UpdateChildren(idSubject);
+            #endregion
             return RedirectToAction("Index", "Subjects");
         }
         public ActionResult GetSubjectDetailDataList(string id)

@@ -96,7 +96,7 @@ namespace ElearningSubject_v3.Models
             }
             return Filter_FileList;
         }
-        public static string CreateFolder(string FolderName)
+        public static string CreateFolder(string FolderName, List<string> parentID = null)
         {
             Google.Apis.Drive.v3.DriveService service = GetService_v3();
 
@@ -104,16 +104,19 @@ namespace ElearningSubject_v3.Models
             FileMetaData.Name = FolderName;
             FileMetaData.MimeType = "application/vnd.google-apps.folder";
 
-            Google.Apis.Drive.v3.FilesResource.CreateRequest request;
+            if (parentID != null &&  parentID.Count > 0)
+                FileMetaData.Parents = parentID;
 
+            Google.Apis.Drive.v3.FilesResource.CreateRequest request;
             request = service.Files.Create(FileMetaData);
             request.Fields = "id";
             var file = request.Execute();
             return file.Id;
 
         }
-        public static void FileUploadInFolder(string folderId, HttpPostedFileBase file)
+        public static string FileUploadInFolder(string folderId, HttpPostedFileBase file)
         {
+            string idFile = "";
             if (file != null && file.ContentLength > 0)
             {
                 Google.Apis.Drive.v3.DriveService service = GetService_v3();
@@ -140,8 +143,11 @@ namespace ElearningSubject_v3.Models
                     request.Upload();
                 }
                 var file1 = request.ResponseBody;
+                idFile = file1.Id;
             }
+            return idFile;
         }
+
         public static List<GoogleDriveFiles> GetDriveFiles()
         {
             Google.Apis.Drive.v3.DriveService service = GetService_v3();

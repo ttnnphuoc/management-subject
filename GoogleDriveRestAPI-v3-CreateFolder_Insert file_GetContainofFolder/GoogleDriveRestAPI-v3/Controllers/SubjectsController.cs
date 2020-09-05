@@ -118,7 +118,7 @@ namespace ElearningSubject.Views.Accounts
 
         private List<JsTreeModel> GetTree(string id)
         {
-            List<JsTreeModel> items = jsTreeModel.GetDataList().Where(x=>x.parent == id).ToList();
+            List<JsTreeModel> items = subject.GetAllTreeFolder();
             return items;
         }
         #endregion

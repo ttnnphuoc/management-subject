@@ -27,7 +27,7 @@ namespace ElearningSubject.Models
 
         public bool Add(Lessons lesson)
         {
-            int result = DataProvider.Instance.ExecuteNonQuery("sp_addLessons", lesson.ID, lesson.Name, lesson.Video, lesson.PdfFile,lesson.PPTFile, lesson.WordFile,lesson.DateCreated);
+            int result = DataProvider.Instance.ExecuteNonQuery("sp_addLessons", lesson.ID, lesson.Name, lesson.Video, lesson.PdfFile,lesson.PPTFile, lesson.WordFile,lesson.IDSubject);
             return result > 0;
         }
 

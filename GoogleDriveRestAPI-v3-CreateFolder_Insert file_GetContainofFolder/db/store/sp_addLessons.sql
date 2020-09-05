@@ -15,14 +15,20 @@ SET QUOTED_IDENTIFIER ON
 GO
 -- =============================================
 -- Author:		<Tran Ngoc Phuoc>
--- Create date: <08/21/2020>
--- Description:	<Get all subject>
+-- Create date: <09/05/2020>
+-- Description:	<Add Lesson>
 -- =============================================
-Alter PROCEDURE sp_getAllSubjects
-	@id varchar(35),
-	@status nchar(3)
+CREATE PROCEDURE sp_addLessons 
+	-- Add the parameters for the stored procedure here
+	@id varchar(40),
+	@name nvarchar(500),
+	@video varchar(40),
+	@pdf varchar(40),
+	@ppt varchar(40),
+	@word varchar(40),
+	@subject varchar(40)
 AS
 BEGIN
-	SELECT id,'#' as parent, Name as text, cast(children as bit) as children FROM Subjects WHERE (@id = '' or @id = id) AND (@status = '' or @status = [status])
+	INSERT INTO Lessons VALUES(@id,@name,@video,@pdf,@ppt,@word,@subject,1,GETDATE())
 END
 GO

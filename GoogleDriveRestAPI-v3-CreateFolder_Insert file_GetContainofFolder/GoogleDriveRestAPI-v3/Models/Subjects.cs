@@ -28,7 +28,11 @@ namespace ElearningSubject.Models
             int result = DataProvider.Instance.ExecuteNonQuery("sp_updateSubjects", role.ID, role.Name,role.Description,role.Status);
             return result > 0;
         }
-
+        public bool UpdateChildren(string id)
+        {
+            int result = DataProvider.Instance.ExecuteNonQuery("sp_updateSubjectsParent", id);
+            return result > 0;
+        }
         public bool Delete(int id)
         {
             int result = DataProvider.Instance.ExecuteNonQuery("sp_deleteSubjects", id);

@@ -15,14 +15,13 @@ SET QUOTED_IDENTIFIER ON
 GO
 -- =============================================
 -- Author:		<Tran Ngoc Phuoc>
--- Create date: <08/21/2020>
--- Description:	<Get all subject>
+-- Create date: <09/05/2020>
+-- Description:	<Update Children>
 -- =============================================
-Alter PROCEDURE sp_getAllSubjects
-	@id varchar(35),
-	@status nchar(3)
+CREATE PROCEDURE sp_updateSubjectsParent 
+	@id varchar(40)
 AS
 BEGIN
-	SELECT id,'#' as parent, Name as text, cast(children as bit) as children FROM Subjects WHERE (@id = '' or @id = id) AND (@status = '' or @status = [status])
+	UPDATE Subjects set Children = 1 where ID = @id
 END
 GO
