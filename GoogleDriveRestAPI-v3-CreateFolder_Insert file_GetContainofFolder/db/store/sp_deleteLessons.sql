@@ -15,21 +15,13 @@ SET QUOTED_IDENTIFIER ON
 GO
 -- =============================================
 -- Author:		<Tran Ngoc Phuoc>
--- Create date: <09/05/2020>
--- Description:	<Add Lesson>
+-- Create date: <09/06/2020>
+-- Description:	<Delete lesson>
 -- =============================================
-Alter PROCEDURE sp_addLessons 
-	-- Add the parameters for the stored procedure here
-	@id varchar(40),
-	@name nvarchar(500),
-	@video varchar(40),
-	@pdf varchar(40),
-	@ppt varchar(40),
-	@word varchar(40),
-	@subject varchar(40),
-	@description ntext
+CREATE PROCEDURE sp_deleteLessons 
+	@lesson varchar(40)
 AS
 BEGIN
-	INSERT INTO Lessons VALUES(@id,@name,@video,@pdf,@ppt,@word,@subject,1,GETDATE(),@description)
+	UPDATE Lessons SET Status = 0 WHERE ID = @lesson
 END
 GO

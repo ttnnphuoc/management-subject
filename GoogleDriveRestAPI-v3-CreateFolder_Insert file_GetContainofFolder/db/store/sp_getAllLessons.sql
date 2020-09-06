@@ -18,14 +18,14 @@ GO
 -- Create date: <09/03/2020>
 -- Description:	<Get All Lesson>
 -- =============================================
-CREATE PROCEDURE sp_getAllLessons 
+Alter PROCEDURE sp_getAllLessons 
 	-- Add the parameters for the stored procedure here
 	@id varchar(40),
 	@status nchar(5),
 	@subject varchar(40)
 AS
 BEGIN
-	SELECT * FROM Lessons Less 
+	SELECT *,stt.Name as StatusName FROM Lessons Less 
 	inner join StatusCommon stt on stt.ID = Less.Status
 	WHERE (@id = '' or @id = Less.ID) AND (@subject = '' or @subject = Less.IDSubject)
 	AND	(@status = '' or @status = Less.Status)

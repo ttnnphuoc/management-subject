@@ -29,7 +29,7 @@ namespace ElearningSubject.Controllers
         }
 
         [HttpPost]
-        public ActionResult AddLesson(string nameLesson,HttpPostedFileBase fileDocumentWord, HttpPostedFileBase fileDocumentPPT, HttpPostedFileBase fileDocumentPDF, HttpPostedFileBase videoFile, string idSubject)
+        public ActionResult AddLesson(string nameLesson,HttpPostedFileBase fileDocumentWord, HttpPostedFileBase fileDocumentPPT, HttpPostedFileBase fileDocumentPDF, HttpPostedFileBase videoFile, string idSubject, string description)
         {
             List<string> parentId = new List<string>();
             parentId.Add(idSubject);
@@ -49,12 +49,35 @@ namespace ElearningSubject.Controllers
             item.Video = video;
             item.DateCreated = DateTime.Now;
             item.IDSubject = idSubject;
+            item.Description = description;
             lessons.Add(item);
             #endregion
 
             #region Update Subject
             subject.UpdateChildren(idSubject);
             #endregion
+            return RedirectToAction("Index", "Subjects");
+        }
+
+        [HttpGet]
+        public ActionResult Edit(string id)
+        {
+            if (CommonFunc.IsNotLogin(Session["UserLogin"] + ""))
+                return RedirectToAction("Login", "Accounts");
+            return View();
+        }
+
+        [HttpPost]
+        public ActionResult Edit(Lessons less)
+        {
+            lessons.Update(less);
+            return View();
+        }
+
+        [HttpPost]
+        public ActionResult Delete(string id)
+        {
+            lessons.Delete(id);
             return RedirectToAction("Index", "Subjects");
         }
         public ActionResult GetSubjectDetailDataList(string id)
@@ -66,6 +89,16 @@ namespace ElearningSubject.Controllers
             List<Lessons> data = lessons.GetAll("", "", id);
             return View(data);
         }
-        
+        public ActionResult GetFileByFolderID(string id)
+        {
+            if (CommonFunc.IsNotLogin(Session["UserLogin"] + ""))
+                return RedirectToAction("Login", "Accounts");
+            List<GoogleDriveFiles> data = GoogleDriveFilesRepository.GetContainsInFolder(id);
+            return View(data);
+        }
+        public JsonResult LoadFileInFolder(string id)
+        {
+            return new JsonResult { Data = id, JsonRequestBehavior = JsonRequestBehavior.AllowGet };
+        }
     }
 }

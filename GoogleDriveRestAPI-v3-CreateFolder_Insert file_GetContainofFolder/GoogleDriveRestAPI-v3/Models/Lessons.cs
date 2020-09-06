@@ -18,7 +18,9 @@ namespace ElearningSubject.Models
         public string WordFile { set; get; }
         public string IDSubject { set; get; }
         public string Status { set; get; }
+        public string StatusName { set; get; }
         public DateTime DateCreated { set; get; }
+        public string Description { set; get; }
 
         public Lessons()
         {
@@ -27,8 +29,13 @@ namespace ElearningSubject.Models
 
         public bool Add(Lessons lesson)
         {
-            int result = DataProvider.Instance.ExecuteNonQuery("sp_addLessons", lesson.ID, lesson.Name, lesson.Video, lesson.PdfFile,lesson.PPTFile, lesson.WordFile,lesson.IDSubject);
+            int result = DataProvider.Instance.ExecuteNonQuery("sp_addLessons", lesson.ID, lesson.Name, lesson.Video, lesson.PdfFile,lesson.PPTFile, lesson.WordFile,lesson.IDSubject,lesson.Description);
             return result > 0;
+        }
+        public List<JsTreeModel> GetLessonBySubject(string id)
+        {
+            List<JsTreeModel> data = CBO.FillCollection<JsTreeModel>(DataProvider.Instance.ExecuteReader("sp_getLessonBySubject",id));
+            return data;
         }
 
         public bool Update(Lessons lesson)
@@ -37,7 +44,7 @@ namespace ElearningSubject.Models
             return true;
         }
 
-        public bool Delete(int id)
+        public bool Delete(string id)
         {
             int result = DataProvider.Instance.ExecuteNonQuery("sp_deleteLessons", id);
             return result > 0;
