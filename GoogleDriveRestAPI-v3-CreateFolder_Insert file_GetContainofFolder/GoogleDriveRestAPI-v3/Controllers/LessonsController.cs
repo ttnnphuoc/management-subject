@@ -94,11 +94,8 @@ namespace ElearningSubject.Controllers
             if (CommonFunc.IsNotLogin(Session["UserLogin"] + ""))
                 return RedirectToAction("Login", "Accounts");
             List<GoogleDriveFiles> data = GoogleDriveFilesRepository.GetContainsInFolder(id);
+            ViewBag.Lesson = lessons.GetAll(id).AsEnumerable().FirstOrDefault();
             return View(data);
-        }
-        public JsonResult LoadFileInFolder(string id)
-        {
-            return new JsonResult { Data = id, JsonRequestBehavior = JsonRequestBehavior.AllowGet };
         }
     }
 }

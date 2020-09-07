@@ -17,14 +17,19 @@
     $('#jstree').on('changed.jstree', function (e, data) {
         if (data.node.parent !== "#") {
             console.log("=> selected node: " + data.node.id);
+            $('#overlay').show();
             $.ajax({
-                url: "/Lessons/LoadFileInFolder",
+                url: "/Lessons/GetFileByFolderID",
                 type: "GET",
                 data: {id: data.node.id},
                 success: function (data) {
-                    window.location.href = "/Lessons/GetFileByFolderID/" + data;
+                    //window.location.href = "/Lessons/GetFileByFolderID/" + data;
+                    $('#overlay').hide();
+                    $(".content-wrapper").html(data);
+
                 },
                 error: function (error) {
+                    $('#overlay').hide();
                     console.log(error);
                 }
 

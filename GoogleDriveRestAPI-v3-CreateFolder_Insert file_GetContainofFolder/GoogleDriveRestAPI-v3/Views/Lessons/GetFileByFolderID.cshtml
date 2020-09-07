@@ -1,15 +1,13 @@
 ﻿
 @{
-    ViewBag.Title = "GetFileByFolderID";
-    Layout = "~/Views/Shared/_Layout.cshtml";
+    Layout = null;
 }
-<div class="content-wrapper" style="min-height: 1200.88px;">
     <!-- Content Header (Page header) -->
     <section class="content-header">
         <div class="container-fluid">
             <div class="row mb-2">
                 <div class="col-sm-6">
-                    <h1>Quản lý quyền người dùng</h1>
+                    @*<h1>@ViewBag.Lesson.Name</h1>*@
                 </div>
                 <div class="col-sm-6">
                     <ol class="breadcrumb float-sm-right">
@@ -27,34 +25,29 @@
             <div class="col-12">
                 <div class="card">
                     <div class="card-header">
-                        <h3 class="card-title">Danh sách</h3>
-                        <a href="/Roles/AddRoles"><i class="fas fa-plus-circle" style="padding-left:10px"></i></a>
+                        @*<h3 class="card-title">Danh sách</h3>*@
+                        @*<a href="/Roles/AddRoles"><i class="fas fa-plus-circle" style="padding-left:10px"></i></a>*@
+                        <h3>@ViewBag.Lesson.Name</h3>
                     </div>
                     <!-- /.card-header -->
                     <div class="card-body">
-                        <table id="example1" class="table table-bordered table-striped">
-                            <thead>
-                                <tr>
-                                    <th>#</th>
-                                    <th>Tên</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                @foreach (var item in Model)
-                                {
-                                    <tr>
-                                        <td>@item.Id</td>
-                                        <td>@item.Name</td>
-                                    </tr>
-                                }
-                            </tbody>
-                            <tfoot>
-                                <tr>
-                                    <th>#</th>
-                                    <th>Tên</th>
-                                </tr>
-                            </tfoot>
-                        </table>
+                        
+                        <div class="form-group">
+                            <label for="nameSubject">Bài giảng</label><br />
+                            <iframe width="560" height="315" src="https://drive.google.com/file/d/@Model[0].Id/preview" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                        </div>
+                        <div class="form-group">
+                            <label for="nameSubject">Tài liệu PPT</label><br />
+                            <a href="https://drive.google.com/uc?export=download&id=@Model[1].Id">@Model[1].Name <i class="fas fa-download"></i></a>
+                        </div>
+                        <div class="form-group">
+                            <label for="nameSubject">Giáo trình PDF</label><br />
+                            <a href="https://drive.google.com/uc?export=download&id=@Model[2].Id">@Model[2].Name <i class="fas fa-download"></i></a> 
+                        </div>
+                        <div class="form-group">
+                            <label for="nameSubject">Tài liệu Word</label><br />
+                            <a href="https://drive.google.com/uc?export=download&id=@Model[3].Id">@Model[3].Name <i class="fas fa-download"></i></a> 
+                        </div>
                     </div>
                     <!-- /.card-body -->
                 </div>
@@ -65,4 +58,3 @@
         <!-- /.row -->
     </section>
     <!-- /.content -->
-</div>
