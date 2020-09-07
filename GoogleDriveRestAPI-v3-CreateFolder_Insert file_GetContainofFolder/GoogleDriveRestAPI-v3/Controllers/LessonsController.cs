@@ -31,6 +31,12 @@ namespace ElearningSubject.Controllers
         [HttpPost]
         public ActionResult AddLesson(string nameLesson,HttpPostedFileBase fileDocumentWord, HttpPostedFileBase fileDocumentPPT, HttpPostedFileBase fileDocumentPDF, HttpPostedFileBase videoFile, string idSubject, string description)
         {
+            if (nameLesson.Equals("") || videoFile == null)
+            {
+                ViewBag.Error = "Dữ liệu (*) không được để trống";
+                return RedirectToAction("AddLesson", "Lessons", new { id = idSubject });
+            }
+
             List<string> parentId = new List<string>();
             parentId.Add(idSubject);
             string idFolder = GoogleDriveFilesRepository.CreateFolder(nameLesson,parentId);

@@ -1,6 +1,7 @@
 ﻿@{
     ViewBag.Title = ViewBag.Title;
     Layout = "~/Views/Shared/_Layout.cshtml";
+    ViewBag.Error = ViewBag.Error;
 }
 
 
@@ -36,11 +37,11 @@
                             <div class="card-body">
                                 <input type="hidden" value="@Model.ID" name="idSubject" id="idSubject"/>
                                 <div class="form-group">
-                                    <label for="nameLesson">Tên Bài</label>
+                                    <label for="nameLesson">Tên Bài (*)</label>
                                     <input type="text" class="form-control" name="nameLesson" id="nameLesson">
                                 </div>
                                 <div class="form-group">
-                                    <label for="videoFile">Video</label>
+                                    <label for="videoFile">Video (*)</label>
                                     <div class="input-group">
                                         <div class="custom-file">
                                             <input type="file" class="custom-file-input" name="videoFile" id="videoFile">
