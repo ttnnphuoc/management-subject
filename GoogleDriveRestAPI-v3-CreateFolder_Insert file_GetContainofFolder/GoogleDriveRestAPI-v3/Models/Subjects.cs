@@ -12,6 +12,7 @@ namespace ElearningSubject.Models
         public string Description { set; get; }
         public bool Status { set; get; }
         public string NameStatus { set; get; }
+        public string SoLuong { set; get; }
         public Subjects()
         {
             
@@ -53,6 +54,12 @@ namespace ElearningSubject.Models
         public List<Subjects> GetListSubjectByUser(string user)
         {
             List<Subjects> data = CBO.FillCollection<Subjects>(DataProvider.Instance.ExecuteReader("sp_getSubjectByUser",user));
+            return data;
+        }
+
+        public List<Subjects> GetQuantityLessonBySubject()
+        {
+            List<Subjects> data = CBO.FillCollection<Subjects>(DataProvider.Instance.ExecuteReader("sp_getQuantityLessonBySubject"));
             return data;
         }
     }

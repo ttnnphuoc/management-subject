@@ -148,6 +148,8 @@ namespace ElearningSubject.Controllers
 
             user.DateCreated = DateTime.Now;
             user.Add(user);
+            if (Session["IDLogin"] +"" != string.Empty)
+                return RedirectToAction("Index", new { controller = "Accounts", area = string.Empty });
             return RedirectToAction("Login", new { controller = "Accounts", area = string.Empty });
 
         }

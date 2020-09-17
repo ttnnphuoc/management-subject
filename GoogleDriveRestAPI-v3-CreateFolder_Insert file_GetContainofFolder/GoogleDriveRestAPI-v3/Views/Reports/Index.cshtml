@@ -1,15 +1,16 @@
 ﻿
 @{
-    ViewBag.Title = "Quản Lý Môn Học";
+    ViewBag.Title = "Report";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
+
 <div class="content-wrapper" style="min-height: 1200.88px;">
     <!-- Content Header (Page header) -->
     <section class="content-header">
         <div class="container-fluid">
             <div class="row mb-2">
                 <div class="col-sm-6">
-                    <h1>Tổng Quan</h1>
+                    <h1>Danh sách report</h1>
                 </div>
                 <div class="col-sm-6">
                     <ol class="breadcrumb float-sm-right">
@@ -29,7 +30,10 @@
                     <!-- /.card-header -->
                     <div class="card-body">
                         <div class="row">
-                          @Html.Partial("_SubjectHomePartial")
+                            <ul>
+                                <li><a href="#">Báo cáo thống kê bài giảng của giáo viên</a></li>
+                                <li><a href="#">Báo cáo thống kê giáo viên của tất cả các khoa</a></li>
+                            </ul>
                         </div>
                         <!-- /.row -->
                     </div>
@@ -43,3 +47,4 @@
     </section>
     <!-- /.content -->
 </div>
+
