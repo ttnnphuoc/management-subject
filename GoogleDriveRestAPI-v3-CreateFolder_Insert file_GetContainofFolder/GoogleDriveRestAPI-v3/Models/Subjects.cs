@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
+﻿using System.Collections.Generic;
 using Core;
 namespace ElearningSubject.Models
 {
@@ -24,9 +21,9 @@ namespace ElearningSubject.Models
             return result > 0;
         }
 
-        public bool Update(Roles role)
+        public bool Update(Subjects sub)
         {
-            int result = DataProvider.Instance.ExecuteNonQuery("sp_updateSubjects", role.ID, role.Name,role.Description,role.Status);
+            int result = DataProvider.Instance.ExecuteNonQuery("sp_updateSubjects", sub.ID, sub.Name, sub.Description,sub.Status);
             return result > 0;
         }
         public bool UpdateChildren(string id)

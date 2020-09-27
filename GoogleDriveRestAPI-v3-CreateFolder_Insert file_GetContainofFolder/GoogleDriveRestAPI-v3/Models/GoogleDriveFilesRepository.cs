@@ -147,6 +147,15 @@ namespace ElearningSubject_v3.Models
             }
             return idFile;
         }
+        public static string RenameFolder(string folderId, string newName)
+        {
+            //Google.Apis.Drive.v3.DriveService service = GetService_v3();
+            //Google.Apis.Drive.v3.Data.File file = service.Files.ge
+            //file.Name = newName;
+            //Google.Apis.Drive.v3.FilesResource.UpdateRequest request = service.Files.Update(file, folderId);
+            //request.Execute();
+            return "folderId";
+        }
 
         public static List<GoogleDriveFiles> GetDriveFiles()
         {

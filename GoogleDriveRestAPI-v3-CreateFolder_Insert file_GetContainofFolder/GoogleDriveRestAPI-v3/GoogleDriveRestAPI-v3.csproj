@@ -486,6 +486,7 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Controllers\AccountsController.cs" />
     <Compile Include="Controllers\DepartmentsController.cs" />
+    <Compile Include="Controllers\EmailsController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\LessonsController.cs" />
     <Compile Include="Controllers\ReportsController.cs" />
@@ -495,6 +496,7 @@
     </Compile>
     <Compile Include="Models\CommonFunc.cs" />
     <Compile Include="Models\Departments.cs" />
+    <Compile Include="Models\Emails.cs" />
     <Compile Include="Models\GoogleDriveFilesRepository.cs" />
     <Compile Include="Models\GoogleDriveFiles.cs" />
     <Compile Include="Models\JsTreeModel.cs" />
@@ -582,6 +584,7 @@
     <Content Include="Views\Lessons\GetFileByFolderID.cshtml" />
     <Content Include="Views\Shared\_SubjectHomePartial.cshtml" />
     <Content Include="Views\Reports\Index.cshtml" />
+    <Content Include="Views\Emails\Index.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

@@ -15,19 +15,16 @@ SET QUOTED_IDENTIFIER ON
 GO
 -- =============================================
 -- Author:		<Tran Ngoc Phuoc>
--- Create date: <09/03/2020>
--- Description:	<Get subject by id>
+-- Create date: <27/09/2020>
+-- Description:	<Update info subject>
 -- =============================================
-alter PROCEDURE sp_getSubjectById 
-	-- Add the parameters for the stored procedure here
+CREATE PROCEDURE sp_updateSubjects 
 	@id varchar(40),
-	@status nchar(5)
+	@name nvarchar(255),
+	@description ntext,
+	@stt nchar(3)
 AS
 BEGIN
-	select sub.ID, sub.Name,stt.Name as NameStatus, sub.Description, sub.status from Users u
-	inner join UserSubject us on us.IDUsers = u.ID
-	inner join Subjects sub on us.IDSubject = sub.ID
-	inner join StatusCommon stt on stt.ID = sub.Status
-	where sub.ID = @id and (@status = '' or @status = sub.Status)
+	UPDATE Subjects SET Name = @name, Description = @description, Status = @stt WHERE @id= ID
 END
 GO

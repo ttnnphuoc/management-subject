@@ -1,10 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Web;
 using Core;
 using System.Text;
 using System.Net.Mail;
+using System.Security.Cryptography;
 
 namespace ElearningSubject.Models
 {
@@ -79,25 +78,28 @@ namespace ElearningSubject.Models
 
             System.Text.UTF8Encoding encoder = new System.Text.UTF8Encoding();
             hashedBytes = md5Hasher.ComputeHash(encoder.GetBytes(password));
-
+            
             return BitConverter.ToString(hashedBytes).Replace("-", "").ToLower();
         }
-
+        
         public bool SendMail(string email)
         {
             try
             {
+                Emails emailCls = new Emails();
                 MailMessage mail = new MailMessage();
                 SmtpClient SmtpServer = new SmtpClient("smtp.gmail.com");
+                Emails em = emailCls.GetEmailByStatus("","1");
 
-                mail.From = new MailAddress("your_email_address@gmail.com");
+                mail.From = new MailAddress(em.Email);
                 mail.To.Add(email);
-                mail.Subject = "[Reset Password]";
+                mail.Subject = "[QUÊN MẬT KHẨU]";
                 string password = RandomPassword();
-                mail.Body = string.Format("Mật khẩu mới cả tài khoản {0} là: <b>{1}</b>", email, password);
+                mail.Body = string.Format(@"Mật khẩu mới cả tài khoản {0} là: <b>{1}</b> <br/>
+                            <b>Vui lòng đăng nhập và đổi mật khẩu mới.</b>", email, password);
 
                 SmtpServer.Port = 587;
-                SmtpServer.Credentials = new System.Net.NetworkCredential("username", "password");
+                SmtpServer.Credentials = new System.Net.NetworkCredential(em.Email, em.Password);
                 SmtpServer.EnableSsl = true;
 
                 SmtpServer.Send(mail);
@@ -106,7 +108,7 @@ namespace ElearningSubject.Models
             }
             catch (Exception ex)
             {
-                return false;
+                throw new Exception(ex.ToString());
             }
         }
 

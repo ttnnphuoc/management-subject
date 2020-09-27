@@ -33,9 +33,18 @@ namespace ElearningSubject.Views.Accounts
         [HttpPost]
         public ActionResult Add(string nameSubject, string description)
         {
-            string idFolder = GoogleDriveFilesRepository.CreateFolder(nameSubject);
-            subject.Add(idFolder,nameSubject, description);
+            if (string.IsNullOrEmpty(nameSubject))
+            {
+                ViewBag.Error = "Vui lòng nhập tên môn học.";
+                RedirectToAction("Index");
+            }
+            string idFolder = GoogleDriveFilesRepository.CreateFolder(nameSubject.Trim());
+
+            description = description.Length == 0 ? nameSubject : description;
+
+            subject.Add(idFolder,nameSubject.Trim(), description.Trim());
             subjecUser.Add(idFolder, Session["IDLogin"] + "");
+
             return RedirectToAction("Index");
         }
         
@@ -53,13 +62,17 @@ namespace ElearningSubject.Views.Accounts
             if (CommonFunc.IsNotLogin(Session["UserLogin"] + ""))
                 return RedirectToAction("Login", "Accounts");
             Subjects sub = subject.GetSubjectById(id);
+            ViewBag.Name = sub.Name;
             return View(sub);
         }
 
         [HttpPost]
         public ActionResult Edit(Subjects sub)
         {
-            return View();
+            sub.Description = sub.Description.Trim();
+            GoogleDriveFilesRepository.RenameFolder(sub.ID, sub.Name);
+            subject.Update(sub);
+            return View("Index");
         }
 
         #region Get Folder Subject

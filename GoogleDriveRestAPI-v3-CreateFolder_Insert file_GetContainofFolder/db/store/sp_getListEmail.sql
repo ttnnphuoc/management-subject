@@ -15,19 +15,12 @@ SET QUOTED_IDENTIFIER ON
 GO
 -- =============================================
 -- Author:		<Tran Ngoc Phuoc>
--- Create date: <09/03/2020>
--- Description:	<Get subject by id>
+-- Create date: <09/27/2020>
+-- Description:	<Get email to send to User>
 -- =============================================
-alter PROCEDURE sp_getSubjectById 
-	-- Add the parameters for the stored procedure here
-	@id varchar(40),
-	@status nchar(5)
+CREATE PROCEDURE sp_getListEmail
 AS
 BEGIN
-	select sub.ID, sub.Name,stt.Name as NameStatus, sub.Description, sub.status from Users u
-	inner join UserSubject us on us.IDUsers = u.ID
-	inner join Subjects sub on us.IDSubject = sub.ID
-	inner join StatusCommon stt on stt.ID = sub.Status
-	where sub.ID = @id and (@status = '' or @status = sub.Status)
+	SELECT * FROM EMAILADMIN EM INNER JOIN StatusCommon STT ON EM.STATUS = STT.ID
 END
 GO

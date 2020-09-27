@@ -12,7 +12,7 @@
         <div class="dropdown-menu dropdown-menu-lg dropdown-menu-right">
             <span class="dropdown-item dropdown-header" style="pointer-events:none;">Thiết lập thông tin</span>
 
-            @if (u.Roles.Equals("1"))
+            @if (u.Roles.Equals("1") || u.Roles.Equals("3"))
             {
                 <div class="dropdown-divider"></div>
                 <a href="/Subjects/Add" class="dropdown-item">
@@ -46,9 +46,15 @@
                 </a>
 
                 <div class="dropdown-divider"></div>
+                <a href="/Emails/Index" class="dropdown-item">
+                    <i class="fas fa-tasks"></i> Email Admin
+                </a>
+
+                <div class="dropdown-divider"></div>
                 <a href="/Reports/Index" class="dropdown-item">
                     <i class="fas fa-tasks"></i> Xem báo cáo
                 </a>
+
             }
 
             <div class="dropdown-divider"></div>
