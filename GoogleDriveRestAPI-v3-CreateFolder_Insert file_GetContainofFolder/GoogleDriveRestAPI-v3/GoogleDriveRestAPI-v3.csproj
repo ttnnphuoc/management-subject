@@ -585,6 +585,9 @@
     <Content Include="Views\Shared\_SubjectHomePartial.cshtml" />
     <Content Include="Views\Reports\Index.cshtml" />
     <Content Include="Views\Emails\Index.cshtml" />
+    <Content Include="Views\Lessons\EditPPT.cshtml" />
+    <Content Include="Views\Lessons\EditWord.cshtml" />
+    <Content Include="Views\Lessons\EditPDF.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

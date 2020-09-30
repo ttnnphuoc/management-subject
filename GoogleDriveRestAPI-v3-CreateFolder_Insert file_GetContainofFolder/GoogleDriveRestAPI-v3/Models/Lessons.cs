@@ -55,5 +55,11 @@ namespace ElearningSubject.Models
             List<Lessons> data = CBO.FillCollection<Lessons>(DataProvider.Instance.ExecuteReader("sp_getAllLessons", id, status, subject));
             return data;
         }
+
+        public bool UpdateFileID(string fieldName, string value, string id)
+        {
+            int result = DataProvider.Instance.ExecuteNonQuery("sp_updateFileIDLesson", fieldName, value, id);
+            return result > 0;
+        }
     }
 }

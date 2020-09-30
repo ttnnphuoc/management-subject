@@ -23,7 +23,6 @@
                 type: "GET",
                 data: {id: data.node.id},
                 success: function (data) {
-                    //window.location.href = "/Lessons/GetFileByFolderID/" + data;
                     $('#overlay').hide();
                     $(".content-wrapper").html(data);
 
@@ -32,7 +31,6 @@
                     $('#overlay').hide();
                     console.log(error);
                 }
-
             });
         }
     });

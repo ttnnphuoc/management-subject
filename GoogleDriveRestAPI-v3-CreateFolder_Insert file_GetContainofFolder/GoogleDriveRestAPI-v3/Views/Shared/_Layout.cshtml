@@ -130,10 +130,12 @@
     <script>
         var content=@Html.Raw(Json.Encode(ViewBag.Error));
         if(content) {
+            var isOk = content.split("-")[1];
+            var icon = isOk === "OK" ? "success" : "error";
             swal({
                 title: "Thông Báo!",
                 text: content,
-                icon: "error",
+                icon: icon,
                 button: "OK",
             });
         }

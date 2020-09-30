@@ -47,6 +47,14 @@
                                             <input type="file" class="custom-file-input" name="videoFile" id="videoFile">
                                             <label class="custom-file-label" for="videoFile">Choose file</label>
                                         </div>
+                                        
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <input type="button" value="Load Video" id="load-video" />
+
+                                    <div class="input-group">
+                                        <video width="500px" id="video-container" controls></video>
                                     </div>
                                 </div>
 
@@ -110,3 +118,15 @@
     <!-- /.content -->
 </div>
 
+<script>
+
+    document.getElementById('load-video').addEventListener('click', function () {
+
+        var fileInput = document.getElementById('videoFile');
+        var video = document.getElementById('video-container');
+
+        var fileUrl = window.URL.createObjectURL(fileInput.files[0]);
+        video.src = fileUrl;
+
+    });
+</script>

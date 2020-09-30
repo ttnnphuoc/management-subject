@@ -157,6 +157,13 @@ namespace ElearningSubject_v3.Models
             return "folderId";
         }
 
+        public static void DeleteFile(string fileID)
+        {
+            Google.Apis.Drive.v3.DriveService service = GetService_v3();
+            Google.Apis.Drive.v3.FilesResource.DeleteRequest request = service.Files.Delete(fileID);
+            request.Execute();
+        }
+
         public static List<GoogleDriveFiles> GetDriveFiles()
         {
             Google.Apis.Drive.v3.DriveService service = GetService_v3();

@@ -103,5 +103,80 @@ namespace ElearningSubject.Controllers
             ViewBag.Lesson = lessons.GetAll(id).AsEnumerable().FirstOrDefault();
             return View(data);
         }
+
+        [HttpGet]
+        public ActionResult EditPPT(string id,string file)
+        {
+            if (CommonFunc.IsNotLogin(Session["UserLogin"] + ""))
+                return RedirectToAction("Login", "Accounts");
+            GetInfoFile(id, file);
+            return View();
+        }
+
+        [HttpPost]
+        public ActionResult EditPPT(string id, string fileOld, HttpPostedFileBase file)
+        {
+            string idNew = GoogleDriveFilesRepository.FileUploadInFolder(id, file);
+            if (!string.IsNullOrEmpty(id))
+            {
+                GoogleDriveFilesRepository.DeleteFile(fileOld);
+                lessons.UpdateFileID("PPTFile", idNew, id);
+            }
+            ViewBag.Error = "Cập Nhật Thành Công-OK";
+            return RedirectToAction("Index", "Home");
+        }
+
+        [HttpGet]
+        public ActionResult EditWord(string id, string file)
+        {
+            if (CommonFunc.IsNotLogin(Session["UserLogin"] + ""))
+                return RedirectToAction("Login", "Accounts");
+            GetInfoFile(id, file);
+            return View();
+        }
+
+        [HttpPost]
+        public ActionResult EditWord(string id, string fileOld, HttpPostedFileBase file)
+        {
+            string idNew = GoogleDriveFilesRepository.FileUploadInFolder(id, file);
+            if (!string.IsNullOrEmpty(id))
+            {
+                GoogleDriveFilesRepository.DeleteFile(fileOld);
+                lessons.UpdateFileID("WordFile", idNew, id);
+            }
+            ViewBag.Error = "Cập Nhật Thành Công-OK";
+            return RedirectToAction("Index", "Home");
+        }
+
+        [HttpGet]
+        public ActionResult EditPDF(string id, string file)
+        {
+            if (CommonFunc.IsNotLogin(Session["UserLogin"] + ""))
+                return RedirectToAction("Login", "Accounts");
+            GetInfoFile(id, file);
+            return View();
+        }
+        
+        [HttpPost]
+        public ActionResult EditPDF(string id, string fileOld, HttpPostedFileBase file)
+        {
+            string idNew = GoogleDriveFilesRepository.FileUploadInFolder(id, file);
+            if (!string.IsNullOrEmpty(id))
+            {
+                GoogleDriveFilesRepository.DeleteFile(fileOld);
+                lessons.UpdateFileID("PDFFile", idNew, id);
+            }
+            ViewBag.Error = "Cập Nhật Thành Công-OK";
+            return RedirectToAction("Index", "Home");
+        }
+
+        private void GetInfoFile(string id, string file)
+        {
+            ViewBag.FileOld = file;
+            ViewBag.ParentId = id;
+            ViewBag.Lesson = lessons.GetAll(id).FirstOrDefault();
+            Subjects sub = subject.GetSubjectById(ViewBag.Lesson.IDSubject);
+            ViewBag.Title = string.Format("{0} - {1}", ViewBag.Lesson.Name, sub.Name);
+        }
     }
 }
