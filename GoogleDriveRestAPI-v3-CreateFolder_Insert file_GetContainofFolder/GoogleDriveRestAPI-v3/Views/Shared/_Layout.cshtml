@@ -22,6 +22,8 @@
     <link rel="stylesheet" href="~/Content/Admin/plugins/daterangepicker/daterangepicker.css">
     <!-- summernote -->
     <link rel="stylesheet" href="~/Content/Admin/plugins/summernote/summernote-bs4.css">
+    <!-- DataTables -->
+    <link rel="stylesheet" href="~/Content/Admin/plugins/datatables-bs4/css/dataTables.bootstrap4.css">
     <!-- Google Font: Source Sans Pro -->
     <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700" rel="stylesheet">
     <link href="~/Content/Admin/jstree/style.min.css" rel="stylesheet" />
@@ -103,6 +105,10 @@
     <script src="~/Content/Admin/plugins/jquery/jquery.min.js"></script>
     <!-- jQuery UI 1.11.4 -->
     <script src="~/Content/Admin/plugins/jquery-ui/jquery-ui.min.js"></script>
+    <!-- DataTables -->
+    <script src="~/Content/Admin/plugins/datatables/jquery.dataTables.js"></script>
+    <script src="~/Content/Admin/plugins/datatables-bs4/js/dataTables.bootstrap4.js"></script>
+    
     <!-- Resolve conflict in jQuery UI tooltip with Bootstrap tooltip -->
     <script>
   $.widget.bridge('uibutton', $.ui.button)
@@ -120,12 +126,25 @@
     <script src="~/Content/Admin/plugins/overlayScrollbars/js/jquery.overlayScrollbars.min.js"></script>
     <!-- bs-custom-file-input -->
     <script src="~/Content/Admin/plugins/bs-custom-file-input/bs-custom-file-input.min.js"></script>
+    
     <!-- AdminLTE App -->
     <script src="~/Content/Admin/dist/js/adminlte.js"></script>
+    <script>
+            $('#example2').DataTable({
+                "paging": true,
+                "lengthChange": false,
+                "searching": false,
+                "ordering": true,
+                "info": true,
+                "autoWidth": false,
+            });
+    </script>
+    
     <!-- page script -->
     <script src="~/Content/Admin/jstree/jquery.min.js"></script>
     <script src="~/Content/Admin/jstree/jstree.min.js"></script>
     <script src="~/Content/Admin/FuncJS/FuncJs.js"></script>
+
     <script src="~/Content/Admin/sweetalert/sweetalert.min.js"></script>
     <script>
         var content=@Html.Raw(Json.Encode(ViewBag.Error));
@@ -139,9 +158,11 @@
                 button: "OK",
             });
         }
+
         $(document).ready(function () {
           bsCustomFileInput.init();
         });
+
     </script>
 </body>
 </html>

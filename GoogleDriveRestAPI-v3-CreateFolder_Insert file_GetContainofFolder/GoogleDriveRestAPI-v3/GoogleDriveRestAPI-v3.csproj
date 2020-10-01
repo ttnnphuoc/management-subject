@@ -181,6 +181,12 @@
     <Content Include="Content\Admin\plugins\bootstrap\js\bootstrap.bundle.min.js" />
     <Content Include="Content\Admin\plugins\bootstrap\js\bootstrap.js" />
     <Content Include="Content\Admin\plugins\bootstrap\js\bootstrap.min.js" />
+    <Content Include="Content\Admin\plugins\datatables-bs4\css\dataTables.bootstrap4.css" />
+    <Content Include="Content\Admin\plugins\datatables-bs4\css\dataTables.bootstrap4.min.css" />
+    <Content Include="Content\Admin\plugins\datatables-bs4\js\dataTables.bootstrap4.js" />
+    <Content Include="Content\Admin\plugins\datatables-bs4\js\dataTables.bootstrap4.min.js" />
+    <Content Include="Content\Admin\plugins\datatables\jquery.dataTables.js" />
+    <Content Include="Content\Admin\plugins\datatables\jquery.dataTables.min.js" />
     <Content Include="Content\Admin\plugins\daterangepicker\daterangepicker.css" />
     <Content Include="Content\Admin\plugins\daterangepicker\daterangepicker.js" />
     <Content Include="Content\Admin\plugins\daterangepicker\drp.png" />
