@@ -172,6 +172,7 @@
     <Content Include="Content\Admin\dist\js\pages\dashboard.js" />
     <Content Include="Content\Admin\dist\js\pages\dashboard2.js" />
     <Content Include="Content\Admin\dist\js\pages\dashboard3.js" />
+    <Content Include="Content\Admin\FuncJS\dataTableJS.js" />
     <Content Include="Content\Admin\FuncJS\FuncJs.js" />
     <Content Include="Content\Admin\jstree\jquery.min.js" />
     <Content Include="Content\Admin\jstree\jstree.css" />
@@ -506,6 +507,7 @@
     <Compile Include="Models\GoogleDriveFilesRepository.cs" />
     <Compile Include="Models\GoogleDriveFiles.cs" />
     <Compile Include="Models\JsTreeModel.cs" />
+    <Compile Include="Models\ReportModel.cs" />
     <Compile Include="Models\Subjects.cs" />
     <Compile Include="Models\Roles.cs" />
     <Compile Include="Models\Lessons.cs" />

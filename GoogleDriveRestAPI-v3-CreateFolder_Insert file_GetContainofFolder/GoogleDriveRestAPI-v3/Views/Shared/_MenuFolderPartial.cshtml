@@ -1,5 +1,18 @@
-﻿<nav class="mt-2">
+﻿@using ElearningSubject.Models
+@{
+    Users user = new Users();
+    Users u = user.GetAll(Session["IDLogin"] + "").FirstOrDefault();
+}
+<nav class="mt-2">
     <div id="jstree">
 
     </div>
 </nav>
+@if (u.Roles.Equals("3"))
+{
+    <nav class="mt-2">
+        <div id="jstree-user">
+
+        </div>
+    </nav>
+}

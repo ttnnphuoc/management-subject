@@ -3,7 +3,12 @@
     ViewBag.Title = "Report";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
-
+<style>
+    tr.group,
+tr.group:hover {
+    background-color: #ddd !important;
+}
+</style>
 <div class="content-wrapper" style="min-height: 1200.88px;">
     <!-- Content Header (Page header) -->
     <section class="content-header">
@@ -29,102 +34,29 @@
                 <div class="card">
                     <!-- /.card-header -->
                     <div class="card-body">
-                        <div class="card card-success">
-                            <div class="card-header">
-                                <h3 class="card-title">Different Width</h3>
-                            </div>
-                            <div class="card-body">
-                                <div class="row">
-                                    <div class="col-3">
-                                        <select class="form-control" id="department-select">
-                                            <option>---- Khoa ----</option>
-                                            <option value="-1">---- Tất cả ----</option>
-                                            @foreach (var item in ViewBag.ListDepartment)
-                                            {
-                                                <option value="@item.ID">@item.Name</option>
-                                            }
-                                        </select>
-                                    </div>
-                                    <div class="col-3">
-                                        <select class="form-control" id="user-select">
-                                            <option>---- Giáo Viên ----</option>
-                                            @foreach (var item in ViewBag.ListUser)
-                                            {
-                                                <option value="@item.ID">@item.Fullname</option>
-                                            }
-                                        </select>
-                                    </div>
-                                </div>
-                            </div>
-                            <!-- /.card-body -->
-                        </div>
-
-                        <table id="example2" class="table table-bordered table-hover">
+                        <table id="example2" class="display" style="width:100%">
                             <thead>
                                 <tr>
-                                    <th>Rendering engine</th>
-                                    <th>Browser</th>
-                                    <th>Platform(s)</th>
-                                    <th>Engine version</th>
-                                    <th>CSS grade</th>
+                                    <th>Tên Giáo Viên</th>
+                                    <th>Môn học</th>
+                                    <th>Số bài giảng</th>
                                 </tr>
                             </thead>
                             <tbody>
-                                <tr>
-                                    <td>Trident</td>
-                                    <td>
-                                        Internet
-                                        Explorer 4.0
-                                    </td>
-                                    <td>Win 95+</td>
-                                    <td> 4</td>
-                                    <td>X</td>
-                                </tr>
-                                <tr>
-                                    <td>Trident</td>
-                                    <td>
-                                        Internet
-                                        Explorer 5.0
-                                    </td>
-                                    <td>Win 95+</td>
-                                    <td>5</td>
-                                    <td>C</td>
-                                </tr>
-                                <tr>
-                                    <td>Trident</td>
-                                    <td>
-                                        Internet
-                                        Explorer 5.5
-                                    </td>
-                                    <td>Win 95+</td>
-                                    <td>5.5</td>
-                                    <td>A</td>
-                                </tr>
-                                <tr>
-                                    <td>Trident</td>
-                                    <td>
-                                        Internet
-                                        Explorer 6
-                                    </td>
-                                    <td>Win 98+</td>
-                                    <td>6</td>
-                                    <td>A</td>
-                                </tr>
-                                <tr>
-                                    <td>Trident</td>
-                                    <td>Internet Explorer 7</td>
-                                    <td>Win XP SP2+</td>
-                                    <td>7</td>
-                                    <td>A</td>
-                                </tr>
+                                @foreach (var item in Model)
+                                {
+                                    <tr>
+                                        <td>@item.TeacherName</td>
+                                        <td>@item.SubjectName</td>
+                                        <td>@item.Quantity</td>
+                                    </tr>
+                                }
                             </tbody>
                             <tfoot>
                                 <tr>
-                                    <th>Rendering engine</th>
-                                    <th>Browser</th>
-                                    <th>Platform(s)</th>
-                                    <th>Engine version</th>
-                                    <th>CSS grade</th>
+                                    <th>Tên Giáo Viên</th>
+                                    <th>Môn học</th>
+                                    <th>Số bài giảng</th>
                                 </tr>
                             </tfoot>
                         </table>

@@ -14,14 +14,18 @@ GO
 SET QUOTED_IDENTIFIER ON
 GO
 -- =============================================
--- Author:		<Tran Ngoc Phuoc>
--- Create date: <09/06/2020>
--- Description:	<Get lesson by subject>
+-- Author:		<TRAN NGOC PHUOC>
+-- Create date: <11/08/2020>
+-- Description:	<Description,,>
 -- =============================================
-ALTER PROCEDURE sp_getLessonBySubject 
-	@subject varchar(40)
+CREATE PROCEDURE sp_GetDepartmentTree
 AS
 BEGIN
-	Select id,IDSubject as parent, Name as text, cast(1 as bit) as children from Lessons where IDSubject = @subject
+	-- SET NOCOUNT ON added to prevent extra result sets from
+	-- interfering with SELECT statements.
+	SET NOCOUNT ON;
+	select Dept.ID, '#' as parent, Name as text, CAST((CASE WHEN COUNT(Us.ID) > 0 THEN 1 ELSE 0 END) AS bit) AS children from Department Dept
+	LEFT JOIN Users Us ON Us.IDDepartment = Dept.ID
+	group by Dept.ID, Dept.Name,us.ID
 END
 GO

@@ -39,7 +39,6 @@ namespace ElearningSubject.Views.Accounts
                 RedirectToAction("Index");
             }
             string idFolder = GoogleDriveFilesRepository.CreateFolder(nameSubject.Trim());
-
             description = description.Length == 0 ? nameSubject : description;
 
             subject.Add(idFolder,nameSubject.Trim(), description.Trim());

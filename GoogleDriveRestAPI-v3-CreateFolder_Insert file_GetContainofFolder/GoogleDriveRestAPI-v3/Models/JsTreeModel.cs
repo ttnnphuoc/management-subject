@@ -22,25 +22,5 @@ namespace ElearningSubject.Models
         {
 
         }
-        public List<JsTreeModel> GetDataList()
-        {
-            List<JsTreeModel> items = new List<JsTreeModel>();
-            // set items in here
-
-            items.Add(new JsTreeModel(generateID(), "1", "Giới thiệu về C#", false));
-            items.Add(new JsTreeModel(generateID(), "1", "Cài đặt và sử dụng Visual Studio", false));
-            items.Add(new JsTreeModel(generateID(), "2", "Kiểu dữ liệu,Biến và biểu thức", false));
-            items.Add(new JsTreeModel(generateID(), "1", "Các phép toán trong C#", false));
-            items.Add(new JsTreeModel(generateID(), "2", "Các cách ghi chú trong C#", false));
-            items.Add(new JsTreeModel(generateID(), "1", "Các cấu trúc điều kiện", false));
-            items.Add(new JsTreeModel(generateID(), "2", "Các cấu trúc lặp.", false));
-            items.Add(new JsTreeModel(generateID(), "1", "Hàm trong C#", false));
-            items.Add(new JsTreeModel(generateID(), "2", "Một số thư viện thường dùng", false));
-            return items;
-        }
-        private string generateID()
-        {
-            return Guid.NewGuid().ToString("N");
-        }
     }
 }

@@ -39,8 +39,8 @@ namespace ElearningSubject.Controllers
 
             List<string> parentId = new List<string>();
             parentId.Add(idSubject);
-            string idFolder = GoogleDriveFilesRepository.CreateFolder(nameLesson,parentId);
-            string word =  GoogleDriveFilesRepository.FileUploadInFolder(idFolder, fileDocumentWord);
+            string idFolder = GoogleDriveFilesRepository.CreateFolder(nameLesson, parentId);
+            string word = GoogleDriveFilesRepository.FileUploadInFolder(idFolder, fileDocumentWord);
             string ppt = GoogleDriveFilesRepository.FileUploadInFolder(idFolder, fileDocumentPPT);
             string pdf = GoogleDriveFilesRepository.FileUploadInFolder(idFolder, fileDocumentPDF);
             string video = GoogleDriveFilesRepository.FileUploadInFolder(idFolder, videoFile);

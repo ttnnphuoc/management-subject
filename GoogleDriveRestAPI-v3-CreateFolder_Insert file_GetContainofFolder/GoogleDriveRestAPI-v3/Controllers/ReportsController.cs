@@ -12,17 +12,38 @@ namespace ElearningSubject.Controllers
         // GET: Reports
         Users user = new Users();
         Departments dep = new Departments();
+        ReportModel rp = new ReportModel();
         public ActionResult Index()
         {
             if (CommonFunc.IsNotLogin(Session["UserLogin"] + ""))
                 return RedirectToAction("Login", "Accounts");
             ViewBag.ListDepartment = dep.GetAll();
             ViewBag.ListUser = user.GetAll();
-            return View();
+            return View(rp.GetAll());
         }
-        //public JsonResult GetAllUser()
-        //{
-        //    return new JsonResult { Data = user.GetAll(), JsonRequestBehavior = JsonRequestBehavior.AllowGet };
-        //}
+        #region Get Folder Subject
+        public JsonResult GetRoot()
+        {
+            List<JsTreeModel> items = rp.GetAllTreeDeparment();
+            return new JsonResult { Data = items, JsonRequestBehavior = JsonRequestBehavior.AllowGet };
+        }
+
+        public JsonResult GetChildren(string id)
+        {
+            List<JsTreeModel> items = rp.GetAllTreeUser(id);
+            return new JsonResult { Data = items, JsonRequestBehavior = JsonRequestBehavior.AllowGet };
+        }
+
+        public JsonResult GetChildrenSubject(string id)
+        {
+            List<JsTreeModel> items = rp.GetAllTreeSubject(id);
+            return new JsonResult { Data = items, JsonRequestBehavior = JsonRequestBehavior.AllowGet };
+        }
+        public JsonResult GetChildrenLesson(string id)
+        {
+            List<JsTreeModel> items = rp.GetChildrenLesson(id);
+            return new JsonResult { Data = items, JsonRequestBehavior = JsonRequestBehavior.AllowGet };
+        }
+        #endregion
     }
 }

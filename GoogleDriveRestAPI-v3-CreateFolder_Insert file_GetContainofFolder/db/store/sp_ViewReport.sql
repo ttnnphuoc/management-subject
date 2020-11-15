@@ -14,14 +14,24 @@ GO
 SET QUOTED_IDENTIFIER ON
 GO
 -- =============================================
--- Author:		<Tran Ngoc Phuoc>
--- Create date: <09/06/2020>
--- Description:	<Get lesson by subject>
+-- Author:		<Author,,Name>
+-- Create date: <Create Date,,>
+-- Description:	<Description,,>
 -- =============================================
-ALTER PROCEDURE sp_getLessonBySubject 
-	@subject varchar(40)
+alter PROCEDURE sp_ViewReport
 AS
 BEGIN
-	Select id,IDSubject as parent, Name as text, cast(1 as bit) as children from Lessons where IDSubject = @subject
+	-- SET NOCOUNT ON added to prevent extra result sets from
+	-- interfering with SELECT statements.
+	SET NOCOUNT ON;
+
+    -- Insert statements for procedure here
+	select 
+	u.Fullname,s.Name, count(less.ID) as Quantity from Users u 
+inner join UserSubject us on us.IDUsers = u.ID
+inner join Subjects s on s.ID = us.IDSubject
+inner join Lessons less on less.IDSubject = s.ID
+group by u.Fullname, s.Name
+
 END
 GO
