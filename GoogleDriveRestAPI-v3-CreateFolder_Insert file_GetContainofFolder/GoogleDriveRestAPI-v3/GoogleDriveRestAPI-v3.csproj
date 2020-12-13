@@ -524,8 +524,6 @@
       <SubType>Designer</SubType>
     </Content>
     <Content Include="packages.config" />
-    <Content Include="Views\Home\GetGoogleDriveFiles.cshtml" />
-    <Content Include="Views\Home\GetContainsInFolder.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Content\Admin\dist\css\adminlte.css.map" />
     <Content Include="Content\Admin\dist\css\adminlte.min.css.map" />

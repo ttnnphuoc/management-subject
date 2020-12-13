@@ -1,7 +1,7 @@
 ﻿@using ElearningSubject.Models
 @{
     Subjects subject = new Subjects();
-    List<Subjects> data = subject.GetQuantityLessonBySubject();
+    List<Subjects> data = subject.GetQuantityLessonBySubject(Session["IDLogin"] + "");
 }
 
 <!-- ./col -->

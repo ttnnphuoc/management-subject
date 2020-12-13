@@ -38,9 +38,9 @@ namespace ElearningSubject.Models
         }
         
 
-        public List<JsTreeModel> GetAllTreeFolder(string id = "",string status = "")
+        public List<JsTreeModel> GetAllTreeFolder(string id = "",string status = "", string user = "0")
         {
-            List<JsTreeModel> data = CBO.FillCollection<JsTreeModel>(DataProvider.Instance.ExecuteReader("sp_getAllSubjects", id, status));
+            List<JsTreeModel> data = CBO.FillCollection<JsTreeModel>(DataProvider.Instance.ExecuteReader("sp_getAllSubjects", id, status,user));
             return data;
         }
         public Subjects GetSubjectById(string id = "", string status = "")
@@ -54,9 +54,9 @@ namespace ElearningSubject.Models
             return data;
         }
 
-        public List<Subjects> GetQuantityLessonBySubject()
+        public List<Subjects> GetQuantityLessonBySubject(string user)
         {
-            List<Subjects> data = CBO.FillCollection<Subjects>(DataProvider.Instance.ExecuteReader("sp_getQuantityLessonBySubject"));
+            List<Subjects> data = CBO.FillCollection<Subjects>(DataProvider.Instance.ExecuteReader("sp_getQuantityLessonBySubject",user));
             return data;
         }
     }

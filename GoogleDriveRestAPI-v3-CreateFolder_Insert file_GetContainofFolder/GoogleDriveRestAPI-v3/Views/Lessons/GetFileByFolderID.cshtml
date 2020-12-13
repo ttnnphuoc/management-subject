@@ -1,64 +1,76 @@
-﻿
+﻿@using ElearningSubject.Models
+
 @{
     Layout = null;
+    Users user = new Users();
+    Users u = user.GetAll(Session["IDLogin"] + "").FirstOrDefault();
 }
-    <!-- Content Header (Page header) -->
-    <section class="content-header">
-        <div class="container-fluid">
-            <div class="row mb-2">
-                <div class="col-sm-6">
-                    <h3>@ViewBag.SubjectTitle</h3>
-                </div>
-                <div class="col-sm-6">
-                    <ol class="breadcrumb float-sm-right">
-                        @*<li class="breadcrumb-item"><a href="#">Home</a></li>
-                            <li class="breadcrumb-item active">DataTables</li>*@
-                    </ol>
-                </div>
+<!-- Content Header (Page header) -->
+<section class="content-header">
+    <div class="container-fluid">
+        <div class="row mb-2">
+            <div class="col-sm-6">
+                <h3>@ViewBag.SubjectTitle</h3>
             </div>
-        </div><!-- /.container-fluid -->
-    </section>
-
-    <!-- Main content -->
-    <section class="content">
-        <div class="row">
-            <div class="col-12">
-                <div class="card">
-                    <div class="card-header">
-                        <h3>@Model.Name</h3>
-                    </div>
-                    <!-- /.card-header -->
-                    <div class="card-body">
-                        
-                        <div class="form-group">
-                            <label for="nameSubject">Bài giảng</label><br />
-                            <iframe width="560px" id="video-container" height="345" src="https://www.youtube.com/embed/@Model.Video"  frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-                        </div>
-
-                        <div class="form-group">
-                            <label for="nameSubject">Tài liệu PPT</label><br />
-                            <a href="@Url.Action("EditPPT","Lessons",new { id = @Model.ID})" target="_blank"><i class="fas fa-pencil-alt"></i></a> ||
-                            <a href="http://docs.google.com/gview?url=@ViewBag.BaseUrl/Uploads/TaiLieu/@Model.PPTFile" target="_blank"><i class="fa fa-eye" aria-hidden="true"></i></a>
-                        </div>
-                        
-                        <div class="form-group">
-                            <label for="nameSubject">Giáo trình PDF</label><br />
-                            <a href="@Url.Action("EditPDF","Lessons",new { id = @Model.ID })" target="_blank"><i class="fas fa-pencil-alt"></i></a> ||
-                            <a href="http://docs.google.com/gview?url=@ViewBag.BaseUrl/Uploads/TaiLieu/@Model.PdfFile" target="_blank"><i class="fa fa-eye" aria-hidden="true"></i></a>
-                        </div>
-
-                        <div class="form-group">
-                            <label for="nameSubject">Tài liệu Word</label><br />
-                            <a href="@Url.Action("EditWord","Lessons",new { id = @Model.ID})" target="_blank"><i class="fas fa-pencil-alt"></i></a> ||
-                            <a href="http://docs.google.com/gview?url=@ViewBag.BaseUrl/Uploads/TaiLieu/@Model.WordFile" target="_blank"><i class="fa fa-eye" aria-hidden="true"></i></a>
-                        </div>
-                    </div>
-                    <!-- /.card-body -->
-                </div>
-                <!-- /.card -->
+            <div class="col-sm-6">
+                <ol class="breadcrumb float-sm-right">
+                    @*<li class="breadcrumb-item"><a href="#">Home</a></li>
+                        <li class="breadcrumb-item active">DataTables</li>*@
+                </ol>
             </div>
-            <!-- /.col -->
         </div>
-        <!-- /.row -->
-    </section>
-    <!-- /.content -->
+    </div><!-- /.container-fluid -->
+</section>
+
+<!-- Main content -->
+<section class="content">
+    <div class="row">
+        <div class="col-12">
+            <div class="card">
+                <div class="card-header">
+                    <h3>@Model.Name</h3>
+                </div>
+                <!-- /.card-header -->
+                <div class="card-body">
+
+                    <div class="form-group">
+                        <label for="nameSubject">Bài giảng</label><br />
+                        <iframe width="560px" id="video-container" height="345" src="https://www.youtube.com/embed/@Model.Video" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="nameSubject">Tài liệu PPT</label><br />
+                        @if (!u.Roles.Equals("4"))
+                        {
+                            <a href="@Url.Action("EditPPT", "Lessons", new { id = @Model.ID })" target="_blank"><i class="fas fa-pencil-alt"></i></a><label>&nbsp;||&nbsp;</label>
+                        }
+                        <a href="http://docs.google.com/gview?url=@ViewBag.BaseUrl/Uploads/TaiLieu/@Model.PPTFile" target="_blank"><i class="fa fa-eye" aria-hidden="true"></i></a>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="nameSubject">Giáo trình PDF</label><br />
+                        @if (!u.Roles.Equals("4"))
+                        {
+                            <a href="@Url.Action("EditPDF", "Lessons", new { id = @Model.ID })" target="_blank"><i class="fas fa-pencil-alt"></i></a><label>&nbsp;||&nbsp;</label>
+                        }
+                        <a href="http://docs.google.com/gview?url=@ViewBag.BaseUrl/Uploads/TaiLieu/@Model.PdfFile" target="_blank"><i class="fa fa-eye" aria-hidden="true"></i></a>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="nameSubject">Tài liệu Word</label><br />
+                        @if (!u.Roles.Equals("4"))
+                        {
+                            <a href="@Url.Action("EditWord", "Lessons", new { id = @Model.ID })" target="_blank"><i class="fas fa-pencil-alt"></i></a><label>&nbsp;||&nbsp;</label>
+                        }
+                        <a href="http://docs.google.com/gview?url=@ViewBag.BaseUrl/Uploads/TaiLieu/@Model.WordFile" target="_blank"><i class="fa fa-eye" aria-hidden="true"></i></a>
+                    </div>
+                </div>
+                <!-- /.card-body -->
+            </div>
+            <!-- /.card -->
+        </div>
+        <!-- /.col -->
+    </div>
+    <!-- /.row -->
+</section>
+<!-- /.content -->

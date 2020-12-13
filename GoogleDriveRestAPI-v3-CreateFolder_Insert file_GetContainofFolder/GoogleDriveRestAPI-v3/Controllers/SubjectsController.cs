@@ -74,7 +74,7 @@ namespace ElearningSubject.Views.Accounts
         #region Get Folder Subject
         public JsonResult GetRoot()
         {
-            List<JsTreeModel> items = subject.GetAllTreeFolder();
+            List<JsTreeModel> items = subject.GetAllTreeFolder("","", Session["IDLogin"] + "");
             return new JsonResult { Data = items, JsonRequestBehavior = JsonRequestBehavior.AllowGet };
         }
 

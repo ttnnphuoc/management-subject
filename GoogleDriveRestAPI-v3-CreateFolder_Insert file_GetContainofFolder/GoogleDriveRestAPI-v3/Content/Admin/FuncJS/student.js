@@ -77,6 +77,64 @@
         });
     });
     $('#btn-go').on('click', function () {
-        alert("test");
-    })
+        var elementDataList = $("#info-student tbody tr td")
+        var subject = $("#select-subject").val();
+        if (subject === "-1")
+        {
+            swal({
+                title: "Thông Báo!",
+                text: "Vui lòng chọn môn học",
+                icon: "error",
+                button: "OK",
+            });
+            return;
+        }
+        var data = [];
+        for(var item of elementDataList)
+        {
+            var eleCheck = item.querySelector('i');
+            if (eleCheck) {
+                var classList = eleCheck.classList;
+                if (classList.contains("fa-check-square")) {
+                    var prefix = "";
+                    if (item.classList.contains('del-student')) {
+                        prefix = "D_" + item.dataset.id + "_" + subject;
+                    } else if (item.classList.contains('copy-student')) {
+                        prefix = "C_" + item.dataset.id + "_" + subject;
+                    }
+                    data.push(prefix);
+                    prefix = "";
+                }
+            }
+        }
+        if (data.length === 0)
+        {
+            swal({
+                title: "Thông Báo!",
+                text: "Vui lòng chọn học sinh",
+                icon: "error",
+                button: "OK",
+            });
+            return;
+        }
+        $.ajax({
+            url: "/ManagerStudents/AddStudentToSubject",
+            type: "POST",
+            data: JSON.stringify(data),
+            dataType: "json",
+            contentType: "application/json; charset=utf-8",
+            success: function (data) {
+                swal({
+                    title: "Thông Báo!",
+                    text: data,
+                    icon: "success",
+                    button: "OK",
+                });
+                location.reload();
+            },
+            error: function (error) {
+
+            }
+        });
+    });
 });

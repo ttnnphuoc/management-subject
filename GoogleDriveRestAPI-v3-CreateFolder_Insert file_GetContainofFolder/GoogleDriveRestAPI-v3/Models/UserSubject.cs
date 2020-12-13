@@ -1,4 +1,5 @@
 ﻿using Core;
+using System.Collections.Generic;
 
 namespace ElearningSubject.Models
 {
@@ -16,6 +17,15 @@ namespace ElearningSubject.Models
             int result = DataProvider.Instance.ExecuteNonQuery("sp_addUserSubject", subject, user, 1);
             return result > 0;
         }
-        
+        public bool Delete(string subject, string user)
+        {
+            int result = DataProvider.Instance.ExecuteNonQuery("sp_deleteUserSubject", subject, user);
+            return result > 0;
+        }
+        public UserSubject GetSubjectUserData(string subject, string user)
+        {
+            UserSubject data = CBO.FillObject<UserSubject>(DataProvider.Instance.ExecuteReader("sp_GetSubjectUserData",subject, user));
+            return data;
+        }
     }
 }

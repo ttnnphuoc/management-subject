@@ -1,7 +1,10 @@
-﻿
+﻿@using ElearningSubject.Models
 @{
     ViewBag.Title = ViewBag.Subject.Name;
     Layout = "~/Views/Shared/_Layout.cshtml";
+
+    Users user = new Users();
+    Users u = user.GetAll(Session["IDLogin"] + "").FirstOrDefault();
 }
 <div class="content-wrapper" style="min-height: 1200.88px;">
     <!-- Content Header (Page header) -->
@@ -28,7 +31,10 @@
                 <div class="card">
                     <div class="card-header">
                         <h3 class="card-title">Danh sách bài học</h3>
-                        <a href="/Lessons/AddLesson/@ViewBag.Subject.ID"><i class="fas fa-plus-circle" style="padding-left:10px"></i></a>
+                        @if (!u.Roles.Equals("4"))
+                        {
+                            <a href="/Lessons/AddLesson/@ViewBag.Subject.ID"><i class="fas fa-plus-circle" style="padding-left:10px"></i></a>
+                        }
                     </div>
                     <!-- /.card-header -->
                     <div class="card-body">
@@ -37,8 +43,11 @@
                                 <tr>
                                     <th>Tên</th>
                                     <th>Mô tả</th>
-                                    <th>Tình trạng</th>
-                                    <th>Hành Động</th>
+                                    @if (!u.Roles.Equals("4"))
+                                    {
+                                        <th>Tình trạng</th>
+                                        <th>Hành Động</th>
+                                    }
                                 </tr>
                             </thead>
                             <tbody>
@@ -47,16 +56,19 @@
                                     <tr>
                                         <td>@item.Name</td>
                                         <td>@item.Description</td>
-                                        <td>@item.StatusName</td>
-                                        <td>
-                                            <a href="@Url.Action("Edit","Lessons",new { id = @item.ID })" title="Sửa">
-                                                <i class="fas fa-pencil-alt"></i>
-                                            </a>|
-                                            <a style="color:red !important;" href="@Url.Action("Delete", "Lessons",new { id = @item.ID})" title="Xóa">
-                                                <i class="fas fa-trash-alt"></i>
-                                            </a>
+                                        @if (!u.Roles.Equals("4"))
+                                        {
+                                            <td>@item.StatusName</td>
+                                            <td>
+                                                <a href="@Url.Action("Edit", "Lessons", new { id = @item.ID })" title="Sửa">
+                                                    <i class="fas fa-pencil-alt"></i>
+                                                </a>|
+                                                <a style="color:red !important;" href="@Url.Action("Delete", "Lessons", new { id = @item.ID })" title="Xóa">
+                                                    <i class="fas fa-trash-alt"></i>
+                                                </a>
 
-                                        </td>
+                                            </td>
+                                        }
                                     </tr>
                                 }
                             </tbody>
@@ -64,8 +76,11 @@
                                 <tr>
                                     <th>Tên</th>
                                     <th>Mô tả</th>
-                                    <th>Tình trạng</th>
-                                    <th>Hành Động</th>
+                                    @if (!u.Roles.Equals("4"))
+                                    {
+                                        <th>Tình trạng</th>
+                                        <th>Hành Động</th>
+                                    }
                                 </tr>
                             </tfoot>
                         </table>
