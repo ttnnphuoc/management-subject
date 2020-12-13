@@ -51,7 +51,12 @@ namespace ElearningSubject.Views.Accounts
                 return RedirectToAction("Login", "Accounts");
             return RedirectToAction("GetSubjectDetailDataList","Home");
         }
-
+        [HttpGet]
+        public ActionResult Delete(string id)
+        {
+            subject.Delete(id);
+            return RedirectToAction("Index", "Subjects");
+        }
         [HttpGet]
         public ActionResult Edit(string id)
         {

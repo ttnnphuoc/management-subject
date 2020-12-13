@@ -73,11 +73,11 @@ namespace ElearningSubject.Controllers
             return View();
         }
 
-        [HttpPost]
+        [HttpGet]
         public ActionResult Delete(string id)
         {
             lessons.Delete(id);
-            return RedirectToAction("Index", "Subjects");
+            return RedirectToAction("Index", "Lessons");
         }
         public ActionResult GetSubjectDetailDataList(string id)
         {

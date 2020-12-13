@@ -31,7 +31,7 @@ namespace ElearningSubject.Models
             int result = DataProvider.Instance.ExecuteNonQuery("sp_updateSubjectsParent", id);
             return result > 0;
         }
-        public bool Delete(int id)
+        public bool Delete(string id)
         {
             int result = DataProvider.Instance.ExecuteNonQuery("sp_deleteSubjects", id);
             return result > 0;
