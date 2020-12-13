@@ -7,7 +7,7 @@
         <div class="container-fluid">
             <div class="row mb-2">
                 <div class="col-sm-6">
-                    @*<h1>@ViewBag.Lesson.Name</h1>*@
+                    <h3>@ViewBag.SubjectTitle</h3>
                 </div>
                 <div class="col-sm-6">
                     <ol class="breadcrumb float-sm-right">
@@ -25,37 +25,32 @@
             <div class="col-12">
                 <div class="card">
                     <div class="card-header">
-                        <h3>@ViewBag.Lesson.Name</h3>
+                        <h3>@Model.Name</h3>
                     </div>
                     <!-- /.card-header -->
                     <div class="card-body">
                         
                         <div class="form-group">
                             <label for="nameSubject">Bài giảng</label><br />
-                            <iframe width="560" height="315" src="https://drive.google.com/file/d/@Model[0].Id/preview" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                            <iframe width="560px" id="video-container" height="345" src="https://www.youtube.com/embed/@Model.Video"  frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
                         </div>
 
                         <div class="form-group">
                             <label for="nameSubject">Tài liệu PPT</label><br />
-                            <a href="https://drive.google.com/uc?export=download&id=@Model[1].Id" target="_blank">@Model[1].Name <i class="fas fa-download"></i></a> || 
-                            <a href="@Url.Action("EditPPT", "Lessons", new { id = @ViewBag.Lesson.ID, file = @Model[1].Id })" target="_blank"><i class="fas fa-pencil-alt"></i></a> ||
-                            <a href="https://drive.google.com/file/d/@Model[1].Id/view" target="_blank"><i class="fa fa-eye" aria-hidden="true"></i></a>
-
-
+                            <a href="@Url.Action("EditPPT","Lessons",new { id = @Model.ID})" target="_blank"><i class="fas fa-pencil-alt"></i></a> ||
+                            <a href="http://docs.google.com/gview?url=@ViewBag.BaseUrl/Uploads/TaiLieu/@Model.PPTFile" target="_blank"><i class="fa fa-eye" aria-hidden="true"></i></a>
                         </div>
                         
                         <div class="form-group">
                             <label for="nameSubject">Giáo trình PDF</label><br />
-                            <a href="https://drive.google.com/uc?export=download&id=@Model[2].Id" target="_blank">@Model[2].Name <i class="fas fa-download"> </i> </a> || 
-                            <a href="@Url.Action("EditPDF","Lessons",new { id = @ViewBag.Lesson.ID,file = @Model[2].Id })" target="_blank"><i class="fas fa-pencil-alt"></i></a> ||
-                            <a href="https://drive.google.com/file/d/@Model[2].Id/view" target="_blank"><i class="fa fa-eye" aria-hidden="true"></i></a>
+                            <a href="@Url.Action("EditPDF","Lessons",new { id = @Model.ID })" target="_blank"><i class="fas fa-pencil-alt"></i></a> ||
+                            <a href="http://docs.google.com/gview?url=@ViewBag.BaseUrl/Uploads/TaiLieu/@Model.PdfFile" target="_blank"><i class="fa fa-eye" aria-hidden="true"></i></a>
                         </div>
 
                         <div class="form-group">
                             <label for="nameSubject">Tài liệu Word</label><br />
-                            <a href="https://drive.google.com/uc?export=download&id=@Model[3].Id" target="_blank">@Model[3].Name <i class="fas fa-download"></i></a> ||
-                            <a href="@Url.Action("EditWord","Lessons",new { id = @ViewBag.Lesson.ID, file = @Model[3].Id })" target="_blank"><i class="fas fa-pencil-alt"></i></a> ||
-                            <a href="https://drive.google.com/file/d/@Model[3].Id/view" target="_blank"><i class="fa fa-eye" aria-hidden="true"></i></a>
+                            <a href="@Url.Action("EditWord","Lessons",new { id = @Model.ID})" target="_blank"><i class="fas fa-pencil-alt"></i></a> ||
+                            <a href="http://docs.google.com/gview?url=@ViewBag.BaseUrl/Uploads/TaiLieu/@Model.WordFile" target="_blank"><i class="fa fa-eye" aria-hidden="true"></i></a>
                         </div>
                     </div>
                     <!-- /.card-body -->

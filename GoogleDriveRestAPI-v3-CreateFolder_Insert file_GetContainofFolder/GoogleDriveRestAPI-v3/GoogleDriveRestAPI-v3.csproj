@@ -119,7 +119,6 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="App_Start\client_secret.json" />
     <Content Include="Content\Admin\dist\css\adminlte.css" />
     <Content Include="Content\Admin\dist\css\adminlte.min.css" />
     <Content Include="Content\Admin\dist\css\alt\adminlte.components.css" />
@@ -174,14 +173,19 @@
     <Content Include="Content\Admin\dist\js\pages\dashboard3.js" />
     <Content Include="Content\Admin\FuncJS\dataTableJS.js" />
     <Content Include="Content\Admin\FuncJS\FuncJs.js" />
+    <Content Include="Content\Admin\FuncJS\student.js" />
+    <Content Include="Content\Admin\jstree\32px.png" />
     <Content Include="Content\Admin\jstree\jquery.min.js" />
     <Content Include="Content\Admin\jstree\jstree.css" />
     <Content Include="Content\Admin\jstree\jstree.min.js" />
     <Content Include="Content\Admin\jstree\style.min.css" />
+    <Content Include="Content\Admin\jstree\throbber.gif" />
     <Content Include="Content\Admin\plugins\bootstrap\js\bootstrap.bundle.js" />
     <Content Include="Content\Admin\plugins\bootstrap\js\bootstrap.bundle.min.js" />
     <Content Include="Content\Admin\plugins\bootstrap\js\bootstrap.js" />
     <Content Include="Content\Admin\plugins\bootstrap\js\bootstrap.min.js" />
+    <Content Include="Content\Admin\plugins\bs-custom-file-input\bs-custom-file-input.js" />
+    <Content Include="Content\Admin\plugins\bs-custom-file-input\bs-custom-file-input.min.js" />
     <Content Include="Content\Admin\plugins\datatables-bs4\css\dataTables.bootstrap4.css" />
     <Content Include="Content\Admin\plugins\datatables-bs4\css\dataTables.bootstrap4.min.css" />
     <Content Include="Content\Admin\plugins\datatables-bs4\js\dataTables.bootstrap4.js" />
@@ -496,6 +500,7 @@
     <Compile Include="Controllers\EmailsController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\LessonsController.cs" />
+    <Compile Include="Controllers\ManagerStudentsController.cs" />
     <Compile Include="Controllers\ReportsController.cs" />
     <Compile Include="Controllers\RolesController.cs" />
     <Compile Include="Global.asax.cs">
@@ -504,8 +509,6 @@
     <Compile Include="Models\CommonFunc.cs" />
     <Compile Include="Models\Departments.cs" />
     <Compile Include="Models\Emails.cs" />
-    <Compile Include="Models\GoogleDriveFilesRepository.cs" />
-    <Compile Include="Models\GoogleDriveFiles.cs" />
     <Compile Include="Models\JsTreeModel.cs" />
     <Compile Include="Models\ReportModel.cs" />
     <Compile Include="Models\Subjects.cs" />
@@ -573,6 +576,8 @@
     <Content Include="Views\Lessons\AddLesson.cshtml" />
     <Content Include="Content\Admin\plugins\daterangepicker\bower.json" />
     <Content Include="Content\Admin\plugins\daterangepicker\example\browserify\README.md" />
+    <Content Include="Content\Admin\plugins\bs-custom-file-input\bs-custom-file-input.js.map" />
+    <Content Include="Content\Admin\plugins\bs-custom-file-input\bs-custom-file-input.min.js.map" />
     <None Include="Properties\PublishProfiles\elearning.pubxml" />
     <Content Include="Views\Roles\AddRoles.cshtml" />
     <Content Include="Views\Roles\Index.cshtml" />
@@ -596,6 +601,7 @@
     <Content Include="Views\Lessons\EditPPT.cshtml" />
     <Content Include="Views\Lessons\EditWord.cshtml" />
     <Content Include="Views\Lessons\EditPDF.cshtml" />
+    <Content Include="Views\ManagerStudents\Index.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -605,7 +611,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="GoogleDriveFiles\" />
+    <Folder Include="Uploads\TaiLieu\" />
   </ItemGroup>
   <ItemGroup>
     <WCFMetadata Include="Service References\" />

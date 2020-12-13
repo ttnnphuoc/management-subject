@@ -65,6 +65,11 @@ namespace ElearningSubject.Models
             List<Users> data = CBO.FillCollection<Users>(DataProvider.Instance.ExecuteReader("sp_getAllUsers", id, status,department));
             return data;
         }
+        public List<Users> GetAllByRole(string id = "0", string status = "", string department = "", string role = "")
+        {
+            List<Users> data = CBO.FillCollection<Users>(DataProvider.Instance.ExecuteReader("sp_getAllUsersByRole", id, status, department,role));
+            return data;
+        }
 
         public bool UpdatePermission(Users user)
         {

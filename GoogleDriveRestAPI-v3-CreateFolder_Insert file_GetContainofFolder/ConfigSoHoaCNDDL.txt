@@ -1,0 +1,19 @@
+--------------- config Mail ---------------
+url: https://host07.emailserver.vn:2222/
+username: soh41520
+password: sohoacdndalat@1234
+-------------- config Hosting ----------
+url: https://s2d73.cloudnetwork.vn:17979
+username: soh77981
+password: PeFu%3DaNa%6HiYi
+------------ control panel ------------
+url: https://manage.matbao.net/
+username: MB2025378
+password: Nhincaigi@1012
+---------Outlook mail ----------------
+email: sohoacdndalat@sohoacdndalat.edu.vn	
+password: sohoacdndalat@123456
+
+-------- Login ----------
+username: sohoacdndalat@sohoacdndalat.edu.vn
+password: sohoacnddalat123!@#

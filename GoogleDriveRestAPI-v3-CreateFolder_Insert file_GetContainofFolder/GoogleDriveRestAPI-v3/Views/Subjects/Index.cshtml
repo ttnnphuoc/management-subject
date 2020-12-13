@@ -1,7 +1,10 @@
-﻿
+﻿@using ElearningSubject.Models
+
 @{
     ViewBag.Title = "Danh Sách Môn Học";
     Layout = "~/Views/Shared/_Layout.cshtml";
+    Users user = new Users();
+    Users u = user.GetAll(Session["IDLogin"] + "").FirstOrDefault();
 }
 
 <div class="content-wrapper" style="min-height: 1200.88px;">

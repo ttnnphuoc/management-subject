@@ -7,7 +7,7 @@ namespace ElearningSubject.Models
         public string ID { set; get; }
         public string Name { set; get; }
         public string Description { set; get; }
-        public bool Status { set; get; }
+        public int Status { set; get; }
         public string NameStatus { set; get; }
         public string SoLuong { set; get; }
         public Subjects()

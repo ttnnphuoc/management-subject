@@ -145,7 +145,6 @@ namespace ElearningSubject.Controllers
                 ViewBag.ListDepartment = department.GetAll(0, "1");
                 return View();
             }
-
             user.DateCreated = DateTime.Now;
             user.Add(user);
             if (Session["IDLogin"] +"" != string.Empty)

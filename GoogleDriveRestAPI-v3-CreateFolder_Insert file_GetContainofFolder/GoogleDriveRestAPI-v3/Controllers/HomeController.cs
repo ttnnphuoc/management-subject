@@ -1,8 +1,4 @@
 ﻿using ElearningSubject.Models;
-using ElearningSubject_v3.Models;
-using System;
-using System.Collections.Generic;
-using System.Web;
 using System.Web.Mvc;
 
 namespace ElearningSubject_v3.Controllers

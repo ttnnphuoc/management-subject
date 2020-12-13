@@ -1,9 +1,6 @@
-﻿using ElearningSubject.Models;
-using ElearningSubject_v3.Models;
-using System;
+﻿using Core;
+using ElearningSubject.Models;
 using System.Collections.Generic;
-using System.Linq;
-using System.Web;
 using System.Web.Mvc;
 
 namespace ElearningSubject.Views.Accounts
@@ -36,14 +33,14 @@ namespace ElearningSubject.Views.Accounts
             if (string.IsNullOrEmpty(nameSubject))
             {
                 ViewBag.Error = "Vui lòng nhập tên môn học.";
-                RedirectToAction("Index");
+                return RedirectToAction("Index");
             }
-            string idFolder = GoogleDriveFilesRepository.CreateFolder(nameSubject.Trim());
+
+            string newId = this.GetNextIDSubject();
             description = description.Length == 0 ? nameSubject : description;
 
-            subject.Add(idFolder,nameSubject.Trim(), description.Trim());
-            subjecUser.Add(idFolder, Session["IDLogin"] + "");
-
+            subject.Add(newId, nameSubject.Trim(), description.Trim());
+            subjecUser.Add(newId, Session["IDLogin"] + "");
             return RedirectToAction("Index");
         }
         
@@ -69,9 +66,9 @@ namespace ElearningSubject.Views.Accounts
         public ActionResult Edit(Subjects sub)
         {
             sub.Description = sub.Description.Trim();
-            GoogleDriveFilesRepository.RenameFolder(sub.ID, sub.Name);
+            sub.Status = 1;
             subject.Update(sub);
-            return View("Index");
+            return RedirectToAction("Index","Subjects");
         }
 
         #region Get Folder Subject
@@ -87,5 +84,17 @@ namespace ElearningSubject.Views.Accounts
             return new JsonResult { Data = items, JsonRequestBehavior = JsonRequestBehavior.AllowGet };
         }
         #endregion
+        private string GetNextIDSubject()
+        {
+            Subjects sub = CBO.FillObject<Subjects>(DataProvider.Instance.ExecuteReader("GetNextID", "Subjects"));
+            if (sub == null || Null.IsNull(sub.ID))
+            {
+                return "MH01";
+            }
+
+            string currentID = sub.ID.Replace("MH", "");
+            long currentNumber = long.Parse(currentID);
+            return string.Format("MH{0:00}", currentNumber + 1);
+        }
     }
 }
