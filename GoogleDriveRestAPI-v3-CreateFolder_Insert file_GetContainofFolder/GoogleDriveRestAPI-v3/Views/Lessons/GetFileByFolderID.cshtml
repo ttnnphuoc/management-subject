@@ -28,49 +28,88 @@
         <div class="col-12">
             <div class="card">
                 <div class="card-header">
-                    <h3>@Model.Name</h3>
+                    <h3>@ViewBag.Lesson.Name</h3>
                 </div>
                 <!-- /.card-header -->
                 <div class="card-body">
 
                     <div class="form-group">
                         <label for="nameSubject">Bài giảng</label><br />
-                        <iframe width="560px" id="video-container" height="345" src="https://www.youtube.com/embed/@Model.Video" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                        <iframe width="560px" id="video-container" height="345" src="https://www.youtube.com/embed/@ViewBag.Lesson.Video" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
                     </div>
 
                     <div class="form-group">
                         <label for="nameSubject">Tài liệu PPT</label><br />
                         @if (!u.Roles.Equals("4"))
                         {
-                            <a href="@Url.Action("EditPPT", "Lessons", new { id = @Model.ID })" target="_blank"><i class="fas fa-pencil-alt"></i></a><label>&nbsp;||&nbsp;</label>
+                            <a href="@Url.Action("EditPPT", "Lessons", new { id = @ViewBag.Lesson.ID })" target="_blank"><i class="fas fa-pencil-alt"></i></a><label>&nbsp;||&nbsp;</label>
                         }
-                        <a href="http://docs.google.com/gview?url=@ViewBag.BaseUrl/Uploads/TaiLieu/@Model.PPTFile" target="_blank"><i class="fa fa-eye" aria-hidden="true"></i></a>
+                        <a href="http://docs.google.com/gview?url=@ViewBag.BaseUrl/Uploads/TaiLieu/@ViewBag.Lesson.PPTFile" target="_blank"><i class="fa fa-eye" aria-hidden="true"></i></a>
                     </div>
 
                     <div class="form-group">
                         <label for="nameSubject">Giáo trình PDF</label><br />
                         @if (!u.Roles.Equals("4"))
                         {
-                            <a href="@Url.Action("EditPDF", "Lessons", new { id = @Model.ID })" target="_blank"><i class="fas fa-pencil-alt"></i></a><label>&nbsp;||&nbsp;</label>
+                            <a href="@Url.Action("EditPDF", "Lessons", new { id = @ViewBag.Lesson.ID })" target="_blank"><i class="fas fa-pencil-alt"></i></a><label>&nbsp;||&nbsp;</label>
                         }
-                        <a href="http://docs.google.com/gview?url=@ViewBag.BaseUrl/Uploads/TaiLieu/@Model.PdfFile" target="_blank"><i class="fa fa-eye" aria-hidden="true"></i></a>
+                        <a href="http://docs.google.com/gview?url=@ViewBag.BaseUrl/Uploads/TaiLieu/@ViewBag.Lesson.PdfFile" target="_blank"><i class="fa fa-eye" aria-hidden="true"></i></a>
                     </div>
 
                     <div class="form-group">
                         <label for="nameSubject">Tài liệu Word</label><br />
                         @if (!u.Roles.Equals("4"))
                         {
-                            <a href="@Url.Action("EditWord", "Lessons", new { id = @Model.ID })" target="_blank"><i class="fas fa-pencil-alt"></i></a><label>&nbsp;||&nbsp;</label>
+                            <a href="@Url.Action("EditWord", "Lessons", new { id = @ViewBag.Lesson.ID })" target="_blank"><i class="fas fa-pencil-alt"></i></a><label>&nbsp;||&nbsp;</label>
                         }
-                        <a href="http://docs.google.com/gview?url=@ViewBag.BaseUrl/Uploads/TaiLieu/@Model.WordFile" target="_blank"><i class="fa fa-eye" aria-hidden="true"></i></a>
+                        <a href="http://docs.google.com/gview?url=@ViewBag.BaseUrl/Uploads/TaiLieu/@ViewBag.Lesson.WordFile" target="_blank"><i class="fa fa-eye" aria-hidden="true"></i></a>
+                    </div>
+                    <hr />
+                    <div class="container" ng-controller="CommentsController"  ng-init="@("showCommentlist('"+@ViewBag.Lesson.ID +"','"+@ViewBag.Lesson.IDSubject+"')")">
+                        <div class="row">
+                            <div class="col-12 comment-main rounded">
+                                <ul class="p-0">
+                                    <li ng-if="CommentList.length == 0">Không có bình luận nào</li>
+                                    <li ng-repeat="item in CommentList">
+                                        <div class="row comment-box p-1 pt-3 pr-4">
+                                            <div class="col-lg-2 col-3 user-img text-center">
+                                                <img src="~/Content/Admin/man-profile.jpg" class="main-cmt-img" />
+                                                <label style="display:block;">{{item.Fullname}}</label>
+                                            </div>
+                                            <div class="col-lg-10 col-9 user-comment bg-light rounded pb-1">
+                                                <div class="row">
+                                                    <div class="col-9 pr-0">
+                                                        <p class="w-100 p-2 m-0">{{item.COMMENT}}</p>
+                                                    </div>
+                                                    <div class="col-lg-3">
+                                                        <p class="w-100 p-2 m-0"><span class="float-right"><i class="fa fa-clock-o mr-1" aria-hidden="true"></i>{{item.Date}} - {{item.Time}}</span></p>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </li>
+                                    <hr>
+                                    <div class="row">
+                                        <div class="col-lg-10 col-10">
+                                            <input type="text" my-enter="doSomething()" class="form-control" ng-model="Comments.COMMENT" placeholder="Bình luận ....">
+                                        </div>
+                                        <div class="col-lg-2 col-2 send-icon">
+                                            <a ng-click="Add()"  ><i class="fa fa-paper-plane" style="cursor:pointer;" aria-hidden="true"></i></a>
+                                        </div>
+                                    </div>
+                                </ul>
+                            </div>
+                        </div>
                     </div>
                 </div>
                 <!-- /.card-body -->
+
             </div>
             <!-- /.card -->
         </div>
         <!-- /.col -->
+
     </div>
+
     <!-- /.row -->
 </section>
-<!-- /.content -->

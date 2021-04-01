@@ -39,8 +39,9 @@
             cursor: pointer;
         }
     </style>
+    <link href="~/Content/Admin/comment.css" rel="stylesheet" />
 </head>
-<body class="hold-transition sidebar-mini layout-fixed">
+<body class="hold-transition sidebar-mini layout-fixed"  >
     <div id="overlay" style="display:none;">
         <div class="spinner"></div>
     </div>
@@ -168,7 +169,11 @@
             });
     </script>
 
-    
+
+    <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.2/angular.min.js"></script>
+    <script src="~/SPA/Angular/_app.js"></script>
+    <script src="~/SPA/Common.js"></script>
+    <script src="~/SPA/Controller/ClassController.js"></script>
     <!-- page script -->
     <script src="~/Content/Admin/jstree/jquery.min.js"></script>
     <script src="~/Content/Admin/jstree/jstree.min.js"></script>
@@ -176,6 +181,7 @@
 
     <script src="~/Content/Admin/sweetalert/sweetalert.min.js"></script>
     <script src="~/Content/Admin/FuncJS/student.js"></script>
+    <!-- /.content -->
     <script>
         var content=@Html.Raw(Json.Encode(TempData["Error"] + ""));
         if(content) {

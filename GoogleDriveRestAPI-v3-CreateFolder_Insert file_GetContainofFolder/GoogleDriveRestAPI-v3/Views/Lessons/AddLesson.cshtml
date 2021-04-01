@@ -4,7 +4,7 @@
     ViewBag.Error = TempData["Error"];
 }
 
-
+<link href="~/Content/Admin/comment.css" rel="stylesheet" />
 <div class="content-wrapper">
     <!-- Content Header (Page header) -->
     <section class="content-header">
@@ -12,7 +12,9 @@
             <div class="row mb-2">
                 <div class="col-sm-3"></div>
                 <div class="col-sm-6">
-                    <h1>Thêm Bài Giảng @Model.Name</h1>
+                    <h1>
+                        @ViewBag.Title
+                    </h1>
                 </div>
                 <div class="col-sm-3"></div>
             </div>
@@ -35,7 +37,7 @@
                         <!-- form start -->
                         <form role="form" action="\Lessons\AddLesson" method="post" enctype="multipart/form-data">
                             <div class="card-body">
-                                <input type="hidden" value="@Model.ID" name="idSubject" id="idSubject"/>
+                                <input type="hidden" value="@ViewBag.Subject.ID" name="idSubject" id="idSubject"/>
                                 <div class="form-group">
                                     <label for="nameLesson">Tên Bài (*)</label>
                                     <input type="text" class="form-control" name="nameLesson" id="nameLesson">

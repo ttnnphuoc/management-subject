@@ -16,7 +16,6 @@
 
     $('#jstree').on('changed.jstree', function (e, data) {
         if (data.node.parent !== "#") {
-            console.log("=> selected node: " + data.node.id);
             $('#overlay').show();
             $.ajax({
                 url: "/Lessons/GetFileByFolderID",
@@ -25,6 +24,10 @@
                 success: function (data) {
                     $('#overlay').hide();
                     $(".content-wrapper").html(data);
+
+                    //var compiledElement = $compile(data)($scope);
+                    //$(".content-wrapper").append(compiledElement);
+                    angular.bootstrap($('.content-wrapper'), ['shoppingcart']);
 
                 },
                 error: function (error) {
@@ -79,7 +82,6 @@
 
     $('#jstree-user').on('changed.jstree', function (e, data) {
         if (data.node.parent !== "#") {
-            console.log("=> selected node: " + data.node.id);
             $('#overlay').show();
             $.ajax({
                 url: "/Lessons/GetFileByFolderID",
@@ -88,7 +90,6 @@
                 success: function (data) {
                     $('#overlay').hide();
                     $(".content-wrapper").html(data);
-
                 },
                 error: function (error) {
                     $('#overlay').hide();
@@ -104,5 +105,5 @@
             bar.parent().children('a.jstree-anchor').height() + 'px');
     });
 
-});
 
+});

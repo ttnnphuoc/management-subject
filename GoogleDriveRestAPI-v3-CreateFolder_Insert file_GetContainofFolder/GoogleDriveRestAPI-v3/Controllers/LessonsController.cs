@@ -26,7 +26,8 @@ namespace ElearningSubject.Controllers
                 return RedirectToAction("Login", "Accounts");
             Subjects sub = subject.GetSubjectById(id);
             ViewBag.Title = "Thêm Bài Học Mới " + sub.Name;
-            return View(sub);
+            ViewBag.Subject = sub;
+            return View();
         }
 
         [HttpPost]
@@ -96,7 +97,8 @@ namespace ElearningSubject.Controllers
             Subjects subjectCurrent = subject.GetSubjectById(lessonData.IDSubject);
             ViewBag.SubjectTitle = subjectCurrent.Name;
             ViewBag.BaseUrl = GetBaseUrl();
-            return View(lessonData);
+            ViewBag.Lesson = lessonData;
+            return View();
         }
 
         [HttpGet]

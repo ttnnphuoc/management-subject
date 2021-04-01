@@ -46,22 +46,26 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                @foreach (var item in Model)
+                                @if (Model != null)
                                 {
-                                    <tr>
-                                        <td><a href="@Url.Action("GetSubjectDetailDataList","lessons",new { id = @item.ID })">@item.Name</a> </td>
-                                        <td>@item.Description</td>
-                                        <td>@item.NameStatus</td>
-                                        <td>
-                                            <a href="@Url.Action("Edit","Subjects",new { id = @item.ID })" title="Sửa">
-                                                <i class="fas fa-pencil-alt"></i>
-                                            </a>|
-                                            <a style="color:red !important;" href="@Url.Action("Delete", "Subjects",new { id = @item.ID})" title="Xóa">
-                                                <i class="fas fa-trash-alt"></i>
-                                            </a>
+                                    foreach (var item in (dynamic)Model)
+                                    {
+                                        <tr>
+                                            <td><a href="@Url.Action("GetSubjectDetailDataList","lessons",new { id = @item.ID })">@item.Name</a> </td>
+                                            <td>@item.Description</td>
+                                            <td>@item.NameStatus</td>
+                                            <td>
+                                                <a href="@Url.Action("Edit","Subjects",new { id = @item.ID })" title="Sửa">
+                                                    <i class="fas fa-pencil-alt"></i>
+                                                </a>|
+                                                <a style="color:red !important;" href="@Url.Action("Delete", "Subjects",new { id = @item.ID})" title="Xóa">
+                                                    <i class="fas fa-trash-alt"></i>
+                                                </a>
 
-                                        </td>
-                                    </tr>
+                                            </td>
+                                        </tr>
+                                    }
+
                                 }
                             </tbody>
                             <tfoot>
