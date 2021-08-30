@@ -27,5 +27,10 @@ namespace ElearningSubject.Models
             UserSubject data = CBO.FillObject<UserSubject>(DataProvider.Instance.ExecuteReader("sp_GetSubjectUserData",subject, user));
             return data;
         }
+        public UserSubject GetSubjectUserDataEmail(string subject, string user)
+        {
+            UserSubject data = CBO.FillObject<UserSubject>(DataProvider.Instance.ExecuteReader("sp_GetSubjectUserDataEmail", subject, user));
+            return data;
+        }
     }
 }

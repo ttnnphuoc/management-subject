@@ -13,6 +13,8 @@ namespace ElearningSubject.Controllers
         private Comments cmtModel = new Comments();
         public ActionResult GetCommentList(Comments data)
         {
+            if (CommonFunc.IsNotLogin(Session["UserLogin"] + ""))
+                return RedirectToAction("Login", "Accounts");
             try
             {
                 List<Comments> dataa = cmtModel.GetListComment(data);
@@ -26,6 +28,8 @@ namespace ElearningSubject.Controllers
 
         public ActionResult Add(Comments data)
         {
+            if (CommonFunc.IsNotLogin(Session["UserLogin"] + ""))
+                return RedirectToAction("Login", "Accounts");
             try
             {
                 data.USERID = Session["IDLogin"] + "";

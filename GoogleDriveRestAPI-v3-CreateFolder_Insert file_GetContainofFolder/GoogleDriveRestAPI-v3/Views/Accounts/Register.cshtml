@@ -43,6 +43,20 @@
                      
                 </select>
             </div>
+            @if (@Session["UserLogin"] != null && (Session["UserRole"] + "" == "2" || Session["UserRole"] + "" == "3"))
+            {
+                <div class="input-group mb-3">
+                    <select style="border-right:1px solid #ced4da !important;" class="form-control" name="Roles" id="Roles">
+                        <option value="4">Sinh Viên</option>
+                        <option value="1">Giáo Viên</option>
+                        <option value="2">Trưởng khoa</option>
+                        @if (Session["UserRole"] + "" == "3")
+                        {
+                            <option value="3">Quản trị Viên</option>
+                        }
+                    </select>
+                </div>
+            }
             <div class="row">
                 <!-- /.col -->
                 <div class="col-4">

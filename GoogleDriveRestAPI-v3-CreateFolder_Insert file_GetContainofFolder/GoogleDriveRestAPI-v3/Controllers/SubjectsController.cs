@@ -1,5 +1,6 @@
 ﻿using Core;
 using ElearningSubject.Models;
+using System;
 using System.Collections.Generic;
 using System.Web.Mvc;
 
@@ -28,20 +29,19 @@ namespace ElearningSubject.Views.Accounts
         }
         
         [HttpPost]
-        public ActionResult Add(string nameSubject, string description)
+        public ActionResult Add(Subjects sub)
         {
-            if (string.IsNullOrEmpty(nameSubject))
+            Subjects subExists = GetSubjectByName(sub);
+            if (subExists != null && subExists.ID != "")
             {
-                ViewBag.Error = "Vui lòng nhập tên môn học.";
-                return RedirectToAction("Index");
+                return Json(new { rs = false, msg = "Môn học đã tồn tại" });
             }
-
             string newId = this.GetNextIDSubject();
-            description = description.Length == 0 ? nameSubject : description;
+            sub.Description = string.IsNullOrEmpty(sub.Description)? sub.Name : sub.Description;
 
-            subject.Add(newId, nameSubject.Trim(), description.Trim());
+            subject.Add(newId, sub.Name.Trim(), sub.Description.Trim());
             subjecUser.Add(newId, Session["IDLogin"] + "");
-            return RedirectToAction("Index");
+            return Json(new { rs = true, msg = "Thêm thông tin thành công" });
         }
         
         [HttpPost]
@@ -54,6 +54,8 @@ namespace ElearningSubject.Views.Accounts
         [HttpGet]
         public ActionResult Delete(string id)
         {
+            if (CommonFunc.IsNotLogin(Session["UserLogin"] + ""))
+                return RedirectToAction("Login", "Accounts");
             subject.Delete(id);
             return RedirectToAction("Index", "Subjects");
         }
@@ -70,12 +72,26 @@ namespace ElearningSubject.Views.Accounts
         [HttpPost]
         public ActionResult Edit(Subjects sub)
         {
+            if (CommonFunc.IsNotLogin(Session["UserLogin"] + ""))
+                return RedirectToAction("Login", "Accounts");
             sub.Description = sub.Description.Trim();
             sub.Status = 1;
             subject.Update(sub);
             return RedirectToAction("Index","Subjects");
         }
 
+        private Subjects GetSubjectByName(Subjects sub)
+        {
+            try
+            {
+                Subjects subj = subject.GetSubjectByName(sub);
+                return subj;
+            }
+            catch(Exception ex)
+            {
+                return new Subjects();
+            }
+        }
         #region Get Folder Subject
         public JsonResult GetRoot()
         {

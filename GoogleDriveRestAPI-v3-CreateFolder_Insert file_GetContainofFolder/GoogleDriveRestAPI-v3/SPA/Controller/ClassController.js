@@ -1,5 +1,5 @@
-﻿app.controller('CommentsController', ['$scope', '$rootScope', '$timeout','CommonFactory',
-function ($scope, $rootScope, $timeout, CommonFactory) {
+﻿app.controller('CommentsController', ['$scope', '$window', '$timeout', 'CommonFactory',
+function ($scope, $window, $timeout, CommonFactory) {
     var url = '/Comments/';
     $scope.Comments = new Object();
     $scope.CommentList = new Object();

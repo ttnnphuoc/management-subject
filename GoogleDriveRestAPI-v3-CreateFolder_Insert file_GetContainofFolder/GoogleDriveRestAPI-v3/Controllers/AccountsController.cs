@@ -51,6 +51,7 @@ namespace ElearningSubject.Controllers
                 {
                     Session["UserLogin"] = u.Email;
                     Session["IDLogin"] = u.ID;
+                    Session["UserRole"] = u.Roles;
                     return RedirectToAction("Index", new { controller = "Home", area = string.Empty });
                 }
             }
@@ -105,7 +106,8 @@ namespace ElearningSubject.Controllers
             if (CommonFunc.IsNotLogin(Session["UserLogin"] + ""))
                 return RedirectToAction("Login");
             ViewBag.ListDepartment = department.GetAll(0, "1");
-            return View(user.GetAll(Session["IDLogin"] + "").FirstOrDefault());
+            ViewBag.User = user.GetAll(Session["IDLogin"] + "").FirstOrDefault();
+            return View();
         }
 
         [HttpPost]
@@ -146,6 +148,7 @@ namespace ElearningSubject.Controllers
                 return View();
             }
             user.DateCreated = DateTime.Now;
+            user.Roles = string.IsNullOrEmpty(user.Roles) ? "4" : user.Roles;
             user.Add(user);
             if (Session["IDLogin"] +"" != string.Empty)
                 return RedirectToAction("Index", new { controller = "Accounts", area = string.Empty });
@@ -157,6 +160,7 @@ namespace ElearningSubject.Controllers
         {
             Session["UserLogin"] = null;
             Session["IDLogin"] = null;
+            Session["UserRole"] = null;
             return RedirectToAction("Login");
         }
 
@@ -167,7 +171,8 @@ namespace ElearningSubject.Controllers
                 return RedirectToAction("Login");
             ViewBag.ListRoles = roles.GetAll();
             ViewBag.ListDepartment = department.GetAll();
-            return View(user.GetAll(id+"").FirstOrDefault());
+            ViewBag.UserInfo = user.GetAll(id + "").FirstOrDefault();
+            return View(ViewBag.UserInfo);
         }
 
         [HttpPost]

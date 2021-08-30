@@ -43,7 +43,7 @@ tr.group:hover {
                                 </tr>
                             </thead>
                             <tbody>
-                                @foreach (var item in Model)
+                                @foreach (var item in (dynamic)Model)
                                 {
                                     <tr>
                                         <td>@item.TeacherName</td>

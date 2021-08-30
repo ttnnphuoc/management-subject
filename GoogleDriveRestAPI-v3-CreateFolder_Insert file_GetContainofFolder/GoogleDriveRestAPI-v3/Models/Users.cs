@@ -29,7 +29,7 @@ namespace ElearningSubject.Models
         public bool Add(Users user)
         {
             user.Password = EncodingPassword(user.Password);
-            int result = DataProvider.Instance.ExecuteNonQuery("sp_addUsers", user.Fullname, user.Email, user.Password, user.DateCreated, user.IDDepartment);
+            int result = DataProvider.Instance.ExecuteNonQuery("sp_addUsers", user.Fullname, user.Email, user.Password, user.DateCreated, user.IDDepartment, user.Roles);
             return result > 0;
         }
 
@@ -116,7 +116,11 @@ namespace ElearningSubject.Models
                 throw new Exception(ex.ToString());
             }
         }
-
+        public Users GetUserByEmail(string email)
+        {
+            Users usr = CBO.FillObject<Users>(DataProvider.Instance.ExecuteReader("sp_GetUserByEmail", email));
+            return usr;
+        }
         private static string RandomPassword()
         {
             StringBuilder builder = new StringBuilder();

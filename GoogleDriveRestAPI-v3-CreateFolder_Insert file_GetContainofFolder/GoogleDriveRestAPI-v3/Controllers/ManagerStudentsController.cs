@@ -1,4 +1,5 @@
 ﻿using ElearningSubject.Models;
+using OfficeOpenXml;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -53,6 +54,58 @@ namespace ElearningSubject.Controllers
                 }
             }
             return new JsonResult { Data = "Cập nhật thông tin môn học cho sinh viên thành công", JsonRequestBehavior = JsonRequestBehavior.AllowGet };
+        }
+        public ActionResult AddStudentToSubjectFile(HttpPostedFileBase file)
+        {
+            if (CommonFunc.IsNotLogin(Session["UserLogin"] + ""))
+                return RedirectToAction("Login", "Accounts");
+            if ((file != null) && !string.IsNullOrEmpty(file.FileName))
+            {
+                string fileName = file.FileName;
+                string fileContentType = file.ContentType;
+                byte[] fileBytes = new byte[file.ContentLength];
+                var data = file.InputStream.Read(fileBytes, 0, Convert.ToInt32(file.ContentLength));
+                ExcelPackage.LicenseContext = LicenseContext.Commercial;
+                ExcelPackage.LicenseContext = LicenseContext.NonCommercial;
+
+                using (var package = new ExcelPackage(file.InputStream))
+                {
+                    var currentSheet = package.Workbook.Worksheets;
+                    var workSheet = currentSheet.First();
+                    var noOfCol = workSheet.Dimension.End.Column;
+                    var noOfRow = workSheet.Dimension.End.Row;
+                    for (int rowIterator = 2; rowIterator <= noOfRow; rowIterator++)
+                    {
+                        string email = workSheet.Cells[rowIterator, 1].Value + "";
+                        string subjectID = workSheet.Cells[rowIterator, 2].Value + "";
+                        string acction = workSheet.Cells[rowIterator, 3].Value + "";
+                        if (!string.IsNullOrEmpty(email) && !string.IsNullOrEmpty(subjectID))
+                        {
+                            UserSubject usrSub = subjecUser.GetSubjectUserDataEmail(subjectID, email);
+                            Users usr = user.GetUserByEmail(email);
+
+                            if (usrSub == null)
+                            {
+                                if(usr!=null && user.ID != "")
+                                {
+                                    subjecUser.Add(subjectID, usr.ID);
+                                }
+                            }
+                            else
+                            {
+                                if (usr != null && user.ID != "")
+                                {
+                                    if (acction == "1")
+                                    {
+                                        subjecUser.Delete(subjectID, usr.ID);
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+            return RedirectToAction("Index", "ManagerStudents");
         }
     }
 }

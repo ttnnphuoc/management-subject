@@ -39,25 +39,25 @@
                         <form role="form" action="\Accounts\EditPermistion" method="post">
                             <div class="card-body">
                                 <div class="form-group">
-                                    <input type="hidden" class="form-control" name="ID" id="ID" value="@Model.ID">
+                                    <input type="hidden" class="form-control" name="ID" id="ID" value="@ViewBag.UserInfo.ID">
                                 </div>
                                 <div class="form-group">
                                     <label for="Fullname">Tên: </label>
-                                    <input type="text" readonly class="form-control" name="Fullname" id="Fullname" value="@Model.Fullname" placeholder="Tên quyền">
+                                    <input type="text" readonly class="form-control" name="Fullname" id="Fullname" value="@ViewBag.UserInfo.Fullname" placeholder="Tên quyền">
                                 </div>
                                 <div class="form-group">
                                     <label for="Email">Email: </label>
-                                    <input type="text" readonly class="form-control" name="Email" id="Email" value="@Model.Email" placeholder="Tên quyền">
+                                    <input type="text" readonly class="form-control" name="Email" id="Email" value="@ViewBag.UserInfo.Email" placeholder="Tên quyền">
                                 </div>
                                 <div class="form-group">
                                     <label for="Name">Khoa</label>
-                                    <input type="text" class="form-control" value="@Model.Department" readonly />
+                                    <input type="text" class="form-control" value="@ViewBag.UserInfo.Department" readonly />
                                 </div>
                                 <div class="form-group">
                                     <select name="IDDepartment" id="IDDepartment" class="form-control">
                                         @foreach (var item in ViewBag.ListDepartment)
                                         {
-                                            if (item.ID == Model.IDDepartment)
+                                            if (item.ID == ViewBag.UserInfo.IDDepartment)
                                             {
                                                 <option selected value="@item.ID">@item.Name</option>
                                             }
@@ -72,7 +72,7 @@
                                     <label for="Roles">Chức Vụ: </label><br />
                                     @foreach (var item in ViewBag.ListRoles)
                                     {
-                                        if (@item.ID == Model.Roles)
+                                        if (@item.ID == ViewBag.UserInfo.Roles)
                                         {    
                                             <span for="Roles">@item.Name </span>
                                             <input type="radio" name="Roles" value="@item.ID" checked/>
@@ -86,7 +86,7 @@
                                 </div>
                                 <div class="form-group">
 
-                                    @if (Model.Status)
+                                    @if (ViewBag.UserInfo.Status)
                                     {
                                         <label for="Status">Tình trạng (Đang sử dụng): </label>
                                     }
@@ -94,7 +94,7 @@
                                     {
                                         <label for="Status">Tình trạng (Đã xóa): </label>
                                     }
-                                    <input id="Status" name="Status" type="checkbox" value="true" @(Model.Status ? "checked=\"checked\"" : "") />
+                                    <input id="Status" name="Status" type="checkbox" value="true" @(ViewBag.UserInfo.Status ? "checked=\"checked\"" : "") />
 
                                 </div>
                             </div>

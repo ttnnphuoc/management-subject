@@ -1,0 +1,11 @@
+[
+    {
+    "outputFileName": "Minifier/controller.js",
+    "inputFiles": [
+      "SPA/Controller/ClassController.js",
+      "SPA/Controller/SubjectController.js",
+      "Content/Admin/FuncJS/FuncJs.js",
+      "Content/Admin/FuncJS/student.js"
+    ]
+  }
+]

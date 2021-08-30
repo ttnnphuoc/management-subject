@@ -59,5 +59,10 @@ namespace ElearningSubject.Models
             List<Subjects> data = CBO.FillCollection<Subjects>(DataProvider.Instance.ExecuteReader("sp_getQuantityLessonBySubject",user));
             return data;
         }
+        public Subjects GetSubjectByName(Subjects sub)
+        {
+            Subjects data = CBO.FillObject<Subjects>(DataProvider.Instance.ExecuteReader("sp_getSubjetByName", sub.Name));
+            return data;
+        }
     }
 }

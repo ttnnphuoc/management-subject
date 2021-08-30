@@ -65,42 +65,6 @@
                         <a href="http://docs.google.com/gview?url=@ViewBag.BaseUrl/Uploads/TaiLieu/@ViewBag.Lesson.WordFile" target="_blank"><i class="fa fa-eye" aria-hidden="true"></i></a>
                     </div>
                     <hr />
-                    <div class="container" ng-controller="CommentsController"  ng-init="@("showCommentlist('"+@ViewBag.Lesson.ID +"','"+@ViewBag.Lesson.IDSubject+"')")">
-                        <div class="row">
-                            <div class="col-12 comment-main rounded">
-                                <ul class="p-0">
-                                    <li ng-if="CommentList.length == 0">Không có bình luận nào</li>
-                                    <li ng-repeat="item in CommentList">
-                                        <div class="row comment-box p-1 pt-3 pr-4">
-                                            <div class="col-lg-2 col-3 user-img text-center">
-                                                <img src="~/Content/Admin/man-profile.jpg" class="main-cmt-img" />
-                                                <label style="display:block;">{{item.Fullname}}</label>
-                                            </div>
-                                            <div class="col-lg-10 col-9 user-comment bg-light rounded pb-1">
-                                                <div class="row">
-                                                    <div class="col-9 pr-0">
-                                                        <p class="w-100 p-2 m-0">{{item.COMMENT}}</p>
-                                                    </div>
-                                                    <div class="col-lg-3">
-                                                        <p class="w-100 p-2 m-0"><span class="float-right"><i class="fa fa-clock-o mr-1" aria-hidden="true"></i>{{item.Date}} - {{item.Time}}</span></p>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </li>
-                                    <hr>
-                                    <div class="row">
-                                        <div class="col-lg-10 col-10">
-                                            <input type="text" my-enter="doSomething()" class="form-control" ng-model="Comments.COMMENT" placeholder="Bình luận ....">
-                                        </div>
-                                        <div class="col-lg-2 col-2 send-icon">
-                                            <a ng-click="Add()"  ><i class="fa fa-paper-plane" style="cursor:pointer;" aria-hidden="true"></i></a>
-                                        </div>
-                                    </div>
-                                </ul>
-                            </div>
-                        </div>
-                    </div>
                 </div>
                 <!-- /.card-body -->
 

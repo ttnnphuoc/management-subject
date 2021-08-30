@@ -79,6 +79,7 @@
     $('#btn-go').on('click', function () {
         var elementDataList = $("#info-student tbody tr td")
         var subject = $("#select-subject").val();
+
         if (subject === "-1")
         {
             swal({
@@ -117,10 +118,15 @@
             });
             return;
         }
+
+        var dataSend =  JSON.stringify({
+                data:data,
+            });
+        var action = "/ManagerStudents/AddStudentToSubject";
         $.ajax({
-            url: "/ManagerStudents/AddStudentToSubject",
+            url: action,
             type: "POST",
-            data: JSON.stringify(data),
+            data: dataSend,
             dataType: "json",
             contentType: "application/json; charset=utf-8",
             success: function (data) {
@@ -129,8 +135,10 @@
                     text: data,
                     icon: "success",
                     button: "OK",
+                })
+                .then(function () {
+                    location.reload();
                 });
-                location.reload();
             },
             error: function (error) {
 

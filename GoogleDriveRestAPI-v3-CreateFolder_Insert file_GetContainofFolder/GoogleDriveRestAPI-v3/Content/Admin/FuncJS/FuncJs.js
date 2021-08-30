@@ -13,9 +13,11 @@
             }
         }
     });
-
     $('#jstree').on('changed.jstree', function (e, data) {
+
         if (data.node.parent !== "#") {
+            variable1 = data.node.original.id;
+            variable2 = data.node.original.parent; 
             $('#overlay').show();
             $.ajax({
                 url: "/Lessons/GetFileByFolderID",
@@ -23,12 +25,9 @@
                 data: {id: data.node.id},
                 success: function (data) {
                     $('#overlay').hide();
-                    $(".content-wrapper").html(data);
-
-                    //var compiledElement = $compile(data)($scope);
-                    //$(".content-wrapper").append(compiledElement);
-                    angular.bootstrap($('.content-wrapper'), ['shoppingcart']);
-
+                    $(".content-wrapper").first().html(data);
+                    $("#comment-content").css("display", "block");
+                    angular.element(document.getElementById('YourElementId')).scope().showCommentlist(variable1, variable2);
                 },
                 error: function (error) {
                     $('#overlay').hide();

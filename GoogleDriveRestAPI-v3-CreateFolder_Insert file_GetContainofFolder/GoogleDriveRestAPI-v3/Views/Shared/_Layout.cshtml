@@ -1,5 +1,5 @@
 ﻿<!DOCTYPE html>
-<html>
+<html  ng-app="shoppingcart">
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -91,6 +91,51 @@
 
         <!-- Content Wrapper. Contains page content -->
         @RenderBody()
+        <div class="content-wrapper" id="comment-content" style="min-height: 1200.88px; display:none">
+            <section class="content" ng-controller="CommentsController" id="YourElementId">
+                <div class="row">
+                    <div class="col-12 comment-main rounded">
+                        <div class="card">
+                            <div class="card-header">
+                                Danh sách bình luận
+                            </div>
+                            <div class="card-body">
+                                <ul class="p-0">
+                                    <li ng-if="CommentList.length == 0">Không có bình luận nào</li>
+                                    <li ng-repeat="item in CommentList">
+                                        <div class="row comment-box p-1 pt-3 pr-4">
+                                            <div class="col-lg-2 col-3 user-img text-center">
+                                                <img src="~/Content/Admin/man-profile.jpg" class="main-cmt-img" />
+                                                <label style="display:block;">{{item.Fullname}}</label>
+                                            </div>
+                                            <div class="col-lg-10 col-9 user-comment bg-light rounded pb-1">
+                                                <div class="row">
+                                                    <div class="col-9 pr-0">
+                                                        <p class="w-100 p-2 m-0">{{item.COMMENT}}</p>
+                                                    </div>
+                                                    <div class="col-lg-3">
+                                                        <p class="w-100 p-2 m-0"><span class="float-right"><i class="fa fa-clock-o mr-1" aria-hidden="true"></i>{{item.Date}} - {{item.Time}}</span></p>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </li>
+                                    <hr>
+                                    <div class="row">
+                                        <div class="col-lg-10 col-10">
+                                            <input type="text" my-enter="doSomething()" class="form-control" ng-model="Comments.COMMENT" placeholder="Bình luận ....">
+                                        </div>
+                                        <div class="col-lg-2 col-2 send-icon">
+                                            <a ng-click="Add()"><i class="fa fa-paper-plane" style="cursor:pointer;" aria-hidden="true"></i></a>
+                                        </div>
+                                    </div>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
         <!-- /.content-wrapper -->
         <footer class="main-footer">
             <strong>Copyright &copy; 2020 <a href="#">Quản Lý Môn Học</a>.</strong>
@@ -151,7 +196,7 @@
                     api.column(groupColumn, { page: 'current' }).data().each(function (group, i) {
                         if (last !== group) {
                             $(rows).eq(i).before(
-                                '<tr class="group"><td colspan="6">' + group + '</td></tr>'
+                                '<tr class="group"><td colspan="6"><b>' + group + '</b></td></tr>'
                                 );
                             last = group;
                         }
@@ -173,14 +218,15 @@
     <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.2/angular.min.js"></script>
     <script src="~/SPA/Angular/_app.js"></script>
     <script src="~/SPA/Common.js"></script>
-    <script src="~/SPA/Controller/ClassController.js"></script>
+    @*<script src="~/SPA/Controller/ClassController.js"></script>*@
+    <script src="~/Minifier/controller.min.js"></script>
     <!-- page script -->
     <script src="~/Content/Admin/jstree/jquery.min.js"></script>
     <script src="~/Content/Admin/jstree/jstree.min.js"></script>
-    <script src="~/Content/Admin/FuncJS/FuncJs.js"></script>
+    @*<script src="~/Content/Admin/FuncJS/FuncJs.js"></script>*@
 
     <script src="~/Content/Admin/sweetalert/sweetalert.min.js"></script>
-    <script src="~/Content/Admin/FuncJS/student.js"></script>
+    @*<script src="~/Content/Admin/FuncJS/student.js"></script>*@
     <!-- /.content -->
     <script>
         var content=@Html.Raw(Json.Encode(TempData["Error"] + ""));

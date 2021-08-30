@@ -34,19 +34,19 @@
                         <form role="form" action="\Departments\Edit" method="post">
                             <div class="card-body">
                                 <div class="form-group">
-                                    <input type="hidden" class="form-control" name="ID" id="ID" value="@Model.ID" placeholder="Tên quyền">
+                                    <input type="hidden" class="form-control" name="ID" id="ID" value="@ViewBag.Dept.ID" placeholder="Tên quyền">
                                 </div>
                                 <div class="form-group">
                                     <label for="Name">Tên: </label>
-                                    <input type="text" class="form-control" name="Name" id="Name" value="@Model.Name" placeholder="Tên quyền">
+                                    <input type="text" class="form-control" name="Name" id="Name" value="@ViewBag.Dept.Name" placeholder="Tên quyền">
                                 </div>
                                 <div class="form-group">
                                     <label for="Description">Mô tả: </label>
-                                    <textarea rows="4" class="form-control" cols="50" name="Description" id="Description" placeholder="Mô tả">@Model.Description</textarea>
+                                    <textarea rows="4" class="form-control" cols="50" name="Description" id="Description" placeholder="Mô tả">@ViewBag.Dept.Description</textarea>
                                 </div>
                                 <div class="form-group">
 
-                                    @if (Model.Status)
+                                    @if (ViewBag.Dept.Status)
                                     {
                                         <label for="Status">Tình trạng (Đang sử dụng): </label>
                                     }
@@ -54,7 +54,7 @@
                                     {
                                         <label for="Status">Tình trạng (Đã xóa): </label>
                                     }
-                                    <input id="Status" name="Status" type="checkbox" value="true" @(Model.Status ? "checked=\"checked\"" : "") />
+                                    <input id="Status" name="Status" type="checkbox" value="true" @(ViewBag.Dept.Status ? "checked=\"checked\"" : "") />
                                 </div>
                             </div>
                             <!-- /.card-body -->
